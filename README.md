@@ -11,9 +11,7 @@
 
 ### Commit Rule
 
-- 자신의 팀 폴더 - 주차 - (자신의 닉네임) 폴더에 알맞게 commit합니다.
 - 자신이 작업하고 있는 기능 브랜치에서 commit 합니다.
-
 - Commit Message
     1. 기능단위 커밋 (Ex. `[Video play] Load Video from assets`)
     
