@@ -11,6 +11,10 @@
 		5ED79F0129FD935F009D45AA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED79F0029FD935F009D45AA /* ContentView.swift */; };
 		5ED79F0329FD9361009D45AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ED79F0229FD9361009D45AA /* Assets.xcassets */; };
 		5ED79F0629FD9361009D45AA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ED79F0529FD9361009D45AA /* Preview Assets.xcassets */; };
+		5EF2F59B2A00FA62002D99D0 /* VideoMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2F59A2A00FA61002D99D0 /* VideoMessage.swift */; };
+		5EF2F59D2A01025A002D99D0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2F59C2A01025A002D99D0 /* User.swift */; };
+		5EF2F59F2A0116FB002D99D0 /* Inbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2F59E2A0116FB002D99D0 /* Inbox.swift */; };
+		5EF2F5A12A011702002D99D0 /* Outbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2F5A02A011702002D99D0 /* Outbox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,10 @@
 		5ED79F0029FD935F009D45AA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5ED79F0229FD9361009D45AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5ED79F0529FD9361009D45AA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5EF2F59A2A00FA61002D99D0 /* VideoMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoMessage.swift; sourceTree = "<group>"; };
+		5EF2F59C2A01025A002D99D0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5EF2F59E2A0116FB002D99D0 /* Inbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inbox.swift; sourceTree = "<group>"; };
+		5EF2F5A02A011702002D99D0 /* Outbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outbox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +103,10 @@
 		5ED79F0F29FD937E009D45AA /* models */ = {
 			isa = PBXGroup;
 			children = (
+				5EF2F59A2A00FA61002D99D0 /* VideoMessage.swift */,
+				5EF2F59C2A01025A002D99D0 /* User.swift */,
+				5EF2F59E2A0116FB002D99D0 /* Inbox.swift */,
+				5EF2F5A02A011702002D99D0 /* Outbox.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -169,7 +181,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EF2F59D2A01025A002D99D0 /* User.swift in Sources */,
+				5EF2F59B2A00FA62002D99D0 /* VideoMessage.swift in Sources */,
 				5ED79F0129FD935F009D45AA /* ContentView.swift in Sources */,
+				5EF2F59F2A0116FB002D99D0 /* Inbox.swift in Sources */,
+				5EF2F5A12A011702002D99D0 /* Outbox.swift in Sources */,
 				5ED79EFF29FD935F009D45AA /* AtinaraeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
