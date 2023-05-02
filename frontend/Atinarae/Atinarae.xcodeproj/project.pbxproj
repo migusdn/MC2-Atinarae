@@ -15,6 +15,8 @@
 		5EF2F59D2A01025A002D99D0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2F59C2A01025A002D99D0 /* User.swift */; };
 		5EF2F59F2A0116FB002D99D0 /* Inbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2F59E2A0116FB002D99D0 /* Inbox.swift */; };
 		5EF2F5A12A011702002D99D0 /* Outbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2F5A02A011702002D99D0 /* Outbox.swift */; };
+		5EF2F5A32A013A30002D99D0 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2F5A22A013A30002D99D0 /* VideoPlayerView.swift */; };
+		5EF2F5A52A013BB2002D99D0 /* sampleVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5EF2F5A42A013BB1002D99D0 /* sampleVideo.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,9 @@
 		5EF2F59C2A01025A002D99D0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5EF2F59E2A0116FB002D99D0 /* Inbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inbox.swift; sourceTree = "<group>"; };
 		5EF2F5A02A011702002D99D0 /* Outbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outbox.swift; sourceTree = "<group>"; };
+		5EF2F5A22A013A30002D99D0 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		5EF2F5A42A013BB1002D99D0 /* sampleVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = sampleVideo.mp4; path = ../../../../../../Downloads/sampleVideo.mp4; sourceTree = "<group>"; };
+		5EF2F5A82A014A31002D99D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +64,7 @@
 		5ED79EFD29FD935F009D45AA /* Atinarae */ = {
 			isa = PBXGroup;
 			children = (
+				5EF2F5A82A014A31002D99D0 /* Info.plist */,
 				5ED79F0F29FD937E009D45AA /* models */,
 				5ED79F0E29FD9376009D45AA /* views */,
 				5ED79F0D29FD936F009D45AA /* services */,
@@ -82,6 +88,7 @@
 		5ED79F0C29FD9369009D45AA /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				5EF2F5A42A013BB1002D99D0 /* sampleVideo.mp4 */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -96,6 +103,7 @@
 		5ED79F0E29FD9376009D45AA /* views */ = {
 			isa = PBXGroup;
 			children = (
+				5EF2F5A22A013A30002D99D0 /* VideoPlayerView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -171,6 +179,7 @@
 			files = (
 				5ED79F0629FD9361009D45AA /* Preview Assets.xcassets in Resources */,
 				5ED79F0329FD9361009D45AA /* Assets.xcassets in Resources */,
+				5EF2F5A52A013BB2002D99D0 /* sampleVideo.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +196,7 @@
 				5EF2F59F2A0116FB002D99D0 /* Inbox.swift in Sources */,
 				5EF2F5A12A011702002D99D0 /* Outbox.swift in Sources */,
 				5ED79EFF29FD935F009D45AA /* AtinaraeApp.swift in Sources */,
+				5EF2F5A32A013A30002D99D0 /* VideoPlayerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +253,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -297,6 +308,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -318,6 +330,7 @@
 				DEVELOPMENT_TEAM = 2ZA4H6HG9F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Atinarae/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -347,6 +360,7 @@
 				DEVELOPMENT_TEAM = 2ZA4H6HG9F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Atinarae/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
