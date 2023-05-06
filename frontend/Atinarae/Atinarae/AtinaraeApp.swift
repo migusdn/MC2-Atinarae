@@ -11,7 +11,7 @@ import SwiftUI
 struct AtinaraeApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LunchPage()
         }
     }
 }
