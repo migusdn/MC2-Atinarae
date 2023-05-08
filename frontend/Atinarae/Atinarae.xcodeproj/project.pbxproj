@@ -32,6 +32,13 @@
 		5EF510952A0691F500113935 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF510942A0691F500113935 /* Friend.swift */; };
 		5EF510972A06940800113935 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF510962A06940800113935 /* AppData.swift */; };
 		5EFC5D812A0403EA000AFEB6 /* PersonRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFC5D802A0403EA000AFEB6 /* PersonRadioButton.swift */; };
+		B50E19D72A08D6DB007F1523 /* homeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E19D02A08D6DA007F1523 /* homeView.swift */; };
+		B50E19D82A08D6DB007F1523 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E19D12A08D6DA007F1523 /* CameraViewModel.swift */; };
+		B50E19D92A08D6DB007F1523 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E19D22A08D6DA007F1523 /* ContentView.swift */; };
+		B50E19DA2A08D6DB007F1523 /* CameraRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E19D32A08D6DA007F1523 /* CameraRecord.swift */; };
+		B50E19DB2A08D6DB007F1523 /* RecordPartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E19D42A08D6DA007F1523 /* RecordPartApp.swift */; };
+		B50E19DC2A08D6DB007F1523 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E19D52A08D6DA007F1523 /* RecordView.swift */; };
+		B50E19DD2A08D6DB007F1523 /* RecordBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E19D62A08D6DB007F1523 /* RecordBtn.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +70,13 @@
 		5EF510942A0691F500113935 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		5EF510962A06940800113935 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		5EFC5D802A0403EA000AFEB6 /* PersonRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonRadioButton.swift; sourceTree = "<group>"; };
+		B50E19D02A08D6DA007F1523 /* homeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = homeView.swift; sourceTree = "<group>"; };
+		B50E19D12A08D6DA007F1523 /* CameraViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
+		B50E19D22A08D6DA007F1523 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B50E19D32A08D6DA007F1523 /* CameraRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRecord.swift; sourceTree = "<group>"; };
+		B50E19D42A08D6DA007F1523 /* RecordPartApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordPartApp.swift; sourceTree = "<group>"; };
+		B50E19D52A08D6DA007F1523 /* RecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
+		B50E19D62A08D6DB007F1523 /* RecordBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordBtn.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +261,7 @@
 		5ED79F0E29FD9376009D45AA /* views */ = {
 			isa = PBXGroup;
 			children = (
+				B50E19CF2A08D6BB007F1523 /* RecordView */,
 				5E869F7E2A08CF72007CC669 /* DetailView */,
 				5E869F892A08CF72007CC669 /* DummyView */,
 				5E869F7C2A08CF72007CC669 /* LunchPageView */,
@@ -268,6 +283,20 @@
 				5EF510962A06940800113935 /* AppData.swift */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		B50E19CF2A08D6BB007F1523 /* RecordView */ = {
+			isa = PBXGroup;
+			children = (
+				B50E19D32A08D6DA007F1523 /* CameraRecord.swift */,
+				B50E19D12A08D6DA007F1523 /* CameraViewModel.swift */,
+				B50E19D22A08D6DA007F1523 /* ContentView.swift */,
+				B50E19D02A08D6DA007F1523 /* homeView.swift */,
+				B50E19D62A08D6DB007F1523 /* RecordBtn.swift */,
+				B50E19D42A08D6DA007F1523 /* RecordPartApp.swift */,
+				B50E19D52A08D6DA007F1523 /* RecordView.swift */,
+			);
+			path = RecordView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,18 +371,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E869F8B2A08CF72007CC669 /* LunchPage.swift in Sources */,
+				B50E19D92A08D6DB007F1523 /* ContentView.swift in Sources */,
 				5EF2F59D2A01025A002D99D0 /* User.swift in Sources */,
 				5E869F8D2A08CF72007CC669 /* DetailView.swift in Sources */,
 				5E869F912A08CF72007CC669 /* CameraDummyView.swift in Sources */,
 				5EF2F59B2A00FA62002D99D0 /* VideoMessage.swift in Sources */,
+				B50E19DB2A08D6DB007F1523 /* RecordPartApp.swift in Sources */,
+				B50E19D82A08D6DB007F1523 /* CameraViewModel.swift in Sources */,
 				5ED79F0129FD935F009D45AA /* ContentView.swift in Sources */,
 				5EF2F59F2A0116FB002D99D0 /* Inbox.swift in Sources */,
 				5EF2F5A12A011702002D99D0 /* Outbox.swift in Sources */,
+				B50E19D72A08D6DB007F1523 /* homeView.swift in Sources */,
 				5EE402D52A015F0500A1E790 /* VideoSettingsView.swift in Sources */,
 				5E869F942A08CF9A007CC669 /* ColorExtension.swift in Sources */,
 				5EFC5D812A0403EA000AFEB6 /* PersonRadioButton.swift in Sources */,
 				5E03AB3A2A054AD500C029CB /* CategorySelectModalView.swift in Sources */,
 				5E869F8E2A08CF72007CC669 /* MainViewModelTitle.swift in Sources */,
+				B50E19DC2A08D6DB007F1523 /* RecordView.swift in Sources */,
 				5E1487792A03C65A0041593A /* JsonUtility.swift in Sources */,
 				5E03AB402A0584ED00C029CB /* CategoryAddView.swift in Sources */,
 				5E869F902A08CF72007CC669 /* MainView.swift in Sources */,
@@ -361,6 +395,8 @@
 				5EF510952A0691F500113935 /* Friend.swift in Sources */,
 				5EF2F5A32A013A30002D99D0 /* VideoPlayerView.swift in Sources */,
 				5E869F8F2A08CF72007CC669 /* MainViewModelGeometry.swift in Sources */,
+				B50E19DD2A08D6DB007F1523 /* RecordBtn.swift in Sources */,
+				B50E19DA2A08D6DB007F1523 /* CameraRecord.swift in Sources */,
 				5EF510972A06940800113935 /* AppData.swift in Sources */,
 				5E869F8C2A08CF72007CC669 /* DetailViewModel.swift in Sources */,
 			);
