@@ -12,7 +12,6 @@ class User {
     let userNickname:String
     let userMail: String
     let userPhone: String
-    
     init(userId: Int, userNickname: String, userMail: String, userPhone: String, userCategories: [String], receiverList: [VideoMessage]) {
         self.userId = userId
         self.userNickname = userNickname
