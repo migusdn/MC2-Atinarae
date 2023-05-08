@@ -15,9 +15,11 @@ import SwiftUI
 
 @main
 struct AtinaraeApp: App {
+    let appData = AppData()
     var body: some Scene {
         WindowGroup {
-            LunchPage()
+            VideoSettingsView()
+                .environmentObject(appData)
         }
     }
 }
