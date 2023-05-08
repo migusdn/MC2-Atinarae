@@ -19,7 +19,6 @@ class VideoMessage{
     let isCompleted: Bool
     let hideAtSender: Bool
     let hideAtReceiver: Bool
-    
     init(messageId: Int, sender: User, receiver: User, createdDate: Date, unlockedDate: Date, edittingCount: Int, title: String, category: String, videoSrc: String, isCompleted: Bool, hideAtSender: Bool, hideAtReceiver: Bool) {
         self.messageId = messageId
         self.sender = sender
