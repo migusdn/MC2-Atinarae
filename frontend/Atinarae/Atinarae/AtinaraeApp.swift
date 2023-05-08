@@ -18,8 +18,9 @@ struct AtinaraeApp: App {
     let appData = AppData()
     var body: some Scene {
         WindowGroup {
-            VideoSettingsView()
-                .environmentObject(appData)
+            LunchPage()
+//            VideoSettingsView()
+//                .environmentObject(appData)
         }
     }
 }

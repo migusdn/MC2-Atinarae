@@ -11,9 +11,9 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
             VStack {
-                NavigationLink(destination: UserDetailView(), label: {
-                    Text("아빠")
-                })
+//                NavigationLink(destination: UserDetailView(), label: {
+//                    Text("아빠")
+//                })
             }
             .padding()
         }
