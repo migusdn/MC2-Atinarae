@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5E03AB3A2A054AD500C029CB /* CategorySelectModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E03AB392A054AD500C029CB /* CategorySelectModalView.swift */; };
-		5E03AB3C2A0554D400C029CB /* WithGPT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E03AB3B2A0554D400C029CB /* WithGPT.swift */; };
-		5E03AB3E2A05559C00C029CB /* OptionPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E03AB3D2A05559C00C029CB /* OptionPickerView.swift */; };
 		5E03AB402A0584ED00C029CB /* CategoryAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E03AB3F2A0584ED00C029CB /* CategoryAddView.swift */; };
 		5E1487792A03C65A0041593A /* JsonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1487782A03C65A0041593A /* JsonUtility.swift */; };
 		5E14877D2A03C8430041593A /* userList.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E14877C2A03C8430041593A /* userList.json */; };
@@ -23,13 +21,13 @@
 		5EF2F59F2A0116FB002D99D0 /* Inbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2F59E2A0116FB002D99D0 /* Inbox.swift */; };
 		5EF2F5A12A011702002D99D0 /* Outbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2F5A02A011702002D99D0 /* Outbox.swift */; };
 		5EF2F5A32A013A30002D99D0 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2F5A22A013A30002D99D0 /* VideoPlayerView.swift */; };
+		5EF510952A0691F500113935 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF510942A0691F500113935 /* Friend.swift */; };
+		5EF510972A06940800113935 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF510962A06940800113935 /* AppData.swift */; };
 		5EFC5D812A0403EA000AFEB6 /* PersonRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFC5D802A0403EA000AFEB6 /* PersonRadioButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5E03AB392A054AD500C029CB /* CategorySelectModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectModalView.swift; sourceTree = "<group>"; };
-		5E03AB3B2A0554D400C029CB /* WithGPT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithGPT.swift; sourceTree = "<group>"; };
-		5E03AB3D2A05559C00C029CB /* OptionPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionPickerView.swift; sourceTree = "<group>"; };
 		5E03AB3F2A0584ED00C029CB /* CategoryAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAddView.swift; sourceTree = "<group>"; };
 		5E1487782A03C65A0041593A /* JsonUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonUtility.swift; sourceTree = "<group>"; };
 		5E14877C2A03C8430041593A /* userList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userList.json; sourceTree = "<group>"; };
@@ -46,6 +44,8 @@
 		5EF2F5A02A011702002D99D0 /* Outbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outbox.swift; sourceTree = "<group>"; };
 		5EF2F5A22A013A30002D99D0 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		5EF2F5A82A014A31002D99D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5EF510942A0691F500113935 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		5EF510962A06940800113935 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		5EFC5D802A0403EA000AFEB6 /* PersonRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonRadioButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,15 +60,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5E03AB412A0584FF00C029CB /* Trash */ = {
-			isa = PBXGroup;
-			children = (
-				5E03AB3B2A0554D400C029CB /* WithGPT.swift */,
-				5E03AB3D2A05559C00C029CB /* OptionPickerView.swift */,
-			);
-			path = Trash;
-			sourceTree = "<group>";
-		};
 		5E1487772A03C62F0041593A /* utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,7 +71,6 @@
 		5E14877F2A04022D0041593A /* videoSetting */ = {
 			isa = PBXGroup;
 			children = (
-				5E03AB412A0584FF00C029CB /* Trash */,
 				5EF2F5A22A013A30002D99D0 /* VideoPlayerView.swift */,
 				5EE402D42A015F0500A1E790 /* VideoSettingsView.swift */,
 				5E1487802A04023A0041593A /* component */,
@@ -170,6 +160,8 @@
 				5EF2F59C2A01025A002D99D0 /* User.swift */,
 				5EF2F59E2A0116FB002D99D0 /* Inbox.swift */,
 				5EF2F5A02A011702002D99D0 /* Outbox.swift */,
+				5EF510942A0691F500113935 /* Friend.swift */,
+				5EF510962A06940800113935 /* AppData.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -252,13 +244,13 @@
 				5EF2F5A12A011702002D99D0 /* Outbox.swift in Sources */,
 				5EE402D52A015F0500A1E790 /* VideoSettingsView.swift in Sources */,
 				5EFC5D812A0403EA000AFEB6 /* PersonRadioButton.swift in Sources */,
-				5E03AB3C2A0554D400C029CB /* WithGPT.swift in Sources */,
 				5E03AB3A2A054AD500C029CB /* CategorySelectModalView.swift in Sources */,
 				5E1487792A03C65A0041593A /* JsonUtility.swift in Sources */,
 				5E03AB402A0584ED00C029CB /* CategoryAddView.swift in Sources */,
 				5ED79EFF29FD935F009D45AA /* AtinaraeApp.swift in Sources */,
+				5EF510952A0691F500113935 /* Friend.swift in Sources */,
 				5EF2F5A32A013A30002D99D0 /* VideoPlayerView.swift in Sources */,
-				5E03AB3E2A05559C00C029CB /* OptionPickerView.swift in Sources */,
+				5EF510972A06940800113935 /* AppData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,11 +391,12 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.atinarae.tvvinkle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -433,11 +426,12 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.atinarae.tvvinkle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

@@ -8,35 +8,54 @@
 import SwiftUI
 
 struct VideoSettingsView: View {
+    @EnvironmentObject var appData: AppData
+    
     @Environment(\.presentationMode) var presentationMode
     @State private var isPresented = false
     @State private var date = Date()
     @State private var title = ""
+
     
-    let users = [
-        User(userId: 1, userNickname: "우리딸", userMail: "example@exam.com", userPhone: "010-0000-0000", userProfile: "abcd"),
-        User(userId: 1, userNickname: "우리아들", userMail: "example@exam.com", userPhone: "010-0000-0000", userProfile: "abcd"),
-        User(userId: 1, userNickname: "우리막내", userMail: "example@exam.com", userPhone: "010-0000-0000", userProfile: "abcd"),
-        User(userId: 1, userNickname: "우리엄마", userMail: "example@exam.com", userPhone: "010-0000-0000", userProfile: "abcd"),
-        User(userId: 1, userNickname: "우리아빠", userMail: "example@exam.com", userPhone: "010-0000-0000", userProfile: "abcd")
-    ]
-    @State private var categories = [
-        "생일",
-        "기념일",
-        "기타 등등"
-    ]
     @State private var selectedCategoryIdx: Int?
+   
+    @State private var selectedFriend:Friend?
     
     @State private var birthDate = Date()
-    @State private var selectedUser:User?
+    
     init() {
         UITextField.appearance().clearButtonMode = .whileEditing
     }
     
     var rows: [GridItem] = Array(repeating: .init(.fixed(50)), count: 1)
     @State var text:String = ""
-    //    UITextField.appearance().clearButtonMode = .whileEditing
     
+    func friendView(friend: Friend, selectedFriend: Friend?) -> some View {
+        VStack(alignment: .center) {
+            if selectedFriend == friend {
+                ZStack{
+                    Image(friend.planetImage)
+                        .resizable()
+                        .foregroundColor(Color(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1)))
+                        .frame(width: 52, height: 52)
+                    Circle()
+                        .stroke(Color.white, lineWidth: 3)
+                        .frame(width: 63, height:63)
+                        .background(Image(systemName: "checkmark").fontWeight(.bold))
+                        
+                        
+                }
+                Text(friend.nickname)
+            } else {
+                Image(friend.planetImage)
+                    .resizable()
+                    .foregroundColor(Color(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1)))
+                    .frame(width: 63, height: 63)
+                Text(friend.nickname)
+            }
+        }
+        .padding(.top, 2)
+        .padding(.leading,2)
+    }
     var body: some View {
         NavigationView{
             ZStack{
@@ -49,37 +68,21 @@ struct VideoSettingsView: View {
                             .padding(.bottom,8)
                         ){
                             ScrollView(.horizontal, showsIndicators: false) {
-                                LazyHGrid(rows: rows, alignment: .center) {
-                                    ForEach(users, id: \.self) { user in
+                                HStack{
+                                    ForEach(appData.user.friends, id: \.self) { friend in
                                         Group{
-                                            VStack(alignment: .center){
-                                                if selectedUser == user{
-                                                    ZStack{
-                                                        Circle()
-                                                            .foregroundColor(Color(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1)))
-                                                            .frame(width: 52, height: 52)
-                                                        Circle()
-                                                            .stroke(Color.black, lineWidth: 3)
-                                                            .frame(width: 63, height:63)
-                                                            .background(Image(systemName: "checkmark").fontWeight(.bold))
-                                                    }
-                                                    Text(user.userNickname)
-                                                }else{
-                                                    Circle()
-                                                        .foregroundColor(Color(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1)))
-                                                        .frame(width: 63, height: 63)
-                                                    Text(user.userNickname)
-                                                }
-                                            }
-                                            .padding(.leading,2)
+                                            friendView(friend: friend, selectedFriend: selectedFriend)
                                         }
                                         .onTapGesture{
-                                            selectedUser = user
+                                            selectedFriend = friend
                                         }
                                         .padding(.trailing, 15)
                                     }
-                                }.padding(.trailing, 0)
+                                }
+                                .ignoresSafeArea(.all)
                             }
+                            
+                            .ignoresSafeArea(.all)
                         }
                         Section {
                             TextField("제목", text: $title)
@@ -98,13 +101,12 @@ struct VideoSettingsView: View {
                                 if selectedCategoryIdx == nil{
                                     Text("없음")
                                 }else{
-                                    Text(categories[selectedCategoryIdx!])
+                                    Text(appData.user.categories[selectedCategoryIdx!])
                                 }
                                 Image(systemName: "chevron.right")
                             }.onTapGesture{
                                 isPresented.toggle()
                             }
-                            
                             
                         }
                     }
@@ -130,7 +132,6 @@ struct VideoSettingsView: View {
             }
             .navigationBarTitle(
                 Text("영상 보내기")
-                    .bold()
                 , displayMode: .inline)
             .navigationBarItems(
                 leading:
@@ -151,18 +152,22 @@ struct VideoSettingsView: View {
             .navigationBarBackButtonHidden(true)
             .sheet(isPresented: $isPresented){
                 CategorySelectModalView(
-                    categories: $categories,
-                    selectedCategoryIdx: $selectedCategoryIdx
-                ){
-                    isPresented=false
-                }
+                    selectedCategoryIdx: $selectedCategoryIdx,
+                    dismissAction: {
+                        isPresented = false
+                    }
+                )
             }
         }
     }
 }
 
 struct VideoSettingsView_Previews: PreviewProvider {
+    
+    
     static var previews: some View {
+        let appData = AppData()
         VideoSettingsView()
+            .environmentObject(appData)
     }
 }

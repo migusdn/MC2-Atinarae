@@ -6,7 +6,7 @@
 //
 import Foundation
 
-class VideoMessage{
+struct VideoMessage: Equatable{
     let messageId: Int
     let sender: User
     let receiver: User

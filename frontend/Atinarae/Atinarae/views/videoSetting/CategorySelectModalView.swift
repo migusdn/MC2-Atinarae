@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct CategorySelectModalView: View {
-    @Binding var categories: [String]
+    
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var appData: AppData
     @Binding var selectedCategoryIdx: Int?
     @State private var isPresented = false
     @State private var newCategoryName = ""
     var dismissAction: () -> Void
     
-    init(categories: Binding<[String]>, selectedCategoryIdx: Binding<Int?>, dismissAction: @escaping () -> Void) {
-        self._categories = categories
+    init(selectedCategoryIdx: Binding<Int?>, dismissAction: @escaping () -> Void) {
         self._selectedCategoryIdx = selectedCategoryIdx
         self.dismissAction = dismissAction
     }
@@ -37,9 +38,9 @@ struct CategorySelectModalView: View {
                         }
                     }
                     Section{
-                        ForEach(categories.indices, id: \.self) { index in
+                        ForEach(appData.user.categories.indices, id: \.self) { index in
                             HStack {
-                                Text(categories[index])
+                                Text(appData.user.categories[index])
                                 Spacer()
                                 if selectedCategoryIdx == index {
                                     Image(systemName: "checkmark")
@@ -53,7 +54,7 @@ struct CategorySelectModalView: View {
                         .onDelete(perform: delete)
                     }
                     Section{
-                        NavigationLink(destination: CategoryAddView(categories: $categories, newCategoryName: newCategoryName)) {
+                        NavigationLink(destination: CategoryAddView(newCategoryName: newCategoryName)) {
                             Text("추가하기")
                                 .foregroundColor(.blue)
                                 .frame(maxWidth: .infinity)
@@ -68,7 +69,7 @@ struct CategorySelectModalView: View {
                 
             }
             .navigationBarTitle(
-                Text("카테고리 편집")
+                Text("카테고리")
                 , displayMode: .inline)
             .navigationBarItems(
                 leading:
@@ -83,11 +84,15 @@ struct CategorySelectModalView: View {
         
     }
     func delete(at offsets: IndexSet) {
-        categories.remove(atOffsets: offsets)
+        appData.user.categories.remove(atOffsets: offsets)
     }
 }
-//struct CategorySelectModalView_Previews: PreviewProvider {
-//    static var previews: some View {
-////        CategorySelectModalView()
-//    }
-//}
+struct CategorySelectModalView_Previews: PreviewProvider {
+    static var previews: some View {
+        let appData = AppData()
+        CategorySelectModalView(
+            selectedCategoryIdx: .constant(nil),
+            dismissAction: {}
+        ).environmentObject(appData)
+    }
+}

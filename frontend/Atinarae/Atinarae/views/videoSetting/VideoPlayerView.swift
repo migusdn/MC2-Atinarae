@@ -27,11 +27,11 @@ struct VideoPlayerView: View {
     }
 }
 
-struct VideoPlayerView_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack{
-            VideoPlayerView(forResource: "sampleVideo", withExtension: "mp4")
-            VideoPlayerView(videoUrl: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4")
-        }
-    }
-}
+//struct VideoPlayerView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        VStack{
+//            VideoPlayerView(forResource: "sampleVideo", withExtension: "mp4")
+//            VideoPlayerView(videoUrl: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4")
+//        }
+//    }
+//}
