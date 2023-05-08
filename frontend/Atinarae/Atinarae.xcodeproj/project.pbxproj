@@ -15,6 +15,7 @@
 		0B4976542A03C81400AB15F7 /* MainViewModelTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4976532A03C81400AB15F7 /* MainViewModelTitle.swift */; };
 		0B4976582A03E15900AB15F7 /* MainViewModelGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4976572A03E15900AB15F7 /* MainViewModelGeometry.swift */; };
 		0B49765D2A0493E900AB15F7 /* LunchPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B49765C2A0493E900AB15F7 /* LunchPage.swift */; };
+		0B4976BA2A08867B00AB15F7 /* CameraDummyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4976B92A08867B00AB15F7 /* CameraDummyView.swift */; };
 		5ED79EFF29FD935F009D45AA /* AtinaraeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED79EFE29FD935F009D45AA /* AtinaraeApp.swift */; };
 		5ED79F0129FD935F009D45AA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED79F0029FD935F009D45AA /* ContentView.swift */; };
 		5ED79F0329FD9361009D45AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ED79F0229FD9361009D45AA /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 		0B4976532A03C81400AB15F7 /* MainViewModelTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTitle.swift; sourceTree = "<group>"; };
 		0B4976572A03E15900AB15F7 /* MainViewModelGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelGeometry.swift; sourceTree = "<group>"; };
 		0B49765C2A0493E900AB15F7 /* LunchPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchPage.swift; sourceTree = "<group>"; };
+		0B4976B92A08867B00AB15F7 /* CameraDummyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDummyView.swift; sourceTree = "<group>"; };
 		5ED79EFB29FD935F009D45AA /* Atinarae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Atinarae.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ED79EFE29FD935F009D45AA /* AtinaraeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtinaraeApp.swift; sourceTree = "<group>"; };
 		5ED79F0029FD935F009D45AA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,12 +120,20 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		0B49765B2A0493D500AB15F7 /* LunchPages */ = {
+		0B49765B2A0493D500AB15F7 /* LunchPageView */ = {
 			isa = PBXGroup;
 			children = (
 				0B49765C2A0493E900AB15F7 /* LunchPage.swift */,
 			);
-			path = LunchPages;
+			path = LunchPageView;
+			sourceTree = "<group>";
+		};
+		0B4976B82A08865A00AB15F7 /* DummyView */ = {
+			isa = PBXGroup;
+			children = (
+				0B4976B92A08867B00AB15F7 /* CameraDummyView.swift */,
+			);
+			path = DummyView;
 			sourceTree = "<group>";
 		};
 		5ED79EF229FD935F009D45AA = {
@@ -185,7 +195,8 @@
 		5ED79F0E29FD9376009D45AA /* views */ = {
 			isa = PBXGroup;
 			children = (
-				0B49765B2A0493D500AB15F7 /* LunchPages */,
+				0B4976B82A08865A00AB15F7 /* DummyView */,
+				0B49765B2A0493D500AB15F7 /* LunchPageView */,
 				0B49764B2A038B5100AB15F7 /* MainView */,
 				0B3D29082A036DBF00C38C50 /* DetailView */,
 				5EF2F5A22A013A30002D99D0 /* VideoPlayerView.swift */,
@@ -274,6 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B4976BA2A08867B00AB15F7 /* CameraDummyView.swift in Sources */,
 				5EF2F59D2A01025A002D99D0 /* User.swift in Sources */,
 				0B49765D2A0493E900AB15F7 /* LunchPage.swift in Sources */,
 				0B4976522A038BE000AB15F7 /* MainView.swift in Sources */,

@@ -5,35 +5,47 @@
 //  Created by A_Mcflurry on 2023/05/04.
 //
 
+//  ----------------------------------------------------------------------
+//              삽질을 정말... 많이 했읍니다...
+//              여기서도 지오메트리리더를 사용, 메인뷰와 여기서 이중으로 사용해서
+//              문제가 많았는데, 어찌 해결을 했습니다?
+//              이 파일은 여기보단 밑에 적어놓은 주석을 보는게 코드 이해가 더 빠를수도 있습니다.
+//  ----------------------------------------------------------------------
+
+
 import SwiftUI
 
 struct MainViewModelGeometry: View {
-    @State private var animationFlag = false
-    @State var tag:Int? = nil
+    @State private var animationFlag = false        // 별들이 도는 애니메이션 bool
+    @State var tag:Int? = nil                       // 네비게이션뷰 이동을 위한 tag
     private var animation = Animation.linear.repeatForever(autoreverses: false)
-   
-    let planetSize: CGFloat = 100
+    let planetSize: CGFloat = 100   // 행성의 크기 조절
+    let starSize: CGFloat = 40      // 별의 크기 조절
+    
+    
     
     var body: some View {
+        
+        
         GeometryReader{ geo in
-            let diameter = geo.size.height/2.5
-            let diameter2 = geo.size.height/1.5
-            let diameter3 = geo.size.height/1.1
+            let diameter = geo.size.height/2.5  // 1번째 원
+            let diameter2 = geo.size.height/1.5 // 2번째 원
+            let diameter3 = geo.size.height/1.1 // 3번째 원
+            
             ZStack{
                 
-               Color.backGroundColor
-//                ForEach([10, 20, 30], id: \.self) { idx in
-//                    self.makeCircle(dim: CGFloat(idx * 10))
-//
-//                }
-                
+                // 배경화면
+                Color.backGroundColor
+
+                // 원 생성
                 self.makeCircle(dim: diameter - 50)
                 self.makeCircle(dim: diameter2  - 50)
                 self.makeCircle(dim: diameter3 - 50)
                 
                 
+                // 행성 생성
                 Button{
-                    
+                    // self.tag = 1
                 } label: {
                     Image("planet_by")
                         .resizable()
@@ -79,6 +91,7 @@ struct MainViewModelGeometry: View {
                 .modifier(self.makePlanetEffect(diameter: diameter3, point: 5.6))
                 
                 
+                // 가운대에 있는 MY생성, Eclipse가 버튼이 되지 않게 따로 빼놓음
                 ZStack{
                     Image("MY Eclipse")
                     Button{
@@ -89,12 +102,13 @@ struct MainViewModelGeometry: View {
                             .frame(width: 100, height: 100, alignment: .center)
                     }
                 }
-                
-                
             }
             .onAppear{
-                self.animationFlag.toggle()
+                self.animationFlag.toggle() // 실행시 애니메이션 실행
             }
+            
+            // tag로 뷰 이동을 위한 링크 설정
+            NavigationLink(destination: DetailView(), tag : 1, selection: self.$tag){}
         }
     }
     
@@ -103,18 +117,19 @@ struct MainViewModelGeometry: View {
         let diameter = dim + 50
         return ZStack {
             Circle()    // 궤도
-                .strokeBorder(  // 그라데이션 디자인 감각이 안좋아서 대충 넣어봤습니다.. 디자이너분들의 감각을 믿습니다.
+                .strokeBorder(  // 그라데이션 디자인 감각이 안좋아서 대충 넣어봤습니다..
                     AngularGradient(gradient: Gradient(colors: [.orbitLineColor, .orbitLineColor2, .orbitLineColor, .orbitLineColor2, .orbitLineColor]), center: .center)
                        )
                 .frame(width: diameter, height: diameter)
             
             Image("star")   // 별
                 .resizable()
-                .frame(width: 50, height: 50, alignment: .center)
+                .frame(width: starSize, height: starSize, alignment: .center)
                 .offset(y:14)
                 .modifier(self.makeOrbitEffect(diameter: diameter))
                 .animation(Animation.linear(duration: 250)
                     .repeatForever(autoreverses: false))
+            
             
         }
     }
@@ -163,9 +178,11 @@ struct PlanetEffect: GeometryEffect {
 
 struct MainViewModelGeometry_Previews: PreviewProvider {
     static var previews: some View {
-        GeometryReader{ geo in
-            MainViewModelGeometry()
-                .frame(width: geo.size.width, height: geo.size.height/2)
+            GeometryReader{ geo in
+                NavigationView{
+                MainViewModelGeometry()
+                    .frame(width: geo.size.width, height: geo.size.height/2)
+            }
         }
     }
 }

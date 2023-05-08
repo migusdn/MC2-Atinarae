@@ -5,6 +5,12 @@
 //  Created by A_Mcflurry on 2023/05/04.
 //
 
+//  ----------------------------------------------------------------------
+//                  메인뷰의 최상단에 위치하는 뷰모델.
+//                  배경이 흰색이라 안보이는데 다 있긴 합니다
+//                  배경화면 주석 지우면 나옵니다
+//  ----------------------------------------------------------------------
+
 import SwiftUI
 
 struct MainViewModelTitle: View {
@@ -40,6 +46,8 @@ struct MainViewModelTitle: View {
 
 struct MainViewModel_Previews: PreviewProvider {
     static var previews: some View {
-        MainViewModelTitle()
+        NavigationView{
+            MainViewModelTitle()
+        }
     }
 }
