@@ -29,11 +29,14 @@ extension Color {
   }
 }
 extension Color {
-    static let orbitLineColor = Color(hex: "F5F5F5").opacity(0.8)
+    static let orbitLineColor = Color(hex: "F5F5F5").opacity(0.8)   // 궤도
     static let orbitLineColor2 = Color(hex: "F5F5F5").opacity(0.3)
-    static let orbitStarColor = Color(hex: "F2F2F7")
-    static let backGroundColor = Color(hex: "0E0E0E")
-    static let buttonColor = Color(hex: "918AF5")
+    
+    static let orbitStarColor = Color(hex: "F2F2F7")    // 별
+    
+    static let backGroundColor = Color(hex: "0E0E0E")   // 배경
+    
+    static let buttonColor = Color(hex: "918AF5")       // 버튼
     static let buttonColor1 = Color(hex: "CAEBFF")
     
 }
