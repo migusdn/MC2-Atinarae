@@ -15,6 +15,7 @@ struct User: Equatable, Hashable {
     var profile: String
     var categories: [String]
     var friends: [Friend]
+    var inbox: Inbox
     
     static func ==(lhs: User, rhs: User) -> Bool {
         return lhs.userId == rhs.userId &&
@@ -23,7 +24,8 @@ struct User: Equatable, Hashable {
             lhs.phone == rhs.phone &&
             lhs.profile == rhs.profile &&
             lhs.categories == rhs.categories &&
-            lhs.friends == rhs.friends
+            lhs.friends == rhs.friends &&
+            lhs.inbox == rhs.inbox
     }
     
     func hash(into hasher: inout Hasher) {
@@ -33,10 +35,11 @@ struct User: Equatable, Hashable {
         hasher.combine(phone)
         hasher.combine(profile)
         hasher.combine(categories)
-//        hasher.combine(friends)
+        hasher.combine(friends)
+        hasher.combine(inbox)
     }
     
-    init(userId: Int, nickname: String, mail: String, phone: String, profile: String, categories: [String], friends: [Friend]) {
+    init(userId: Int, nickname: String, mail: String, phone: String, profile: String, categories: [String], friends: [Friend], inbox: Inbox) {
         self.userId = userId
         self.nickname = nickname
         self.mail = mail
@@ -44,5 +47,6 @@ struct User: Equatable, Hashable {
         self.profile = profile
         self.categories = categories
         self.friends = friends
+        self.inbox = inbox
     }
 }

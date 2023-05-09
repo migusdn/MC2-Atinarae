@@ -29,7 +29,8 @@ struct LunchPage: View {
                 }
                 NavigationLink(destination: MainView(), tag : 1, selection: self.$tag){}
             }
-        }.navigationBarHidden(true)
+        }
+        .navigationBarHidden(true)
        
     }
     

@@ -14,10 +14,10 @@ struct VideoSettingsView: View {
     @State private var isPresented = false
     @State private var date = Date()
     @State private var title = ""
-
+    
     
     @State private var selectedCategoryIdx: Int?
-   
+    
     @State private var selectedFriend:Friend?
     
     @State private var birthDate = Date()
@@ -41,8 +41,8 @@ struct VideoSettingsView: View {
                         .stroke(Color.white, lineWidth: 3)
                         .frame(width: 63, height:63)
                         .background(Image(systemName: "checkmark").fontWeight(.bold))
-                        
-                        
+                    
+                    
                 }
                 Text(friend.nickname)
             } else {
@@ -110,33 +110,38 @@ struct VideoSettingsView: View {
                             
                         }
                     }
-                }
-                VStack{
                     Spacer()
-                    Button(action: {
-                        print("Share tapped!")
-                    }) {
+                    NavigationLink(destination: RecordView()) {
                         Text("다음")
-                            .fontWeight(.bold)
-                            .font(.system(size:25))
-                            .frame(width: 79, height: 54)
-                            .padding()
-                            .foregroundColor(.black)
-                            .background(Color(red:0.69,green:0.88,blue:1))
-                            .cornerRadius(40)
-                            .padding(.horizontal, 20)
-                    }
+                            .frame(width: 91, height: 58)
+                            .foregroundColor(Color.black)
+                            .background(
+                                LinearGradient(
+                                    gradient: Gradient(colors: [
+                                        Color(red: 0.569, green: 0.541, blue: 0.961),
+                                        Color(red: 0.685, green: 0.74, blue: 0.981),
+                                        Color(red: 0.792, green: 0.922, blue: 1)
+                                    ]),
+                                    startPoint: UnitPoint(x: 0, y: 0.5),
+                                    endPoint: UnitPoint(x: 1, y: 0.5)
+                                )
+                                .cornerRadius(100)
+                            )
+                    }.padding(30)
+                    
+                    
                 }
                 
                 
             }
+            .navigationBarBackButtonHidden(true)
             .navigationBarTitle(
                 Text("영상 보내기")
                 , displayMode: .inline)
             .navigationBarItems(
                 leading:
                     Button(action: {
-                        // 왼쪽 아이템을 클릭했을 때의 동작
+                        presentationMode.wrappedValue.dismiss()
                     }) {
                         Image(systemName: "chevron.left")
                     },
@@ -147,9 +152,8 @@ struct VideoSettingsView: View {
                         Image(systemName: "plus")
                     }
             )
-            
             .accentColor(.white)
-            .navigationBarBackButtonHidden(true)
+            
             .sheet(isPresented: $isPresented){
                 CategorySelectModalView(
                     selectedCategoryIdx: $selectedCategoryIdx,
@@ -159,6 +163,9 @@ struct VideoSettingsView: View {
                 )
             }
         }
+        .navigationBarBackButtonHidden(true)
+        
+        
     }
 }
 

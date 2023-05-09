@@ -20,7 +20,7 @@ struct AtinaraeApp: App {
         WindowGroup {
             LunchPage()
 //            VideoSettingsView()
-//                .environmentObject(appData)
+                .environmentObject(appData)
         }
     }
 }

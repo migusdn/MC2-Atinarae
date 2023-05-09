@@ -52,7 +52,7 @@ struct MainView: View {
                     }
                         .frame(width: geometry.size.width, height: geometry.size.height/3)
                 }
-                NavigationLink(destination: CameraDummyView(), tag : 1, selection: self.$tag){}
+                NavigationLink(destination: VideoSettingsView(), tag : 1, selection: self.$tag){}
             }
                 
         }

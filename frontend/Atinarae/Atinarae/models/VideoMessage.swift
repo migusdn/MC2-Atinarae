@@ -6,32 +6,47 @@
 //
 import Foundation
 
-struct VideoMessage: Equatable{
-    let messageId: Int
-    let sender: User
-    let receiver: User
-    let createdDate: Date
-    let unlockedDate: Date
-    let edittingCount: Int
-    let title: String
-    let category: String
-    let videoSrc: String
-    let isCompleted: Bool
-    let hideAtSender: Bool
-    let hideAtReceiver: Bool
+struct VideoMessage: Hashable, Equatable{
+   var messageId: Int
+   var sender: User
+   var receiver: User
+   var createdDate: Date
+   var unlockedDate: Date
+   var editingCount: Int
+   var title: String
+   var category: String
+   var videoSrc: String
+   var isCompleted: Bool
+   var hideAtSender: Bool
+   var hideAtReceiver: Bool
+   
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(messageId)
+        hasher.combine(sender)
+        hasher.combine(receiver)
+        hasher.combine(createdDate)
+        hasher.combine(unlockedDate)
+        hasher.combine(editingCount)
+        hasher.combine(title)
+        hasher.combine(category)
+        hasher.combine(videoSrc)
+        hasher.combine(isCompleted)
+        hasher.combine(hideAtSender)
+        hasher.combine(hideAtReceiver)
+    }
     
-    init(messageId: Int, sender: User, receiver: User, createdDate: Date, unlockedDate: Date, edittingCount: Int, title: String, category: String, videoSrc: String, isCompleted: Bool, hideAtSender: Bool, hideAtReceiver: Bool) {
-        self.messageId = messageId
-        self.sender = sender
-        self.receiver = receiver
-        self.createdDate = createdDate
-        self.unlockedDate = unlockedDate
-        self.edittingCount = edittingCount
-        self.title = title
-        self.category = category
-        self.videoSrc = videoSrc
-        self.isCompleted = isCompleted
-        self.hideAtSender = hideAtSender
-        self.hideAtReceiver = hideAtReceiver
+    static func == (lhs: VideoMessage, rhs: VideoMessage) -> Bool {
+        return lhs.messageId == rhs.messageId &&
+        lhs.sender == rhs.sender &&
+        lhs.receiver == rhs.receiver &&
+        lhs.createdDate == rhs.createdDate &&
+        lhs.unlockedDate == rhs.unlockedDate &&
+        lhs.editingCount == rhs.editingCount &&
+        lhs.title == rhs.title &&
+        lhs.category == rhs.category &&
+        lhs.videoSrc == rhs.videoSrc &&
+        lhs.isCompleted == rhs.isCompleted &&
+        lhs.hideAtSender == rhs.hideAtSender &&
+        lhs.hideAtReceiver == rhs.hideAtReceiver
     }
 }

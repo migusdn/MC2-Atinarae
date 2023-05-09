@@ -9,6 +9,7 @@ import SwiftUI
 
 class AppData: ObservableObject {
     @Published var isLoggedIn = false
+    
     @Published var user =
     User(
         userId: 1,
@@ -63,7 +64,10 @@ class AppData: ObservableObject {
                 planetImage:"우디",
                 videos: []
             )
-        ]
+        ],
+        inbox: Inbox(videos: [
+            
+        ])
     )
     
 }
