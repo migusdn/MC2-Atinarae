@@ -57,7 +57,7 @@ struct MainView: View {
                         
                         }
                     }
-                        .frame(width: geometry.size.width, height: geometry.size.height/3)
+                    .frame(width: geometry.size.width, height: geometry.size.height/3)
                 }
                 NavigationLink(destination: VideoSettingsView(), tag : 1, selection: self.$tag){}
             }

@@ -2,12 +2,9 @@ import SwiftUI
 import AVFoundation
 
 
-class CameraViewModel: NSObject, ObservableObject, AVCaptureFileOutputRecordingDelegate {
-    
-    
-    
-    // @StateObject var checkBack = RecordView()
-    
+class CameraViewModel: NSObject, ObservableObject, AVCaptureFileOutputRecordingDelegate  {
+
+
     @Published var session = AVCaptureSession()
     @Published var alert = false
     @Published var output = AVCaptureMovieFileOutput()
@@ -20,17 +17,19 @@ class CameraViewModel: NSObject, ObservableObject, AVCaptureFileOutputRecordingD
     @Published var showPreview: Bool = false
     
     //화면 앞 뒤 전환
-    //@objc dynamic var videoDeviceInput: AVCaptureDeviceInput!
-    @Published var isBack: Bool = true
+    @Published var videoDeviceInput: AVCaptureDeviceInput!
     @Published var currentPosition: AVCaptureDevice!
+
     //@Published var currentCameraPosition
     //@Binding var isUsingFrontCamera: Bool
-    
-    @Published var cnt: Int = 0
-    
+    @Published var isBack: Bool = true
+
+
     //top바 -> 시간 타이머
     @Published var recordedDuraion: CGFloat = 0
     @Published var maxDuration: CGFloat = 45
+   // @Published var max15Duration: CGFloat = 15
+
     
     
     
@@ -59,35 +58,19 @@ class CameraViewModel: NSObject, ObservableObject, AVCaptureFileOutputRecordingD
     
     func setUp() {
         
-        isBack.toggle()
-        
         do{
-            if cnt < 1 {
-                let camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
-                let CameraInput = try AVCaptureDeviceInput(device: camera!)
-                
-                if self.session.canAddInput(CameraInput) {
-                    self.session.addInput(CameraInput)
-                }
-                
                 self.session.beginConfiguration()
                 
-                
-                //let camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: cameraPosition)
-                
-                //let frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
-                // let backCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
-                
-                //let cameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: isBack ? .back : .front)
-                // let videoInput = try AVCaptureDeviceInput(device: cameraDevice!)
-                // let frontCameraInput = try AVCaptureDeviceInput(device: frontCamera!)
-                //소리도 녹음
+                let videoDevice = AVCaptureDevice.default(for: .video)
+                let videoInput = try AVCaptureDeviceInput(device: videoDevice!)
+            
                 let audioDevice = AVCaptureDevice.default(for: .audio)
                 let audioInput = try AVCaptureDeviceInput(device: audioDevice!)
                 
-                
-                if self.session.canAddInput(audioInput){
+            if self.session.canAddInput(audioInput) && self.session.canAddInput(videoInput){
                     self.session.addInput(audioInput)
+                self.session.addInput(videoInput)
+
                 }
                 
                 if self.session.canAddOutput(self.output){
@@ -96,239 +79,51 @@ class CameraViewModel: NSObject, ObservableObject, AVCaptureFileOutputRecordingD
                 
                 self.session.commitConfiguration()
                 
-                
-                
-            } else {
-                //let cameraPosition: AVCaptureDevice.Position = isBack ? .back : .front
-                var currentCameraPosition: AVCaptureDevice.Position =  isBack ? .back : .front
-                var currentCameraInput: AVCaptureDeviceInput?
-                print("ㅇㅇㅇㅇㅇ")
-               // func switchCamera() {
-                    // 현재 입력 장치 제거
-                    if let input = currentCameraInput {
-                        session.removeInput(input)
-                        currentCameraInput = nil
-                    }
-                    
-                    // 새로운 입력 장치 추가
-                    if currentCameraPosition == .back {
-                        // 전면 카메라 추가
-                        let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
-                        do {
-                            let input = try AVCaptureDeviceInput(device: videoDevice!)
-                            if session.canAddInput(input) {
-                                session.addInput(input)
-                                currentCameraPosition = .front
-                                currentCameraInput = input
-                            }
-                        } catch {
-                            print("Error switching to front camera: \(error)")
-                        }
-                    } else {
-                        // 후면 카메라 추가
-                        let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
-                        do {
-                            let input = try AVCaptureDeviceInput(device: videoDevice!)
-                            if session.canAddInput(input) {
-                                session.addInput(input)
-                                currentCameraPosition = .back
-                                currentCameraInput = input
-                            }
-                        } catch {
-                            print("Error switching to back camera: \(error)")
-                        }
-                    }
-               // }
-
-                
-                
-                
-                
-                
-//                self.session.stopRunning()
-//                self.session.beginConfiguration()
-//                let cameraPosition: AVCaptureDevice.Position = isBack ? .back : .front
-//                let camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: cameraPosition)
-//
-//                //let camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: currentPosition)
-//                let CameraInput = try AVCaptureDeviceInput(device: camera!)
-//
-//                if self.session.canAddInput(CameraInput) {
-//                    self.session.addInput(CameraInput)
-//                }
-//
-//                //let camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: cameraPosition)
-//
-//                //let frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
-//                // let backCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
-//
-//                //let cameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: isBack ? .back : .front)
-//                // let videoInput = try AVCaptureDeviceInput(device: cameraDevice!)
-//                // let frontCameraInput = try AVCaptureDeviceInput(device: frontCamera!)
-//                //소리도 녹음
-//
-//                if self.session.canAddOutput(self.output){
-//                    self.session.addOutput(self.output)
-//                }
-//
-//                self.session.commitConfiguration()
-//                //self.session.startRunning()
-                
-                
-                
-                
-                
+            }//do 닫힘
+            
+            catch {
+                print("Error switching to back camera: \(error)")
             }
-           
-            cnt+=1
-            print("--------------\(cnt)--------------")
+                    
         }
-        catch{
-            print(error.localizedDescription)
-        }
-    }
-    
-    
-    
-    //------
-    //        do {
-    //                //let cameraPosition: AVCaptureDevice.Position = .back
-    //            let camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: currentPosition)
-    //            let CameraInput = try AVCaptureDeviceInput(device: camera!)
-    //
-    //            if self.session.canAddInput(CameraInput) {
-    //                self.session.addInput(CameraInput)
-    //            }
-    //
-    //            self.session.beginConfiguration()
-    //
-    //
-    //            //let camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: cameraPosition)
-    //
-    //            //let frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
-    //           // let backCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
-    //
-    //            //let cameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: isBack ? .back : .front)
-    //            // let videoInput = try AVCaptureDeviceInput(device: cameraDevice!)
-    //           // let frontCameraInput = try AVCaptureDeviceInput(device: frontCamera!)
-    //            //소리도 녹음
-    //            let audioDevice = AVCaptureDevice.default(for: .audio)
-    //            let audioInput = try AVCaptureDeviceInput(device: audioDevice!)
-    //
-    //
-    //            if self.session.canAddInput(audioInput){
-    //                self.session.addInput(audioInput)
-    //            }
-    //
-    //            if self.session.canAddOutput(self.output){
-    //                self.session.addOutput(self.output)
-    //            }
-    //
-    //            self.session.commitConfiguration()
-    //        }
-    //
-    //        catch{
-    //            print(error.localizedDescription)
-    //        }
-    //    }
-    //
-    //
-    //    //--------
-    //
-    func switchCamera() {
-        
-        self.session.beginConfiguration()
-        let currentInput = session.inputs.first as! AVCaptureDeviceInput
-        self.session.removeInput(currentInput)
-        
-        let cameraPosition: AVCaptureDevice.Position = isBack ? .back : .front
-        let camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: cameraPosition)
-        let cameraInput = try! AVCaptureDeviceInput(device: camera!)
-        
-        self.session.addInput(cameraInput)
-        isBack.toggle()
-        self.session.commitConfiguration()
-    }
 
+
+    func switchCamera() {
+        do {
+            
+            self.session.beginConfiguration()
+            
+            isBack.toggle()
+            
+            guard let currentInput = session.inputs.first else {
+                return
+            }
     
-    
-//           do{
-//                let cameraPosition: AVCaptureDevice.Position = isBack ? .back : .front
-//                print("swifthcu \(cameraPosition)")
-    
-//                // 세션 재설정
-//                session.stopRunning()
-//                self.session.commitConfiguration()
-//
-//                let camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: cameraPosition)
-//                let CameraInput = try AVCaptureDeviceInput(device: camera!)
-//
-//                if self.session.canAddInput(CameraInput) {
-//                    self.session.addInput(CameraInput)
-//                }
-//
-//
-//
-//                if self.session.canAddOutput(self.output) {
-//                    self.session.addOutput(self.output)
-//                }
-//
-//
-//                self.session.commitConfiguration()
-//
-//                session.startRunning()
-//            }
-//    catch {
-//                print(error.localizedDescription)
-//            }
+            session.removeInput(currentInput)
+            
+            let Camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: isBack ? .back : .front)
+            let cameraInput = try AVCaptureDeviceInput(device: Camera!)
         
+            
+            if self.session.canAddInput(cameraInput){
+                self.session.addInput(cameraInput)
+            }
+            
+            
+            if self.session.canAddOutput(self.output){
+                self.session.addOutput(self.output)
+            }
+            
+            self.session.commitConfiguration()
+            
+        } catch {
+            print("Error switching to back camera: \(error)")
+        }
+
+
+    }
     
-    
-    //    func toggleCamera() {
-    //        session.beginConfiguration()
-    //
-    //        guard let currentInput = session.inputs.first else {
-    //            return
-    //        }
-    //
-    //        session.removeInput(currentInput)
-    //
-    //        if currentInput == rearCameraInput {
-    //            guard let frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) else {
-    //                return
-    //            }
-    //
-    //            do {
-    //                let input = try AVCaptureDeviceInput(device: frontCamera)
-    //                if session.canAddInput(input) {
-    //                    session.addInput(input)
-    //                    currentCameraPosition = .front
-    //                } else {
-    //                    session.addInput(currentInput)
-    //                }
-    //            } catch {
-    //                print("Error: \(error.localizedDescription)")
-    //            }
-    //        } else {
-    //            guard let rearCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
-    //                return
-    //            }
-    //
-    //            do {
-    //                let input = try AVCaptureDeviceInput(device: rearCamera)
-    //                if session.canAddInput(input) {
-    //                    session.addInput(input)
-    //                    currentCameraPosition = .rear
-    //                } else {
-    //                    session.addInput(currentInput)
-    //                }
-    //            } catch {
-    //                print("Error: \(error.localizedDescription)")
-    //            }
-    //        }
-    //
-    //        session.commitConfiguration()
-    //    }
+
     
     
     func startRecording() {
@@ -346,6 +141,8 @@ class CameraViewModel: NSObject, ObservableObject, AVCaptureFileOutputRecordingD
         isRecording = false
         
     }
+    
+    
     
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
         if let error = error {
@@ -383,6 +180,8 @@ class CameraViewModel: NSObject, ObservableObject, AVCaptureFileOutputRecordingD
             }
         }
     }
+    
+    
     
     func mergeVideos(assets: [AVURLAsset], completion: @escaping (_ exporter: AVAssetExportSession)->()) {
         let composition = AVMutableComposition()
