@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct DetailView: View {
+    var number: Int
     @State var date = Date()
     var body: some View {
-        
             List{
                 ScrollView{
                         VStack{
@@ -29,6 +29,6 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView()
+        DetailView(number: 1)
     }
 }
