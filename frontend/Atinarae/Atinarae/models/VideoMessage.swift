@@ -8,8 +8,8 @@ import Foundation
 
 struct VideoMessage: Hashable, Equatable{
    var messageId: Int
-   var sender: User
-   var receiver: User
+   var senderId: Int
+   var receiverId: Int
    var createdDate: Date
    var unlockedDate: Date
    var editingCount: Int
@@ -19,11 +19,27 @@ struct VideoMessage: Hashable, Equatable{
    var isCompleted: Bool
    var hideAtSender: Bool
    var hideAtReceiver: Bool
-   
+    
+    init(messageId: Int, senderId: Int, receiverId: Int, createdDate: Date, unlockedDate: Date, editingCount: Int, title: String, category: String, videoSrc: String, isCompleted: Bool, hideAtSender: Bool, hideAtReceiver: Bool) {
+        self.messageId = messageId
+        self.senderId = senderId
+        self.receiverId = receiverId
+        self.createdDate = createdDate
+        self.unlockedDate = unlockedDate
+        self.editingCount = editingCount
+        self.title = title
+        self.category = category
+        self.videoSrc = videoSrc
+        self.isCompleted = isCompleted
+        self.hideAtSender = hideAtSender
+        self.hideAtReceiver = hideAtReceiver
+    }
+    
+    
     func hash(into hasher: inout Hasher) {
         hasher.combine(messageId)
-        hasher.combine(sender)
-        hasher.combine(receiver)
+        hasher.combine(senderId)
+        hasher.combine(receiverId)
         hasher.combine(createdDate)
         hasher.combine(unlockedDate)
         hasher.combine(editingCount)
@@ -37,8 +53,8 @@ struct VideoMessage: Hashable, Equatable{
     
     static func == (lhs: VideoMessage, rhs: VideoMessage) -> Bool {
         return lhs.messageId == rhs.messageId &&
-        lhs.sender == rhs.sender &&
-        lhs.receiver == rhs.receiver &&
+        lhs.senderId == rhs.senderId &&
+        lhs.receiverId == rhs.receiverId &&
         lhs.createdDate == rhs.createdDate &&
         lhs.unlockedDate == rhs.unlockedDate &&
         lhs.editingCount == rhs.editingCount &&
