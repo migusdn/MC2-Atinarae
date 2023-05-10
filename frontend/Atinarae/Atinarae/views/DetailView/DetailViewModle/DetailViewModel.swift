@@ -18,8 +18,9 @@ struct DetailViewModel: View {
                 Text("수능")
                 Text("2020.01.23")
             }
+            
            Divider()
-           
+            
         }
         
         

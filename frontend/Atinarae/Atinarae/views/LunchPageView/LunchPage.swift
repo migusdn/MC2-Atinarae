@@ -14,6 +14,7 @@
 import SwiftUI
 
 struct LunchPage: View {
+  @EnvironmentObject var appData: AppData
     @State var tag:Int? = nil
     var body: some View {
         NavigationView{
@@ -22,7 +23,7 @@ struct LunchPage: View {
                 Color.backGroundColor.ignoresSafeArea()
                 Image("Title")
                     .onAppear{
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // 1초 지연
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { //지연
                             self.tag = 1    // 밑에 NavigationLink를 대려옵니다.
                     }
                         
@@ -32,12 +33,15 @@ struct LunchPage: View {
         }
         .navigationBarHidden(true)
        
+       
     }
     
 }
 
 struct LunchPage_Previews: PreviewProvider {
     static var previews: some View {
+        let appData = AppData()
         LunchPage()
+            .environmentObject(appData)
     }
 }
