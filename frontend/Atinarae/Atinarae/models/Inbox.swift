@@ -6,7 +6,18 @@
 //
 
 import Foundation
-struct Inbox{
-    let user: User
-    
+struct Inbox: Equatable, Hashable {
+    var videos: [VideoMessage]
+
+    static func == (lhs: Inbox, rhs: Inbox) -> Bool {
+        return lhs.videos == rhs.videos
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(videos)
+    }
+
+    init(videos: [VideoMessage]) {
+        self.videos = videos
+    }
 }
