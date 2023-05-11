@@ -14,13 +14,13 @@ struct RecordView: View {
     
     @StateObject var cameraModel = CameraViewModel()
     
-    //@State private var isBack: Bool = true
-    
     @State private var progress: CGFloat = 0.0
     @State private var selectedSegment = 0
     @State private var showModal = false
-    @State var checkBack: Bool = true
-    let timeSelect = ["15초" ,"45초"]
+    @State var Flag: Bool = true
+    var url : URL?
+    //var videoURL: URL
+    //@State var checkBack: Bool = true
     
     var body: some View{
         
@@ -44,30 +44,18 @@ struct RecordView: View {
                         .padding(.bottom,10)
                     
                     
-                    
-                    Picker(selection: $selectedSegment, label: Text("시간시간")) {
-                        ForEach(0..<timeSelect.count) { index in
-                            Text(timeSelect[index])
-                        }
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .frame(width: 150)
-                    
-                    
-                    
                     //컨트롤 버튼들
                     HStack{
                         //화면전환 버튼
                         Button{
-                            cameraModel.switchCamera()
-                            
+                            cameraModel.setUp()
                         }
                     label: {
                         Image(systemName: "arrow.triangle.2.circlepath")
                             .resizable()
                             .renderingMode(.template)
                             .aspectRatio(contentMode: .fit)
-                            .frame(width:50, height: 50)
+                            .frame(width:30, height: 30)
                             .foregroundColor(.white)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
@@ -75,16 +63,16 @@ struct RecordView: View {
                         
                         
                         
-                        //녹화버튼
+                        
                         Button{
                             if cameraModel.isRecording {
                                 cameraModel.stopRecording()
+                                showModal.toggle()
                             } else {
                                 cameraModel.startRecording()
-                                
                             }//녹화중!
                         }
-                    label: {
+                    label:{
                         Image(systemName: "camera")
                             .resizable()
                             .renderingMode(.template)
@@ -112,14 +100,16 @@ struct RecordView: View {
                                                 progress = 1.0
                                             }
                                     }
-                                }
+                                }//zstack
                             }
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                        
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                         
                         
-                        //확인 btn
-                        Button{
+                        
+                        
+                        Button {
                             if let _ = cameraModel.previewURL {
                                 cameraModel.showPreview.toggle()
                                 showModal.toggle()
@@ -148,64 +138,34 @@ struct RecordView: View {
                         }
                     }
                     .sheet(isPresented: $showModal){
-                        if let url = cameraModel.previewURL, cameraModel.showPreview{
-                            FinalPreview(showPreview: $cameraModel.showPreview, url: url)
-                            //.frame(width:. infinity, height: 500)
-                                .environmentObject(cameraModel)
+//                        if let url = cameraModel.previewURL, cameraModel.showPreview{
+                        FinalPreview(url: cameraModel.recordedURL!)
+//                                .environmentObject(cameraModel)
                                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                                 .padding(.top,60)
                                 .padding(.bottom,10)
-                        }
+                            
+//                        }
                     }
-                        //.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-                        //.padding(.trailing)
-                        //.opacity(cameraModel.previewURL == nil && !cameraModel.recordedURLs.isEmpty || cameraModel.isRecording ? 0 : 1)
-                        
-                    }//HStack 임당
+                    }
+                    
+                    
                 }//vstack
                 .frame(maxHeight: .infinity, alignment: .bottom)
                 .padding(.top,10)
                 .padding(.bottom,30)
-                
-                //            Button {
-                //                cameraModel.recordedDuraion = 0
-                //                cameraModel.previewURL = nil
-                //                cameraModel.recordedURLs.removeAll()
-                //            } label : {
-                //                Image(systemName: "xmark")
-                //                    .font(.title)
-                //                    .foregroundColor(.white)
-                //            }
-                //            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                //            .padding()
-                //            .padding(.top)
-                //}
-                
-                
-                //            .overlay(content: {
-                //                if let url = cameraModel.previewURL, cameraModel.showPreview{
-                //                    FinalPreview(showPreview: $cameraModel.showPreview, url: url)
-                //                        .frame(width:. infinity, height: 500)
-                //                        .environmentObject(cameraModel)
-                //                        .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-                //                        .padding(.top,10)
-                //                        .padding(.bottom,10)
-                //                        .transition(.move(edge: .trailing))
-                //                }
-                //
-                //            })
                 .animation(.easeInOut, value: cameraModel.showPreview)
                 .preferredColorScheme(.dark)
                 
-                
-            }//zstack
-        }//geometry
-    }
-}
+            }
+        }
+    }//zstack
+}//geometry
+
 
 struct FinalPreview: View {
-    @Binding var showPreview: Bool
-    @StateObject var cameraModel = CameraViewModel()
+//    @Binding var showPreview: Bool
+//    @StateObject var cameraModel = CameraViewModel()
     var url: URL
     
     var body: some View {
@@ -220,16 +180,16 @@ struct FinalPreview: View {
                     .padding(EdgeInsets(top: 50, leading: 0, bottom: 30, trailing: 0))
                 
                 VideoPlayer(player: AVPlayer(url: url))
-                    .frame(width: size.width, height: size.height/5 * 3, alignment: .center) //600 대신 size.height 였음
+                    .frame(width: size.width, height: size.height / 5 * 3, alignment: .center) //600 대신 size.height 였음
                     .aspectRatio(contentMode: .fit)
                     .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-                    
-                   
-//----------------------------------------------------------------------------------------------------------------------------------------
+                
+                
+                //----------------------------------------------------------------------------------------------------------------------------------------
                 //overlay로 영상 재생 시간 만들어주기
                 
-//----------------------------------------------------------------------------------------------------------------------------------------
-               //뒤로가기  {
+                //----------------------------------------------------------------------------------------------------------------------------------------
+                //뒤로가기  {
                 
                 //뒤로가기
                 //                .overlay(alignment: .topLeading) {
@@ -262,30 +222,25 @@ struct FinalPreview: View {
                 //            .padding(.top)
                 
             }
-                Spacer()
-                Button{
-                    //영상 저장 버튼으로 이동하기
-                } label: {
-                    RoundedRectangle(cornerRadius: 30)
-                        .fill(
-                            AngularGradient(gradient: Gradient(colors: [.buttonColor, .buttonColor1]), center: .top)
-                        )
-                        .frame(width: 100, height: 50, alignment: .bottom)
-                        .overlay{
-                            Text("다음")
-                                .foregroundColor(.black)
-                                .font(.subheadline).bold()
-                        }
-                }
-                
+            Spacer()
+            Button{
+                //영상 저장 버튼으로 이동하기
+            } label: {
+                RoundedRectangle(cornerRadius: 30)
+                    .fill(
+                        AngularGradient(gradient: Gradient(colors: [.buttonColor, .buttonColor1]), center: .top)
+                    )
+                    .frame(width: 100, height: 50, alignment: .bottom)
+                    .overlay{
+                        Text("다음")
+                            .foregroundColor(.black)
+                            .font(.subheadline).bold()
+                    }
             }
-            .padding(EdgeInsets(top: -50, leading: 0, bottom: 30, trailing: 0))
+            
+        }
+        .padding(EdgeInsets(top: -50, leading: 0, bottom: 30, trailing: 0))
         
     }//body view 닫힘
 } //Final view 닫힘
 
-struct RecordView_Previews: PreviewProvider {
-    static var previews: some View{
-        RecordView()
-    }
-}

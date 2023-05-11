@@ -42,6 +42,8 @@
 		B50E19D82A08D6DB007F1523 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E19D12A08D6DA007F1523 /* CameraViewModel.swift */; };
 		B50E19DA2A08D6DB007F1523 /* CameraRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E19D32A08D6DA007F1523 /* CameraRecord.swift */; };
 		B50E19DC2A08D6DB007F1523 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E19D52A08D6DA007F1523 /* RecordView.swift */; };
+		B5C077702A0BA6380008351E /* finalModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C0776F2A0BA6380008351E /* finalModalView.swift */; };
+		B5C077722A0BD41C0008351E /* plzModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C077712A0BD41C0008351E /* plzModal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +86,8 @@
 		B50E19D12A08D6DA007F1523 /* CameraViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		B50E19D32A08D6DA007F1523 /* CameraRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRecord.swift; sourceTree = "<group>"; };
 		B50E19D52A08D6DA007F1523 /* RecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
+		B5C0776F2A0BA6380008351E /* finalModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = finalModalView.swift; sourceTree = "<group>"; };
+		B5C077712A0BD41C0008351E /* plzModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = plzModal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,6 +326,8 @@
 				B50E19D12A08D6DA007F1523 /* CameraViewModel.swift */,
 				B50E19D52A08D6DA007F1523 /* RecordView.swift */,
 				B50E19D02A08D6DA007F1523 /* homeView.swift */,
+				B5C0776F2A0BA6380008351E /* finalModalView.swift */,
+				B5C077712A0BD41C0008351E /* plzModal.swift */,
 			);
 			path = RecordView;
 			sourceTree = "<group>";
@@ -410,6 +416,7 @@
 				5E7DD5262A0A21C300458BE9 /* MessageListView.swift in Sources */,
 				5EF2F5A12A011702002D99D0 /* Outbox.swift in Sources */,
 				B50E19D72A08D6DB007F1523 /* homeView.swift in Sources */,
+				B5C077722A0BD41C0008351E /* plzModal.swift in Sources */,
 				5EE402D52A015F0500A1E790 /* VideoSettingsView.swift in Sources */,
 				5E869F942A08CF9A007CC669 /* ColorExtension.swift in Sources */,
 				5EFC5D812A0403EA000AFEB6 /* PersonRadioButton.swift in Sources */,
@@ -428,6 +435,7 @@
 				5E869F8F2A08CF72007CC669 /* MainViewModelGeometry.swift in Sources */,
 				B50E19DA2A08D6DB007F1523 /* CameraRecord.swift in Sources */,
 				5EF510972A06940800113935 /* AppData.swift in Sources */,
+				B5C077702A0BA6380008351E /* finalModalView.swift in Sources */,
 				5E869F8C2A08CF72007CC669 /* DetailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -560,7 +568,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Atinarae/Preview Content\"";
-				DEVELOPMENT_TEAM = 2ZA4H6HG9F;
+				DEVELOPMENT_TEAM = X32GZ3NKQ8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Atinarae/Info.plist;
@@ -598,7 +606,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Atinarae/Preview Content\"";
-				DEVELOPMENT_TEAM = 2ZA4H6HG9F;
+				DEVELOPMENT_TEAM = X32GZ3NKQ8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Atinarae/Info.plist;
