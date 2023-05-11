@@ -58,7 +58,7 @@ struct VideoSettingsView: View {
                     }
 //                    date
                     if let friend = selectedFriend {
-                        videoMessage?.receiverId = friend.userId
+                        videoMessage?.receiverId = friend.userId!
                         videoMessage?.receiverId = 0
                     }
                     
@@ -156,7 +156,7 @@ struct VideoSettingsView: View {
         VStack(alignment: .center) {
             if selectedFriend == friend {
                 ZStack{
-                    Image(friend.planetImage!)
+                    Image("")
                         .resizable()
                         .frame(width: 52, height: 52)
                     Circle()
@@ -168,7 +168,7 @@ struct VideoSettingsView: View {
                 }
                 Text(friend.nickname!)
             } else {
-                Image(friend.planetImage!)
+                Image("friend.planetImage!")
                     .resizable()
                     .foregroundColor(Color(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1)))
                     .frame(width: 63, height: 63)

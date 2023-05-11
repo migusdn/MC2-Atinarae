@@ -8,7 +8,7 @@
 import Foundation
 
 struct Friend: Equatable, Hashable {
-    var userId: Int
+    var userId: Int?
     var nickname: String?
     var planetImage: Int?
     var videos: [VideoMessage]
