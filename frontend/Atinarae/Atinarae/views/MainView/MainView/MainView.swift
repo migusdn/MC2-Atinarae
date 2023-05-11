@@ -12,7 +12,6 @@
 //          행성을 눌러 디테일뷰로 들어갈때 여기서 DetailView로 넘겨주는 값으로 사람을 판별하면 될듯합니다.
 //  ------------------------------------------------------------------------------------
 
-
 import SwiftUI
 
 struct MainView: View {
@@ -59,7 +58,7 @@ struct MainView: View {
                     }
                     .frame(width: geometry.size.width, height: geometry.size.height/3)
                 }
-                NavigationLink(destination: VideoSettingsView(), tag : 1, selection: self.$tag){}
+//                NavigationLink(destination: VideoSettingsView(), tag : 1, selection: self.$tag){}
             }
             
         }

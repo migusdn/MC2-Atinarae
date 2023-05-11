@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "planet_py.svg",
+      "filename" : "planet_pb.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "planet_pb 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "planet_pb 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

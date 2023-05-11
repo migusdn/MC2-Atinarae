@@ -22,6 +22,8 @@ struct LunchPage: View {
             ZStack{
                 Color.backGroundColor.ignoresSafeArea()
                 Image("Title")
+//                    .resizable()
+//                    .frame(width: 400,height: 80)
                     .onAppear{
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { //지연
                             self.tag = 1    // 밑에 NavigationLink를 대려옵니다.
