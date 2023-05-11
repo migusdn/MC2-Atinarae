@@ -12,32 +12,31 @@ struct InboxView: View {
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
         NavigationView{
-            MessageListView(messages: appData.user.inbox.videos, isSenderView: false)
             VStack{
-                Form{
-                    Text("aasdf")
-                }
-            }.navigationBarBackButtonHidden(true)
-                .navigationBarTitle(
-                    Text("MY")
-                    , displayMode: .inline)
-                .navigationBarItems(
-                    leading:
-                        Button(action: {
-                            presentationMode.wrappedValue.dismiss()
-                        }) {
-                            Image(systemName: "chevron.left")
-                        }
-    //                trailing:
-    //                    Button(action: {
-    //                        // 오른쪽 아이템을 클릭했을 때의 동작
-    //                    }) {
-    //                        Image(systemName: "plus")
-    //                    }
-                )
-                .accentColor(.white)
-            
+                MessageListView(messages: appData.getUserInboxByUserId(appData.user.userId), isSenderView: false)
+                    .padding(.top, 40)
+                    .navigationBarBackButtonHidden(true)
+                    .navigationBarTitle(
+                        Text("MY")
+                        , displayMode: .inline)
+                    .navigationBarItems(
+                        leading:
+                            Button(action: {
+                                presentationMode.wrappedValue.dismiss()
+                            }) {
+                                Image(systemName: "chevron.left")
+                            }
+                        //                trailing:
+                        //                    Button(action: {
+                        //                        // 오른쪽 아이템을 클릭했을 때의 동작
+                        //                    }) {
+                        //                        Image(systemName: "plus")
+                        //                    }
+                    )
+                    .accentColor(.white)
+            }
         }
+        .navigationBarBackButtonHidden(true)
         
     }
 }

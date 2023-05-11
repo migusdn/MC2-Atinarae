@@ -50,14 +50,17 @@ struct MainViewModelGeometry: View {
             
                 // 가운대에 있는 MY생성, Eclipse가 버튼이 되지 않게 따로 빼놓음
                 ZStack{
-                    Image("MY Eclipse")
-                    Button{
-                        
-                    } label: {
+                    NavigationLink(destination: InboxView(), label: {
                         Image("MY")
                             .resizable()
                             .frame(width: 100, height: 100, alignment: .center)
-                    }
+                    })
+//                    Image("MY Eclipse")
+//                    Button{
+//
+//                    } label: {
+//
+//                    }
                 }
             }
             .onAppear{
