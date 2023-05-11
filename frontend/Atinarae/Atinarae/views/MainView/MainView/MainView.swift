@@ -45,12 +45,14 @@ struct MainView: View {
                                 )
                                 .frame(width: geometry.size.width/3, height: 50)
                                 .overlay{
-                                    HStack{
-                                        Image(systemName: "paperplane")
-                                            .foregroundColor(.black)
-                                        Text("메세지보내기")
-                                            .foregroundColor(.black)
-                                            .font(.subheadline).bold()
+                                    NavigationLink(destination: VideoSettingsView(), tag : 1, selection: self.$tag){
+                                        HStack{
+                                            Image(systemName: "paperplane")
+                                                .foregroundColor(.black)
+                                            Text("메세지보내기")
+                                                .foregroundColor(.black)
+                                                .font(.subheadline).bold()
+                                        }
                                     }
                                 
                         
@@ -58,7 +60,7 @@ struct MainView: View {
                     }
                     .frame(width: geometry.size.width, height: geometry.size.height/3)
                 }
-//                NavigationLink(destination: VideoSettingsView(), tag : 1, selection: self.$tag){}
+                
             }
             
         }

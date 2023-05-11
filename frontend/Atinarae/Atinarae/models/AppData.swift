@@ -54,7 +54,7 @@ class AppData: ObservableObject {
                 Friend(
                     userId: 4,
                     nickname: "제이미",
-                    planetImage:5,
+                    planetImage:0,
                     videos: []
                 ),
                 Friend(

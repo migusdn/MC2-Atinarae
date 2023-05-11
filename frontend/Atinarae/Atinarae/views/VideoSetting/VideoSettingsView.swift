@@ -48,25 +48,33 @@ struct VideoSettingsView: View {
                     categorySelectView
                 }
                 Spacer()
+                
                 Button(action:{
-                    videoMessage?.title = title
-                    videoMessage?.category = appData.user.categories[selectedCategoryIdx!]
-                    if unlockedDateisNotDefine{
-                        videoMessage?.unlockedDate = nil
-                    }else{
-                        videoMessage?.unlockedDate = date
-                    }
-//                    date
-                    if let friend = selectedFriend {
-                        videoMessage?.receiverId = friend.userId!
-                        videoMessage?.receiverId = 0
-                    }
-                    
-                    appData.addVideo(videoMessage!)
                 }){
-                    makeGradientButton("다음")
-                        .padding(30)
+                    NavigationLink(destination: RecordView()){
+                        makeGradientButton("다음")
+                            .padding(30)
+                    }
                 }
+//                Button(action:{
+//                    videoMessage?.title = title
+//                    videoMessage?.category = appData.user.categories[selectedCategoryIdx!]
+//                    if unlockedDateisNotDefine{
+//                        videoMessage?.unlockedDate = nil
+//                    }else{
+//                        videoMessage?.unlockedDate = date
+//                    }
+////                    date
+//                    if let friend = selectedFriend {
+//                        videoMessage?.receiverId = friend.userId!
+//                        videoMessage?.receiverId = 0
+//                    }
+//
+//                    appData.addVideo(videoMessage!)
+//                }){
+//                    makeGradientButton("다음")
+//                        .padding(30)
+//                }
                 
                 
                 
@@ -156,7 +164,8 @@ struct VideoSettingsView: View {
         VStack(alignment: .center) {
             if selectedFriend == friend {
                 ZStack{
-                    Image("")
+                    makeSelectPlanet(planetNumber: friend.planetImage!)
+                    
                         .resizable()
                         .frame(width: 52, height: 52)
                     Circle()
@@ -168,7 +177,7 @@ struct VideoSettingsView: View {
                 }
                 Text(friend.nickname!)
             } else {
-                Image("friend.planetImage!")
+                makeSelectPlanet(planetNumber: friend.planetImage!)
                     .resizable()
                     .foregroundColor(Color(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1)))
                     .frame(width: 63, height: 63)
