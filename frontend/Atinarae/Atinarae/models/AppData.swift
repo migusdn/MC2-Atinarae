@@ -30,19 +30,19 @@ class AppData: ObservableObject {
                 Friend(
                     userId: 3,
                     nickname: "모아나",
-                    planetImage:"moana1",
+                    planetImage: 0,
                     videos: []
                 ),
                 Friend(
                     userId: 2,
                     nickname: "쨈",
-                    planetImage:"쨈",
+                    planetImage: 2,
                     videos: []
                 ),
                 Friend(
                     userId: 2,
                     nickname: "돈",
-                    planetImage:"돈",
+                    planetImage: 3,
                     videos: []
                 ),
                 Friend(

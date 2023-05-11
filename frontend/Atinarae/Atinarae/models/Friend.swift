@@ -10,7 +10,7 @@ import Foundation
 struct Friend: Equatable, Hashable {
     var userId: Int
     var nickname: String?
-    var planetImage: String?
+    var planetImage: Int?
     var videos: [VideoMessage]
     
     static func == (lhs: Friend, rhs: Friend) -> Bool {
@@ -27,7 +27,7 @@ struct Friend: Equatable, Hashable {
 //        hasher.combine(videos)
     }
     
-    init(userId: Int, nickname: String? = nil, planetImage: String? = nil, videos: [VideoMessage]) {
+    init(userId: Int? = nil, nickname: String? = nil, planetImage: Int? = nil, videos: [VideoMessage]) {
         self.userId = userId
         self.nickname = nickname
         self.planetImage = planetImage

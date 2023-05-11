@@ -22,8 +22,9 @@ struct MainViewModelGeometry: View {
     private var animation = Animation.linear.repeatForever(autoreverses: false)
     let planetSize: CGFloat = 100   // 행성의 크기 조절
     let starSize: CGFloat = 40      // 별의 크기 조절
-    // @Environment(\.presentationMode) var presentationMode
     @State private var showModal = false
+    
+
     
     var body: some View {
         
@@ -68,8 +69,9 @@ struct MainViewModelGeometry: View {
             }
             
             // tag로 뷰 이동을 위한 링크 설정
+            
             ForEach(0..<5) { navigationNum in
-                NavigationLink(destination: DetailView(number: navigationNum), tag : navigationNum, selection: self.$tag){}
+                NavigationLink(destination: DetailView(planetNumber: appData.user.friends[navigationNum].planetImage ?? 0), tag : navigationNum, selection: self.$tag){}
             }
             
         }
@@ -107,13 +109,18 @@ struct MainViewModelGeometry: View {
                         self.tag = planetNumber
                     }
                 } label: {
-                    VStack{
-                        Image(appData.user.friends[planetNumber].planetImage ?? "planet_Empty")
+                    
+                        //Image( ?? "planet_Empty")
+                    makeMainPlanet(planetNumber: appData.user.friends[planetNumber].planetImage ?? 5)
                             .resizable()
                             .frame(width: planetSize, height: planetSize)
-                        Text(appData.user.friends[planetNumber].nickname ?? "")
-                            .foregroundColor(.white)
-                    }
+                            .overlay{
+                                Text(appData.user.friends[planetNumber].nickname ?? "")
+                                    .foregroundColor(.white)
+                                    .offset(y:planetSize/2.5)
+                            }
+                        
+                    
                 }
                 .modifier(self.makePlanetEffect(diameter: planetDiameter, point: point))
                 .sheet(isPresented: self.$showModal) {
