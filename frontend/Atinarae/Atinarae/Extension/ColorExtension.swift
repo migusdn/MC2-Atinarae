@@ -38,6 +38,7 @@ extension Color {
     
     static let buttonColor = Color(hex: "918AF5")       // 버튼
     static let buttonColor1 = Color(hex: "CAEBFF")
+    static let tagColor = Color(red: 0.463, green: 0.443, blue: 0.965, opacity: 0.3)
     
 }
 

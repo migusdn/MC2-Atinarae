@@ -14,9 +14,11 @@
 import SwiftUI
 
 struct MainViewModelTitle: View {
+  //  @EnvironmentObject var appData: AppData
     var body: some View {
         ZStack{
             // Color.backGroundColor
+            
             HStack{
                 Image("Title")
                     .resizable()

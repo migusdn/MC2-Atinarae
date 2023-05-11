@@ -17,7 +17,7 @@ struct Inbox: Equatable, Hashable {
         hasher.combine(videos)
     }
 
-    init(videos: [VideoMessage]) {
-        self.videos = videos
+    init(videos: [VideoMessage]?=[]) {
+        self.videos = videos!
     }
 }

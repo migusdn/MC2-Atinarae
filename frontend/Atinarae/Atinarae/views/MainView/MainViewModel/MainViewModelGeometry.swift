@@ -16,21 +16,22 @@
 import SwiftUI
 
 struct MainViewModelGeometry: View {
+    @EnvironmentObject var appData: AppData
     @State private var animationFlag = false        // 별들이 도는 애니메이션 bool
     @State var tag:Int? = nil                       // 네비게이션뷰 이동을 위한 tag
     private var animation = Animation.linear.repeatForever(autoreverses: false)
     let planetSize: CGFloat = 100   // 행성의 크기 조절
     let starSize: CGFloat = 40      // 별의 크기 조절
-    
-    
+    // @Environment(\.presentationMode) var presentationMode
+    @State private var showModal = false
     
     var body: some View {
         
         
         GeometryReader{ geo in
-            let diameter = geo.size.height/2.5  // 1번째 원
-            let diameter2 = geo.size.height/1.5 // 2번째 원
-            let diameter3 = geo.size.height/1.1 // 3번째 원
+            let diameter = [geo.size.height/2.5,geo.size.height/1.5,geo.size.height/1.1] // 3번째 원]
+            let planetDiameter = [diameter[2], diameter[2], diameter[1], diameter[1], diameter[2]]
+            let planetPoint = [4.4, 5.6, 3.5, 6.7, 1.5]
             
             ZStack{
                 
@@ -38,64 +39,20 @@ struct MainViewModelGeometry: View {
                 Color.backGroundColor
 
                 // 원 생성
-                self.makeCircle(dim: diameter - 50)
-                self.makeCircle(dim: diameter2  - 50)
-                self.makeCircle(dim: diameter3 - 50)
+                self.makeCircle(dim: diameter[0] - 50)
+                self.makeCircle(dim: diameter[1]  - 50)
+                self.makeCircle(dim: diameter[2] - 50)
                 
                 
-                // 행성 생성
-                Button{
-                    // self.tag = 1
-                } label: {
-                    Image("planet_by")
-                        .resizable()
-                        .frame(width: planetSize, height: planetSize)
+                ForEach(0..<5){ number in
+                    self.makePlanet(planetDiameter: planetDiameter[number], point: planetPoint[number], planetNumber: number)
                 }
-                .modifier(self.makePlanetEffect(diameter: diameter2, point: 6.7))
-                
-                Button{
-                    
-                } label: {
-                    Image("planet_by")
-                        .resizable()
-                        .frame(width: planetSize, height: planetSize)
-                }
-                .modifier(self.makePlanetEffect(diameter: diameter2, point: 3.5))
-                
-                Button{
-                    
-                } label: {
-                    Image("planet_py")
-                        .resizable()
-                        .frame(width: planetSize, height: planetSize)
-                }
-                .modifier(self.makePlanetEffect(diameter: diameter3, point: 4.4))
-                
-                Button{
-                    
-                } label: {
-                    Image("planet_yb")
-                        .resizable()
-                        .frame(width: planetSize, height: planetSize)
-                }
-                .modifier(self.makePlanetEffect(diameter: diameter3, point: 1.5))
-                
-                Button{
-                    
-                } label: {
-                    Image("planet_yb")
-                        .resizable()
-                        .frame(width: planetSize, height: planetSize)
-                    
-                }
-                .modifier(self.makePlanetEffect(diameter: diameter3, point: 5.6))
-                
-                
+            
                 // 가운대에 있는 MY생성, Eclipse가 버튼이 되지 않게 따로 빼놓음
                 ZStack{
                     Image("MY Eclipse")
                     Button{
-                        self.tag = 1
+                        
                     } label: {
                         Image("MY")
                             .resizable()
@@ -108,7 +65,10 @@ struct MainViewModelGeometry: View {
             }
             
             // tag로 뷰 이동을 위한 링크 설정
-            NavigationLink(destination: DetailView(), tag : 1, selection: self.$tag){}
+            ForEach(0..<5) { navigationNum in
+                NavigationLink(destination: DetailView(number: navigationNum), tag : navigationNum, selection: self.$tag){}
+            }
+            
         }
     }
     
@@ -132,6 +92,33 @@ struct MainViewModelGeometry: View {
             
             
         }
+    }
+    
+    func makePlanet(planetDiameter: CGFloat, point: Double, planetNumber: Int) -> some View {
+        return ZStack {
+            
+                Button{
+                    if appData.user.friends[planetNumber].nickname == nil{
+                        self.showModal = true
+                    } else {
+                        self.tag = planetNumber
+                    }
+                } label: {
+                    VStack{
+                        Image(appData.user.friends[planetNumber].planetImage ?? "planet_Empty")
+                            .resizable()
+                            .frame(width: planetSize, height: planetSize)
+                        Text(appData.user.friends[planetNumber].nickname ?? "")
+                            .foregroundColor(.white)
+                    }
+                }
+                .modifier(self.makePlanetEffect(diameter: planetDiameter, point: point))
+                .sheet(isPresented: self.$showModal) {
+                                MakePlanetModalView(planetNumber: planetNumber)
+                            }
+                
+            }
+            
     }
     
     func makePlanetEffect(diameter: CGFloat, point: Double) -> some GeometryEffect {
@@ -178,11 +165,63 @@ struct PlanetEffect: GeometryEffect {
 
 struct MainViewModelGeometry_Previews: PreviewProvider {
     static var previews: some View {
+        let appData = AppData()
             GeometryReader{ geo in
                 NavigationView{
                 MainViewModelGeometry()
                     .frame(width: geo.size.width, height: geo.size.height/2)
+                    .environmentObject(appData)
             }
         }
     }
 }
+
+
+
+// 행성 생성
+//                Button{ // 1번
+//
+//                } label: {
+//                    Image("planet_py")
+//                        .resizable()
+//                        .frame(width: planetSize, height: planetSize)
+//                }
+//                .modifier(self.makePlanetEffect(diameter: planetDiameter[0], point: 4.4))
+//
+//
+//                Button{ // 2번
+//
+//                } label: {
+//                    Image("planet_yb")
+//                        .resizable()
+//                        .frame(width: planetSize, height: planetSize)
+//
+//                }
+//                .modifier(self.makePlanetEffect(diameter: diameter[2], point: 5.6))
+//
+//                Button{ //3번
+//
+//                } label: {
+//                    Image("planet_by")
+//                        .resizable()
+//                        .frame(width: planetSize, height: planetSize)
+//                }
+//                .modifier(self.makePlanetEffect(diameter: diameter[1], point: 3.5))
+//
+//                Button{ // 4번
+//                    // self.tag = 1
+//                } label: {
+//                    Image("planet_by")
+//                        .resizable()
+//                        .frame(width: planetSize, height: planetSize)
+//                }
+//                .modifier(self.makePlanetEffect(diameter: diameter[1], point: 6.7))
+//
+//                Button{ // 5번
+//
+//                } label: {
+//                    Image("planet_yb")
+//                        .resizable()
+//                        .frame(width: planetSize, height: planetSize)
+//                }
+//                .modifier(self.makePlanetEffect(diameter: diameter[2], point: 1.5))

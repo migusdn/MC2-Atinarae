@@ -16,10 +16,14 @@
 import SwiftUI
 
 struct MainView: View {
+   
     @State var tag: Int? = nil   // 화면 이동을 위한 tag.
-    
+   // @EnvironmentObject var appData: AppData
     var body: some View {
+       
+       
             ZStack{
+                
             Color.backGroundColor.ignoresSafeArea()
             GeometryReader{ geometry in
                 
@@ -28,6 +32,7 @@ struct MainView: View {
                         .frame(width: geometry.size.width, height: geometry.size.height/6)
                     
                     MainViewModelGeometry()
+                      // .environmentObject(appData)
                         .frame(width: geometry.size.width, height: geometry.size.height/2)
                     
                     
@@ -36,8 +41,9 @@ struct MainView: View {
                         } label: {
                             RoundedRectangle(cornerRadius: 30)
                                 .fill(
-                                    AngularGradient(gradient: Gradient(colors: [.buttonColor, .buttonColor1]), center: .top)
-                                        )
+                                    AngularGradient(gradient: Gradient(colors: [.buttonColor, .buttonColor1]), center: .center)
+                                    
+                                )
                                 .frame(width: geometry.size.width/3, height: 50)
                                 .overlay{
                                     HStack{
@@ -47,14 +53,15 @@ struct MainView: View {
                                             .foregroundColor(.black)
                                             .font(.subheadline).bold()
                                     }
-                                }
-
+                                
+                        
+                        }
                     }
                     .frame(width: geometry.size.width, height: geometry.size.height/3)
                 }
                 NavigationLink(destination: VideoSettingsView(), tag : 1, selection: self.$tag){}
             }
-                
+            
         }
         // navigatinBar를 지우겠다는 신념
         .navigationBarTitle("")
@@ -67,9 +74,12 @@ struct MainView: View {
 }
 
 struct MainView_Previews: PreviewProvider {
+   
     static var previews: some View {
+        let appData = AppData()
         NavigationView{
             MainView()
+                .environmentObject(appData)
         }
     }
 }
