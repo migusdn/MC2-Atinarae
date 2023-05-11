@@ -11,7 +11,7 @@ struct VideoMessage: Hashable, Equatable{
    var senderId: Int
    var receiverId: Int
    var createdDate: Date
-   var unlockedDate: Date
+   var unlockedDate: Date?
    var editingCount: Int
    var title: String
    var category: String
@@ -20,7 +20,7 @@ struct VideoMessage: Hashable, Equatable{
    var hideAtSender: Bool
    var hideAtReceiver: Bool
     
-    init(messageId: Int, senderId: Int, receiverId: Int, createdDate: Date, unlockedDate: Date, editingCount: Int, title: String, category: String, videoSrc: String, isCompleted: Bool, hideAtSender: Bool, hideAtReceiver: Bool) {
+    init(messageId: Int, senderId: Int, receiverId: Int, createdDate: Date, unlockedDate: Date? = nil, editingCount: Int, title: String, category: String, videoSrc: String, isCompleted: Bool, hideAtSender: Bool, hideAtReceiver: Bool) {
         self.messageId = messageId
         self.senderId = senderId
         self.receiverId = receiverId

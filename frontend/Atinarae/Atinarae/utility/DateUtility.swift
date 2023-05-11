@@ -7,10 +7,14 @@
 
 import Foundation
 
-func formatDate(_ date: Date) -> String {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-    return dateFormatter.string(from: date)
+func formatDate(_ date: Date?) -> String {
+    if(date == nil){
+        return "?"
+    }else{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.string(from: date!)
+    }
 }
 
 func parseDate(_ dateString: String) -> Date? {

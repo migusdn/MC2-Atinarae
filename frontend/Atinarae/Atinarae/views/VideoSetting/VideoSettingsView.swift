@@ -11,56 +11,33 @@ struct VideoSettingsView: View {
     @EnvironmentObject var appData: AppData
     
     @Environment(\.presentationMode) var presentationMode
-    @State private var isPresented = false
+    @State private var categorySelectSheetIsPresented = false
+    @State private var dDaySelectSheetIsPresented = false
+    @State private var videoMessage : VideoMessage?
+    
     @State private var date = Date()
     @State private var title = ""
-    
-    
+    @State private var unlockedDateisNotDefine = false
     @State private var selectedCategoryIdx: Int?
-    
     @State private var selectedFriend:Friend?
-    
-    @State private var birthDate = Date()
     
     init() {
         UITextField.appearance().clearButtonMode = .whileEditing
     }
-    
+    func setUpData(){
+        videoMessage = appData.getTempVideoMessage()
+        videoMessage?.senderId = appData.user.userId
+    }
     var rows: [GridItem] = Array(repeating: .init(.fixed(50)), count: 1)
     @State var text:String = ""
-    
-    
     
     var body: some View {
         NavigationView{
             VStack{
                 Form {
-                    Section(header:
-                                Text("누구에게 보낼까요")
-                        .font(.headline)
-                        .padding(.leading, 0)
-                        .padding(.bottom,8)
-                    ){
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack{
-                                ForEach(appData.user.friends, id: \.self) { friend in
-                                    Group{
-                                        friendView(friend: friend, selectedFriend: selectedFriend)
-                                    }
-                                    .onTapGesture{
-                                        selectedFriend = friend
-                                    }
-                                    .padding(.trailing, 15)
-                                }
-                            }
-                            .ignoresSafeArea(.all)
-                        }
-                        
-                        .ignoresSafeArea(.all)
-                    }
+                    personSelectView
                     Section {
                         TextField("제목", text: $title)
-                        
                     }
                     Section{
                         DatePicker("디데이", selection: $date, displayedComponents: [.hourAndMinute, .date])
@@ -68,46 +45,35 @@ struct VideoSettingsView: View {
                     .padding(.top,2)
                     .padding(.bottom,2)
                     .padding(.trailing, -9)
-                    Section{
-                        HStack{
-                            Text("카테고리")
-                            Spacer()
-                            if selectedCategoryIdx == nil{
-                                Text("없음")
-                            }else{
-                                Text(appData.user.categories[selectedCategoryIdx!])
-                            }
-                            Image(systemName: "chevron.right")
-                        }.onTapGesture{
-                            isPresented.toggle()
-                        }
-                        
-                    }
+                    categorySelectView
                 }
                 Spacer()
-                NavigationLink(destination: RecordView()) {
-                    Text("다음")
-                        .frame(width: 91, height: 58)
-                        .foregroundColor(Color.black)
-                        .background(
-                            LinearGradient(
-                                gradient: Gradient(colors: [
-                                    Color(red: 0.569, green: 0.541, blue: 0.961),
-                                    Color(red: 0.685, green: 0.74, blue: 0.981),
-                                    Color(red: 0.792, green: 0.922, blue: 1)
-                                ]),
-                                startPoint: UnitPoint(x: 0, y: 0.5),
-                                endPoint: UnitPoint(x: 1, y: 0.5)
-                            )
-                            .cornerRadius(100)
-                        )
-                }.padding(30)
+                Button(action:{
+                    videoMessage?.title = title
+                    videoMessage?.category = appData.user.categories[selectedCategoryIdx!]
+                    if unlockedDateisNotDefine{
+                        videoMessage?.unlockedDate = nil
+                    }else{
+                        videoMessage?.unlockedDate = date
+                    }
+//                    date
+                    if let friend = selectedFriend {
+                        videoMessage?.receiverId = friend.userId
+                        videoMessage?.receiverId = 0
+                    }
+                    
+                    appData.addVideo(videoMessage!)
+                }){
+                    makeGradientButton("다음")
+                        .padding(30)
+                }
                 
                 
                 
             }
-            
-            
+            .onAppear(){
+                setUpData()
+            }
             
             .navigationBarBackButtonHidden(true)
             .navigationBarTitle(
@@ -119,26 +85,72 @@ struct VideoSettingsView: View {
                         presentationMode.wrappedValue.dismiss()
                     }) {
                         Image(systemName: "chevron.left")
-                    },
-                trailing:
-                    Button(action: {
-                        // 오른쪽 아이템을 클릭했을 때의 동작
-                    }) {
-                        Image(systemName: "plus")
                     }
             )
             .accentColor(.white)
             
-            .sheet(isPresented: $isPresented){
+            .sheet(isPresented: $categorySelectSheetIsPresented){
                 CategorySelectModalView(
                     selectedCategoryIdx: $selectedCategoryIdx,
                     dismissAction: {
-                        isPresented = false
+                        categorySelectSheetIsPresented = false
                     }
                 )
             }
+            .sheet(isPresented: $dDaySelectSheetIsPresented) {
+                DateSelectView(
+                    date: $date,
+                    isOn: $unlockedDateisNotDefine,
+                    dismissAction: {
+                        dDaySelectSheetIsPresented = false
+                    }
+                )
+            }
+            
         }
         .navigationBarBackButtonHidden(true)
+    }
+    var categorySelectView: some View{
+        Section{
+            HStack{
+                Text("카테고리")
+                Spacer()
+                if selectedCategoryIdx == nil{
+                    Text("없음")
+                }else{
+                    Text(appData.user.categories[selectedCategoryIdx!])
+                }
+                Image(systemName: "chevron.right")
+            }.onTapGesture{
+                categorySelectSheetIsPresented.toggle()
+            }
+            
+        }.padding(.vertical)
+    }
+    var personSelectView: some View{
+        Section(header:
+                    Text("누구에게 보낼까요")
+            .font(.headline)
+            .padding(.leading, 0)
+            .padding(.bottom,8)
+        ){
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack{
+                    ForEach(appData.user.friends, id: \.self) { friend in
+                        Group{
+                            friendView(friend: friend, selectedFriend: selectedFriend)
+                        }
+                        .onTapGesture{
+                            selectedFriend = friend
+                        }
+                        .padding(.trailing, 15)
+                    }
+                }
+                .ignoresSafeArea(.all)
+            }
+            
+            .ignoresSafeArea(.all)
+        }
     }
     func friendView(friend: Friend, selectedFriend: Friend?) -> some View {
         VStack(alignment: .center) {
