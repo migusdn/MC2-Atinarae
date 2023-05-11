@@ -8,6 +8,7 @@
 import SwiftUI
 
 class AppData: ObservableObject {
+    @Published var appContainerURL : URL
     @Published var isLoggedIn = false
     @Published var userList : [User]
     @Published var videoMessages : [VideoMessage]

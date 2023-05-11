@@ -26,6 +26,7 @@ struct AtinaraeApp: App {
     init() {
             let groupIdentifier = "group.atinarae.tvvinkle"
             if let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupIdentifier) {
+                appData.appContainerURL = containerURL
                 print("App Group Container URL: \(containerURL)")
                 // 이제 containerURL을 사용하여 앱 그룹 컨테이너에서 파일을 읽고 쓸 수 있습니다.
             } else {
