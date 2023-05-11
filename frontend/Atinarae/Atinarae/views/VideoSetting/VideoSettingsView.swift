@@ -27,6 +27,7 @@ struct VideoSettingsView: View {
     func setUpData(){
         videoMessage = appData.getTempVideoMessage()
         videoMessage?.senderId = appData.user.userId
+        
     }
     var rows: [GridItem] = Array(repeating: .init(.fixed(50)), count: 1)
     @State var text:String = ""
@@ -39,42 +40,61 @@ struct VideoSettingsView: View {
                     Section {
                         TextField("제목", text: $title)
                     }
-                    Section{
-                        DatePicker("디데이", selection: $date, displayedComponents: [.hourAndMinute, .date])
+                    HStack{
+                        Text("디데이")
+                        Spacer()
+                        Button(action:{
+                            
+                        }){
+                            HStack{
+                                Text("선택해주세요")
+//                                    .foregroundColor(Color.)
+                                Image(systemName: "chevron.forward")
+                            }
+                            
+                        }
+                        
                     }
-                    .padding(.top,2)
-                    .padding(.bottom,2)
-                    .padding(.trailing, -9)
+                    .padding(.vertical)
+                    //                        DatePicker("디데이", selection: $date, displayedComponents: [.hourAndMinute, .date])
+                    //                    }
+                
                     categorySelectView
                 }
                 Spacer()
                 
+//                                Button(action:{
+//                                }){
+//                                    NavigationLink(destination: RecordView()){
+//                                        makeGradientButton("다음")
+//                                            .padding(30)
+//                                    }
+//                                }
                 Button(action:{
+                    videoMessage?.title = title
+                    if selectedCategoryIdx == nil{
+                        videoMessage?.category = "없음"
+                    }else{
+                        videoMessage?.category = appData.user.categories[selectedCategoryIdx!]
+                    }
+                    if unlockedDateisNotDefine {
+                        videoMessage?.unlockedDate = nil
+                    }else{
+                        videoMessage?.unlockedDate = date
+                    }
+                    //                    date
+                    if let friend = selectedFriend {
+                        videoMessage?.receiverId = friend.userId!
+                        videoMessage?.receiverId = 0
+                    }
+                    
+                    appData.addVideo(videoMessage!)
                 }){
-                    NavigationLink(destination: RecordView()){
+                    NavigationLink(destination: RecordView(videoMessage: $videoMessage)){
                         makeGradientButton("다음")
                             .padding(30)
                     }
                 }
-//                Button(action:{
-//                    videoMessage?.title = title
-//                    videoMessage?.category = appData.user.categories[selectedCategoryIdx!]
-//                    if unlockedDateisNotDefine{
-//                        videoMessage?.unlockedDate = nil
-//                    }else{
-//                        videoMessage?.unlockedDate = date
-//                    }
-////                    date
-//                    if let friend = selectedFriend {
-//                        videoMessage?.receiverId = friend.userId!
-//                        videoMessage?.receiverId = 0
-//                    }
-//
-//                    appData.addVideo(videoMessage!)
-//                }){
-//                    makeGradientButton("다음")
-//                        .padding(30)
-//                }
                 
                 
                 

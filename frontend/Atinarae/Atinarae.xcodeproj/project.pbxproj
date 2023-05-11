@@ -40,7 +40,6 @@
 		5EF510952A0691F500113935 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF510942A0691F500113935 /* Friend.swift */; };
 		5EF510972A06940800113935 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF510962A06940800113935 /* AppData.swift */; };
 		5EFC5D812A0403EA000AFEB6 /* PersonRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFC5D802A0403EA000AFEB6 /* PersonRadioButton.swift */; };
-		B50E19D72A08D6DB007F1523 /* homeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E19D02A08D6DA007F1523 /* homeView.swift */; };
 		B50E19D82A08D6DB007F1523 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E19D12A08D6DA007F1523 /* CameraViewModel.swift */; };
 		B50E19DA2A08D6DB007F1523 /* CameraRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E19D32A08D6DA007F1523 /* CameraRecord.swift */; };
 		B50E19DC2A08D6DB007F1523 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E19D52A08D6DA007F1523 /* RecordView.swift */; };
@@ -86,7 +85,6 @@
 		5EF510942A0691F500113935 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		5EF510962A06940800113935 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		5EFC5D802A0403EA000AFEB6 /* PersonRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonRadioButton.swift; sourceTree = "<group>"; };
-		B50E19D02A08D6DA007F1523 /* homeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = homeView.swift; sourceTree = "<group>"; };
 		B50E19D12A08D6DA007F1523 /* CameraViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		B50E19D32A08D6DA007F1523 /* CameraRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRecord.swift; sourceTree = "<group>"; };
 		B50E19D52A08D6DA007F1523 /* RecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
@@ -347,7 +345,6 @@
 				B50E19D32A08D6DA007F1523 /* CameraRecord.swift */,
 				B50E19D12A08D6DA007F1523 /* CameraViewModel.swift */,
 				B50E19D52A08D6DA007F1523 /* RecordView.swift */,
-				B50E19D02A08D6DA007F1523 /* homeView.swift */,
 				B5C0776F2A0BA6380008351E /* finalModalView.swift */,
 				B5C077712A0BD41C0008351E /* plzModal.swift */,
 			);
@@ -439,7 +436,6 @@
 				5E7DD5262A0A21C300458BE9 /* MessageListView.swift in Sources */,
 				5E61F5622A0CC30600AE1198 /* EditPlanet.swift in Sources */,
 				5EF2F5A12A011702002D99D0 /* Outbox.swift in Sources */,
-				B50E19D72A08D6DB007F1523 /* homeView.swift in Sources */,
 				B5C077722A0BD41C0008351E /* plzModal.swift in Sources */,
 				5EE402D52A015F0500A1E790 /* VideoSettingsView.swift in Sources */,
 				5E869F942A08CF9A007CC669 /* ColorExtension.swift in Sources */,

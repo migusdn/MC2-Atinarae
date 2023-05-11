@@ -10,6 +10,7 @@ import SwiftUI
 struct DateSelectView: View {
     
     @Binding var date: Date
+    @State var tempDate = Date()
     @Binding var isOn: Bool
     var dismissAction: () -> Void
     var body: some View {
@@ -22,11 +23,14 @@ struct DateSelectView: View {
                     }
                     
                     Section{
-                        DatePicker("디데이", selection: $date, displayedComponents: [.hourAndMinute, .date])
+                        DatePicker("디데이", selection: $tempDate, displayedComponents: [.hourAndMinute, .date])
                     }
                     
                 }
                 Button(action: {
+                    if !isOn{
+                        date = tempDate
+                    }
                     dismissAction()
                 }, label: {
                     makeGradientButton("저장")

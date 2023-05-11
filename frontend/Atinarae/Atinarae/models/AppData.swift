@@ -13,6 +13,7 @@ class AppData: ObservableObject {
     @Published var userList : [User]
     @Published var videoMessages : [VideoMessage]
     @Published var user: User
+    @Published var groupIdentifier = "group.atinarae.tvvinkle"
     init(isLoggedIn: Bool = false, userList: [User] = [
         User(
             userId: 0,
@@ -58,7 +59,7 @@ class AppData: ObservableObject {
                     videos: []
                 ),
                 Friend(
-                    userId: 2,
+                    userId: 0,
                     nickname: "우디",
                     planetImage:0,
                     videos: []
