@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct DetailViewModel: View {
-    @State private var selected = "SwiftUI"
-    @State private var buttonPush = false
+//    @State private var selected = "SwiftUI"
+//    @State private var buttonPush = false
     var body: some View {
         VStack(alignment: .leading){
             Text("딸의 독립을 축하하며")

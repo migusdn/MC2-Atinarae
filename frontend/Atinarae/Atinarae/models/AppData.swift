@@ -25,44 +25,29 @@ class AppData: ObservableObject {
             friends: [
                 Friend(
                     nickname: "모아나",
-                    planetImage:"moana1",
+                    planetImage: 0,
                     videos: []
                 ),
                 Friend(
-                    nickname: "생",
-                    planetImage:"moana2",
-                    videos: []
-                ),
-                Friend(
-                    nickname: "축",
-                    planetImage:"moana3",
-                    videos: []
-                ),
-                Friend(
-                    nickname: "쨈",
-                    planetImage:"쨈",
-                    videos: []
-                ),
-                Friend(
-                    nickname: "돈",
-                    planetImage:"돈",
-                    videos: []
-                ),
-                Friend(
-                    nickname: "머스크",
-                    planetImage:"머스크",
-                    videos: []
-                ),
-                Friend(
-                    nickname: "제이미",
-                    planetImage:"제이미",
+                    nickname: "머슥후",
+                    planetImage: 1,
                     videos: []
                 ),
                 Friend(
                     nickname: "우디",
-                    planetImage:"우디",
+                    planetImage: 0,
                     videos: []
-                )
+                ),
+                Friend(
+                    nickname: "쨈",
+                    planetImage: 2,
+                    videos: []
+                ),
+                Friend(
+                    nickname: "돈",
+                    planetImage: 3,
+                    videos: []
+                ),
             ],
             inbox: Inbox(videos: [
                 VideoMessage(
@@ -127,7 +112,7 @@ class AppData: ObservableObject {
     
     @Published var user =
     User(
-        userId: 1,
+        userId: 0,
         nickname: "hypark",
         mail: "hypark@example.com",
         phone: "010-0000-0000",
@@ -140,45 +125,30 @@ class AppData: ObservableObject {
         ],
         friends: [
             Friend(
-                nickname: "모아나",
-                planetImage:"moana1",
+//                nickname: "모아나",
+//                planetImage: 0,
                 videos: []
             ),
             Friend(
-                nickname: "생",
-                planetImage:"moana2",
-                videos: []
-            ),
-            Friend(
-                nickname: "축",
-                planetImage:"moana3",
-                videos: []
-            ),
-            Friend(
-                nickname: "쨈",
-                planetImage:"쨈",
-                videos: []
-            ),
-            Friend(
-                nickname: "돈",
-                planetImage:"돈",
-                videos: []
-            ),
-            Friend(
-                nickname: "머스크",
-                planetImage:"머스크",
-                videos: []
-            ),
-            Friend(
-                nickname: "제이미",
-                planetImage:"제이미",
+                nickname: "머슥후",
+                planetImage: 1,
                 videos: []
             ),
             Friend(
                 nickname: "우디",
-                planetImage:"우디",
+                planetImage: 4,
                 videos: []
-            )
+            ),
+            Friend(
+                nickname: "쨈",
+                planetImage: 2,
+                videos: []
+            ),
+            Friend(
+                nickname: "돈",
+                planetImage: 3,
+                videos: []
+            ),
         ],
         inbox: Inbox(videos: [
             VideoMessage(
