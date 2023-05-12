@@ -26,11 +26,12 @@ struct LunchPage: View {
 //                    .frame(width: 400,height: 80)
                     .onAppear{
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { //지연
-                            self.tag = 1    // 밑에 NavigationLink를 대려옵니다.
+                            self.tag = 2    // 밑에 NavigationLink를 대려옵니다.
                     }
                         
                 }
                 NavigationLink(destination: MainView(), tag : 1, selection: self.$tag){}
+                NavigationLink(destination: OnBoardView(), tag : 2, selection: self.$tag){}
             }
         }
         .navigationBarHidden(true)
