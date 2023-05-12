@@ -12,9 +12,8 @@ import SwiftUI
 struct OnBoardView: View
 {
     @State var pageNum = 0
-    @State var isHidden: Bool = true
     @State var isPresent: Bool = false
-    
+    @State var lastFlag: Bool = false
     var body: some View
     {
         VStack
@@ -25,13 +24,15 @@ struct OnBoardView: View
                     .tag(0)
                 
                 OnBSecond()
-                    .tag(1)
+                   .tag(1)
                 
-                OnBLast()
+                OnBLast(lastFlag: $lastFlag)
                     .tag(2)
+                    
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             .frame(width: 400, height: 600)
+            
             
             HStack
             {
@@ -41,7 +42,7 @@ struct OnBoardView: View
                     
                     if idx == self.pageNum
                     {
-                        Circle().foregroundColor(.red)
+                        Circle().foregroundColor(.white)
                     }
                     else
                     {
@@ -49,35 +50,19 @@ struct OnBoardView: View
                     }
                 }
                 .frame(width: 10, height: 6)
+                .padding(.bottom, 20)
             }
             
             if isPresent
             {
-                Button {}
-                label:
-                {
-                    Text("시작하기")
-                        .frame(width: 250, height: 30)
-                }
-                .ignoresSafeArea()
-                .background(Color(.white))
-                .foregroundColor(.black)
-                .padding()
+                makeGradientButton("시작하기")
             }
             else
             {
-                Button {}
-                label:
-                {
-                    Text("시작하기")
-                        .frame(width: 250, height: 30)
-                }
-                .ignoresSafeArea()
-                .padding()
-                .opacity(0)
+                makeGradientButton("시작하기")
+                    .opacity(0)
             }
         }
-
         .onChange(of: pageNum)
         {
             newPageIdx in
@@ -91,6 +76,25 @@ struct OnBoardView: View
                 isPresent = false
             }
         }
+        .background(
+            Group
+            {
+                if pageNum == 1
+                {
+                    Image("OnB2B")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .edgesIgnoringSafeArea(.all)
+                }
+                else if pageNum == 2
+                {
+                    Image("OnB3B")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .edgesIgnoringSafeArea(.all)
+                }
+            }
+        )
     }
 }
 
@@ -105,52 +109,93 @@ struct OnBfirst: View
         {
             ZStack
             {
+                Text("작은 마음이 모여")
+                    .font(.system(size: 30).bold())
+                    .offset(x: -60, y: -220)
+                Text("Tvvinkle의 영상메세지 기능을\n통해 전하고 싶은 마음을 기록하세요")
+                    .offset(x: -35, y: -160)
+                OnBPlanet()
+                    .offset(y: 80)
                 ForEach(0..<Int.random(in:minStars...maxStars), id: \.self)
                 {
                     _ in
                     
                     Star(LRChoice: LRValue())
                         .frame(width: 400, height: 350)
+                        .offset(y: 80)
                     
                 }
             }
-            Text("작은 마음이 모여")
-                .frame(width: 400, height: 200)
-                .background(Color(.gray))
         }
     }
 }
 
 struct OnBSecond: View
 {
+    @State private var offsetX: CGFloat = -200
+    
     var body: some View
     {
-        VStack
+       
+            ZStack
+            {
+                Text("어두운 우주를 건너")
+                    .font(.system(size: 30).bold())
+                    .offset(x: -55, y: -220)
+                Text("특별한 날 깜짝 선물이 되도록 \nD-day를 정해 메세지를 보내 보세요")
+                    .offset(x: -45, y: -160)
+                Image("meteor")
+                    .blendMode(.colorDodge)
+                    .offset(x: offsetX, y: 0)
+                    .animation(Animation.linear(duration: 4).repeatCount(1))
+                    .onAppear
+                {
+                    startMove()
+                }
+            }
+        }
+    
+    
+    private func startMove()
+    {
+        withAnimation
         {
-            Text("11")
-                .frame(width: 400, height: 350)
-                    
-            Text("작은 마음이 모여")
-                .frame(width: 400, height: 200)
-                .background(Color(.gray))
+            offsetX += 600
         }
     }
 }
 
 struct OnBLast: View
 {
+    @Binding var lastFlag: Bool
     var body: some View
     {
-        VStack
+        
+        ZStack
         {
-            Text("11")
-                .frame(width: 400, height: 350)
-                    
-            Text("작은 마음이 모여")
-                .frame(width: 400, height: 200)
-                .background(Color(.gray))
+            Text("하늘의 별이 되었어요")
+                .font(.system(size: 30).bold())
+                .offset(x: -40, y: -220)
+            
+            Text("오랜시간 당신을 위해 날아온 메세지가\n소중한 이의 마음을 전달해 드려요")
+                .offset(x: -35, y: -160)
+            
+            StarLight(lastFlag: $lastFlag, imgName: "star12", delay: 1.8)
+                .frame(width: 150)
+                .blendMode(.colorDodge)
+                .offset(x: 140, y: 110)
+            StarLight(lastFlag: $lastFlag, imgName: "star12", delay: 3.0)
+                .frame(width: 100)
+                .blendMode(.colorDodge)
+                .offset(x: -100, y: -35)
+            StarLight(lastFlag: $lastFlag,imgName: "star12", delay: 5.0)
+                .frame(width: 80)
+                .blendMode(.colorDodge)
+                .offset(x: 140, y: -130)
         }
+        
     }
+    
 }
 
 
@@ -163,6 +208,7 @@ struct Star: View
     //var speed = Double
     
     var LRChoice: CGFloat = LRValue()
+    var starSpeed: Double = 0.015
 
     var body: some View
     {
@@ -172,16 +218,16 @@ struct Star: View
             .offset(x: radius * CGFloat(cos(angle)), y: radius * CGFloat(sin(angle * LRChoice)))
             .onAppear
             {
-                Timer.scheduledTimer(withTimeInterval: 0.015, repeats: true)
+                Timer.scheduledTimer(withTimeInterval: starSpeed, repeats: true)
                 {
                     timer in
                     withAnimation(Animation.linear(duration: 8.0))
                     {
                         self.angle += 0.1
                         self.radius -= 0.5
-                        if radius <= 50
+                        if radius <= 100
                         {
-                            
+                            self.starSpeed = 0.8
                         }
                         if radius <= 0
                         {
@@ -192,6 +238,116 @@ struct Star: View
             }
     }
 }
+
+
+struct StarLight: View
+{
+    @Binding var lastFlag: Bool
+    
+    let imgName: String
+    let delay: Double
+    
+    @State private var isShowing = false
+    
+    var body: some View
+    {
+        Image(imgName)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .opacity(1.0)
+            .onAppear
+            {
+                print("Now")
+                DispatchQueue.main.asyncAfter(deadline: .now() + delay)
+                {
+                    withAnimation(.easeIn(duration: 1.0))
+                    {
+                        print("Now\(delay)")
+                        self.isShowing = true
+                    }
+                }
+            
+            }
+        .opacity(isShowing ? 1.0 : 0.0)
+        
+    }
+    
+}
+
+
+struct OnBPlanet: View
+{
+    @State var isRotating = false
+    
+    var body: some View
+    {
+        ZStack
+        {
+            ZStack
+            {
+                Image("shadow")
+                Image("icon-bg")
+//                Image("pink-top")
+//                    .rotationEffect(.degrees(isRotating ? 320 : -360))
+//                    .hueRotation(.degrees(isRotating ? -270 : 60))
+//
+//                Image("pink-left")
+//                    .rotationEffect(.degrees(isRotating ? -360 : 180))
+//                    .hueRotation(.degrees(isRotating ? -220 : 300))
+//
+//                Image("blue-middle")
+//                    .rotationEffect(.degrees(isRotating ? -360 : 420))
+//                    .hueRotation(.degrees(isRotating ? -150 : 0))
+//                    .rotation3DEffect(.degrees(75), axis: (x: isRotating ? 1 : 5, y: 0, z: 0))
+//
+//                Image("blue-right")
+//                    .rotationEffect(.degrees(isRotating ? -360 : 420))
+//                    .hueRotation(.degrees(isRotating ? 720 : -50))
+//                    .rotation3DEffect(.degrees(75), axis: (x: 1, y: 0, z: isRotating ? -5 : 15))
+//
+//                Image("intersect")
+//                    .rotationEffect(.degrees(isRotating ? 30 : -420))
+//                    .hueRotation(.degrees(isRotating ? 0 : 720))
+//                    .rotation3DEffect(.degrees(15), axis: (x: 1, y: 1, z: 1), perspective: isRotating ? 5 : -5)
+//
+//                Image("green-right")
+//                    .rotationEffect(.degrees(isRotating ? -300 : 360))
+//                    .hueRotation(.degrees(isRotating ? 300 : -15))
+//                    .rotation3DEffect(.degrees(15), axis: (x: 1, y: isRotating ? -1 : 1, z: 0), perspective: isRotating ? -1 : 1)
+//
+//                Image("green-left")
+//                    .rotationEffect(.degrees(isRotating ? 360 : -360))
+//                    .hueRotation(.degrees(isRotating ? 180 :50))
+//                    .rotation3DEffect(.degrees(75), axis: (x: 1, y:isRotating ? -5 : 15, z: 0))
+//
+                
+//                Image("bottom-pink")
+//                    .rotationEffect(.degrees(isRotating ? 400 : -360))
+//                    .hueRotation(.degrees(isRotating ? 0 : 230))
+//                    .opacity(0.25)
+//                    .blendMode(.multiply)
+//                    .rotation3DEffect(.degrees(75), axis: (x: 5, y:isRotating ? 1 : -45, z: 0))
+            }
+            .blendMode(isRotating ? .hardLight : .difference )
+            
+            Image("planet_bp")
+                .rotationEffect(.degrees(isRotating ? 360 : 250))
+                .hueRotation(.degrees(isRotating ? 0 : 230))
+                .padding()
+                .onAppear
+                {
+                    // .repeatForever(autoreverses: false) 넣으면 무한반복
+                    withAnimation(.easeInOut(duration: 12))
+                    {
+                        isRotating.toggle()
+                    }
+                }
+        }
+        .scaleEffect(0.6)
+    }
+}
+
+
 
 func LRValue() -> CGFloat
 {
@@ -383,7 +539,6 @@ struct Star: View, Hashable, Identifiable
     }
 }
 
- */
  
 struct Siri: View
 {
@@ -457,10 +612,31 @@ struct Siri: View
     }
 }
 
+ */
+ 
 struct OnBoard_Previews: PreviewProvider
 {
     static var previews: some View
     {
         OnBoardView()
     }
+}
+
+
+func makeGradientButton(_ text: String) -> some View{
+    Text(text)
+        .frame(width: 91, height: 58)
+        .foregroundColor(Color.black)
+        .background(
+            LinearGradient(
+                gradient: Gradient(colors: [
+                    Color(red: 0.569, green: 0.541, blue: 0.961),
+                    Color(red: 0.685, green: 0.74, blue: 0.981),
+                    Color(red: 0.792, green: 0.922, blue: 1)
+                ]),
+                startPoint: UnitPoint(x: 0, y: 0.5),
+                endPoint: UnitPoint(x: 1, y: 0.5)
+            )
+            .cornerRadius(100)
+    )
 }
