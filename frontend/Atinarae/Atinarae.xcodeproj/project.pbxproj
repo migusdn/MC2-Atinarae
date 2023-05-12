@@ -43,6 +43,9 @@
 		B50E19D82A08D6DB007F1523 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E19D12A08D6DA007F1523 /* CameraViewModel.swift */; };
 		B50E19DA2A08D6DB007F1523 /* CameraRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E19D32A08D6DA007F1523 /* CameraRecord.swift */; };
 		B50E19DC2A08D6DB007F1523 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E19D52A08D6DA007F1523 /* RecordView.swift */; };
+		B50E19DD2A08D6DB007F1523 /* RecordBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E19D62A08D6DB007F1523 /* RecordBtn.swift */; };
+		F6958D282A0BA5A700EB7B41 /* OnBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6958D272A0BA5A700EB7B41 /* OnBoardView.swift */; };
+		F6958D2A2A0BA69900EB7B41 /* OnBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6958D292A0BA69900EB7B41 /* OnBoard.swift */; };
 		B5C077702A0BA6380008351E /* finalModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C0776F2A0BA6380008351E /* finalModalView.swift */; };
 		B5C077722A0BD41C0008351E /* plzModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C077712A0BD41C0008351E /* plzModal.swift */; };
 /* End PBXBuildFile section */
@@ -90,6 +93,9 @@
 		B50E19D52A08D6DA007F1523 /* RecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		B5C0776F2A0BA6380008351E /* finalModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = finalModalView.swift; sourceTree = "<group>"; };
 		B5C077712A0BD41C0008351E /* plzModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = plzModal.swift; sourceTree = "<group>"; };
+		B50E19D62A08D6DB007F1523 /* RecordBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordBtn.swift; sourceTree = "<group>"; };
+		F6958D272A0BA5A700EB7B41 /* OnBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardView.swift; sourceTree = "<group>"; };
+		F6958D292A0BA69900EB7B41 /* OnBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,6 +319,7 @@
 		5ED79F0E29FD9376009D45AA /* views */ = {
 			isa = PBXGroup;
 			children = (
+				F6958D242A0BA52E00EB7B41 /* OnBoard */,
 				5E68879E2A0BA91E00C8EAAE /* SharedView */,
 				5E7DD52B2A0A8E5500458BE9 /* ReusableComponent */,
 				5EC12CFF2A0942F600A84B20 /* InboxView */,
@@ -328,6 +335,7 @@
 		5ED79F0F29FD937E009D45AA /* models */ = {
 			isa = PBXGroup;
 			children = (
+				F6958D292A0BA69900EB7B41 /* OnBoard.swift */,
 				5EF2F59A2A00FA61002D99D0 /* VideoMessage.swift */,
 				5E61F5642A0CC32400AE1198 /* PlanetList.swift */,
 				5EF2F59C2A01025A002D99D0 /* User.swift */,
@@ -349,6 +357,14 @@
 				B5C077712A0BD41C0008351E /* plzModal.swift */,
 			);
 			path = RecordView;
+			sourceTree = "<group>";
+		};
+		F6958D242A0BA52E00EB7B41 /* OnBoard */ = {
+			isa = PBXGroup;
+			children = (
+				F6958D272A0BA5A700EB7B41 /* OnBoardView.swift */,
+			);
+			path = OnBoard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -440,6 +456,7 @@
 				5EE402D52A015F0500A1E790 /* VideoSettingsView.swift in Sources */,
 				5E869F942A08CF9A007CC669 /* ColorExtension.swift in Sources */,
 				5EFC5D812A0403EA000AFEB6 /* PersonRadioButton.swift in Sources */,
+				F6958D2A2A0BA69900EB7B41 /* OnBoard.swift in Sources */,
 				5E03AB3A2A054AD500C029CB /* CategorySelectModalView.swift in Sources */,
 				B50E19DC2A08D6DB007F1523 /* RecordView.swift in Sources */,
 				5E61F5612A0CC30600AE1198 /* MainViewModelGeometry.swift in Sources */,
@@ -454,6 +471,7 @@
 				5EF2F5A32A013A30002D99D0 /* VideoPlayerView.swift in Sources */,
 				5E61F5652A0CC32400AE1198 /* PlanetList.swift in Sources */,
 				B50E19DA2A08D6DB007F1523 /* CameraRecord.swift in Sources */,
+				F6958D282A0BA5A700EB7B41 /* OnBoardView.swift in Sources */,
 				5EF510972A06940800113935 /* AppData.swift in Sources */,
 				B5C077702A0BA6380008351E /* finalModalView.swift in Sources */,
 				5E869F8C2A08CF72007CC669 /* DetailViewModel.swift in Sources */,
