@@ -16,6 +16,15 @@ func formatDate(_ date: Date?) -> String {
         return dateFormatter.string(from: date!)
     }
 }
+func formatDateTime(_ date: Date?) -> String {
+    if(date == nil){
+        return "?"
+    }else{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy_MM_dd_hh_mm_ss"
+        return dateFormatter.string(from: date!)
+    }
+}
 
 func parseDate(_ dateString: String) -> Date? {
     let dateFormatter = DateFormatter()

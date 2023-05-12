@@ -130,13 +130,14 @@ class CameraViewModel: NSObject, ObservableObject, AVCaptureFileOutputRecordingD
     }
     
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
-        let groupIdentifier = appData.groupIdentifier
+        let groupIdentifier = "group.atinarae.tvvinkle"
+//        appData.groupIdentifier
         
         guard let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupIdentifier) else {
             return
         }
         
-        let dstURL = containerURL.appendingPathComponent("\(formatDate(Date())) + .mp4")
+        let dstURL = containerURL.appendingPathComponent("\(formatDateTime(Date())) + .mp4")
         
         do {
             try FileManager.default.moveItem(at: recordedURL!, to: dstURL)

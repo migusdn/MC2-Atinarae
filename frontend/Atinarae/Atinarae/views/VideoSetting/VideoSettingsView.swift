@@ -91,10 +91,10 @@ struct VideoSettingsView: View {
                     appData.addVideo(videoMessage!)
                 }){
                     NavigationLink(destination: RecordView(videoMessage: $videoMessage)){
-                        makeGradientButton("다음")
+                        Text("다음")
                             .padding(30)
                     }
-                }
+                }.buttonStyle(ButtonPrimaryStyle(frameWidth: 100, frameHeight: 60))
                 
                 
                 

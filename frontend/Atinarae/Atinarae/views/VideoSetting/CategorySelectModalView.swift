@@ -21,8 +21,26 @@ struct CategorySelectModalView: View {
         self.dismissAction = dismissAction
     }
     var body: some View {
+        
         NavigationView{
             VStack{
+                Capsule()
+                    .fill(Color.secondary)
+                    .frame(width: 30, height: 3)
+                    .padding(10)
+                
+                
+                Text("카테고리")
+                                    .font(Font.title)
+                                    .bold()
+                                    .padding(.top, 70)
+                                
+                                NavigationLink(destination: CategoryAddView(newCategoryName: $newCategoryName)) {
+                                    Text("추가하기")
+                                        .padding(30)
+                                }
+                                .buttonStyle(ButtonPrimaryStyle(frameWidth: 100, frameHeight: 60))
+                
                 List(selection: $selectedCategoryIdx) {
                     Section {
                         HStack {
@@ -53,14 +71,12 @@ struct CategorySelectModalView: View {
                         }
                         .onDelete(perform: delete)
                     }
-                    Section{
-                        NavigationLink(destination: CategoryAddView(newCategoryName: newCategoryName)) {
-                            Text("추가하기")
-                                .foregroundColor(.blue)
-                                .frame(maxWidth: .infinity)
-                        }
-                    }
+                    
                 }
+                Section{
+                    
+                }
+                
                 
                 .listStyle(InsetGroupedListStyle())
                 .toolbar{
@@ -81,6 +97,8 @@ struct CategorySelectModalView: View {
                     }
             )
         }
+        
+        
         
     }
     func delete(at offsets: IndexSet) {

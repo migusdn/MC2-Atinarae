@@ -11,7 +11,7 @@ import AVKit
 
 
 struct RecordView: View {
-    
+    @EnvironmentObject var appData: AppData
     @StateObject var cameraModel = CameraViewModel()
     @Binding var videoMessage: VideoMessage?
     @State private var progress: CGFloat = 0.0
@@ -19,6 +19,7 @@ struct RecordView: View {
     @State private var showModal = false
     @State var Flag: Bool = true
     var url : URL?
+    
     //var videoURL: URL
     //@State var checkBack: Bool = true
     

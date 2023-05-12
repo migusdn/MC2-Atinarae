@@ -24,6 +24,7 @@ struct AtinaraeApp: App {
     }
     
     init() {
+        UITextField.appearance().clearButtonMode = .whileEditing
         if let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appData.groupIdentifier) {
                 appData.appContainerURL = containerURL
                 print("App Group Container URL: \(containerURL)")
