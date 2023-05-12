@@ -9,7 +9,7 @@ import SwiftUI
 import AVKit
 struct VideoPlayerView: View {
     let player: AVPlayer
-    
+
     init?(forResource resource: String, withExtension ext: String) {
         guard let videoURL = Bundle.main.url(forResource: resource, withExtension: ext) else { return nil }
         let playerItem = AVPlayerItem(url: videoURL)
@@ -20,7 +20,7 @@ struct VideoPlayerView: View {
         let playerItem = AVPlayerItem(url: videoURL)
         self.player = AVPlayer(playerItem: playerItem)
     }
-    
+
     var body: some View {
         VideoPlayer(player: player)
             .frame(width: 400, height: 300, alignment: .center)
