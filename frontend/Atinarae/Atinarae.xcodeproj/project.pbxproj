@@ -43,11 +43,10 @@
 		B50E19D82A08D6DB007F1523 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E19D12A08D6DA007F1523 /* CameraViewModel.swift */; };
 		B50E19DA2A08D6DB007F1523 /* CameraRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E19D32A08D6DA007F1523 /* CameraRecord.swift */; };
 		B50E19DC2A08D6DB007F1523 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E19D52A08D6DA007F1523 /* RecordView.swift */; };
-		B50E19DD2A08D6DB007F1523 /* RecordBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50E19D62A08D6DB007F1523 /* RecordBtn.swift */; };
-		F6958D282A0BA5A700EB7B41 /* OnBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6958D272A0BA5A700EB7B41 /* OnBoardView.swift */; };
-		F6958D2A2A0BA69900EB7B41 /* OnBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6958D292A0BA69900EB7B41 /* OnBoard.swift */; };
 		B5C077702A0BA6380008351E /* finalModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C0776F2A0BA6380008351E /* finalModalView.swift */; };
 		B5C077722A0BD41C0008351E /* plzModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C077712A0BD41C0008351E /* plzModal.swift */; };
+		F6958D282A0BA5A700EB7B41 /* OnBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6958D272A0BA5A700EB7B41 /* OnBoardView.swift */; };
+		F6958D2A2A0BA69900EB7B41 /* OnBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6958D292A0BA69900EB7B41 /* OnBoard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,7 +92,6 @@
 		B50E19D52A08D6DA007F1523 /* RecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		B5C0776F2A0BA6380008351E /* finalModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = finalModalView.swift; sourceTree = "<group>"; };
 		B5C077712A0BD41C0008351E /* plzModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = plzModal.swift; sourceTree = "<group>"; };
-		B50E19D62A08D6DB007F1523 /* RecordBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordBtn.swift; sourceTree = "<group>"; };
 		F6958D272A0BA5A700EB7B41 /* OnBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardView.swift; sourceTree = "<group>"; };
 		F6958D292A0BA69900EB7B41 /* OnBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -606,7 +604,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Atinarae/Preview Content\"";
-				DEVELOPMENT_TEAM = 2ZA4H6HG9F;
+				DEVELOPMENT_TEAM = 6RJC8T2X94;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Atinarae/Info.plist;
@@ -625,7 +623,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.atinarae.tvvinkle;
+				PRODUCT_BUNDLE_IDENTIFIER = com.atinarae.tvvinkle3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -645,7 +643,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Atinarae/Preview Content\"";
-				DEVELOPMENT_TEAM = 2ZA4H6HG9F;
+				DEVELOPMENT_TEAM = 6RJC8T2X94;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Atinarae/Info.plist;
@@ -664,7 +662,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.atinarae.tvvinkle;
+				PRODUCT_BUNDLE_IDENTIFIER = com.atinarae.tvvinkle3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
