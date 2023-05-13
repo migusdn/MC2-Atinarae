@@ -109,7 +109,7 @@ struct OnBoardView: View
                 }
                 else if pageNum == 2
                 {
-                    Image("OnB3BC")
+                    Image("OnB3B")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .edgesIgnoringSafeArea(.all)
@@ -219,9 +219,9 @@ struct OnBLast: View
                 .blur(radius: 3.5)
                 .offset(x: 140, y: -125)
             StarLight(lastFlag: lastFlag, imgName: "OnB3Phalo", delay: 0.5)
-                .offset(x: 2.5, y: 432.5)
+                .offset(y: 442.5)
             Image("OnB3Planet")
-                .offset(y: 450)
+                .offset(x: -2.5, y: 468)
         }
         
     }
@@ -287,7 +287,7 @@ struct StarLight: View
                         print("Planet")
                         DispatchQueue.main.asyncAfter(deadline: .now() + delay)
                         {
-                            withAnimation(.easeIn(duration: 1.0))
+                            withAnimation(.easeIn(duration: 1.5))
                             {
                                 print("Now\(delay)")
                                 self.isShowing = true
