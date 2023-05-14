@@ -108,6 +108,7 @@ struct RecordView: View {
                                         } else {
                                             if cameraModel.recordedDuraion >= cameraModel.maxDuration { //45초가 넘었을 때
                                                 if let _ = cameraModel.previewURL {
+                                                    print(videoMessage)
                                                     cameraModel.showPreview.toggle()
                                                 }
                                                 cameraModel.stopRecording()
@@ -261,7 +262,8 @@ struct FinalPreview: View {
                 Button(action: {
                     videoMessage.videoSrc = url.absoluteString
                     videoMessageViewModel.addVideoMessage(videoMessage)
-//                    videoMessageViewModel.refresh()
+                    print("Video Data Log")
+                    print(videoMessage)
                     presentationMode.wrappedValue.dismiss()
                     navigationModel.MessageAddProcessExit()
                     

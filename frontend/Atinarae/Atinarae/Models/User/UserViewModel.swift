@@ -9,18 +9,18 @@ import SwiftUI
 import RealmSwift
 
 class UserViewModel: ObservableObject {
-
+    
     private var realm: Realm
     private var users: Results<User> {
         realm.objects(User.self)
     }
-
-// MARK: - currentUser Store var (Important) - 자동 생성 박아놓음
-/**
- 그럴 일은 없겠지만 APP 진입점에 선언해논 함수가 사라지면
- userViewModel.setCurrentUser()
- 하면 됨
-*/
+    
+    // MARK: - currentUser Store var (Important) - 자동 생성 박아놓음
+    /**
+     그럴 일은 없겠지만 APP 진입점에 선언해논 함수가 사라지면
+     userViewModel.setCurrentUser()
+     하면 됨
+     */
     @Published var currentUser: User?
     
     init() {
@@ -33,12 +33,12 @@ class UserViewModel: ObservableObject {
     }
     
     
-// MARK: - 새로운 유저 생성 파라미터 값을 이용.
+    // MARK: - 새로운 유저 생성 파라미터 값을 이용.
     func createUser(nickname: String, mail: String, phone: String, profile: Int, friends: [User]) {
         guard users.filter("nickname == %@", nickname).isEmpty else {
-                print("Nickname already exists")
-                return
-            }
+            print("Nickname already exists")
+            return
+        }
         let newUser = User()
         newUser._id = ObjectId.generate()
         newUser.nickname = nickname
@@ -55,7 +55,7 @@ class UserViewModel: ObservableObject {
             print("Failed to create user: \(error)")
         }
     }
-// MARK: - 새로운 유저 생성 User 객체를 이용.
+    // MARK: - 새로운 유저 생성 User 객체를 이용.
     func createUser(user: User) {
         guard users.filter("nickname == %@", user.nickname).isEmpty else {
             print("Nickname already exists")
@@ -69,11 +69,11 @@ class UserViewModel: ObservableObject {
             print("Failed to create user: \(error)")
         }
     }
-// MARK: - 모든 유저 쿼리 AKA FetchAll || SELECT * FROM USER
+    // MARK: - 모든 유저 쿼리 AKA FetchAll || SELECT * FROM USER
     func readUsers() -> [User] {
         Array(users)
     }
-// MARK: - 특정 유저 업데이트
+    // MARK: - 특정 유저 업데이트
     func updateUser(user: User, nickname: String, mail: String, phone: String, profile: Int, friends: [User]) {
         do {
             try realm.write {
@@ -88,7 +88,7 @@ class UserViewModel: ObservableObject {
             print("Failed to update user: \(error)")
         }
     }
-// MARK: - 특정 유저 삭제
+    // MARK: - 특정 유저 삭제
     func deleteUser(user: User) {
         do {
             try realm.write {
@@ -98,44 +98,46 @@ class UserViewModel: ObservableObject {
             print("Failed to delete user: \(error)")
         }
     }
-// MARK: - APP INIT시 사용하는 부분으로 건들지 말것
+    // MARK: - APP INIT시 사용하는 부분으로 건들지 말것
     func setCurrentUser() {
-            if users.isEmpty {
-                // 사용자가 없을 경우 새로운 사용자 생성
-                let newNickname = "J2335ohn"
-                let newMail = "john@example.com"
-                let newPhone = "123-456-7890"
-                let newProfile = 1
-                let newFriends: [User] = []
-                createUser(nickname: newNickname, mail: newMail, phone: newPhone, profile: newProfile, friends: newFriends)
-            }
-            
-            // 첫 번째 사용자를 현재 사용자로 설정
-            currentUser = users.first
+        if users.isEmpty {
+            // 사용자가 없을 경우 새로운 사용자 생성
+            let newNickname = "J2335ohn"
+            let newMail = "john@example.com"
+            let newPhone = "123-456-7890"
+            let newProfile = 1
+            let newFriends: [User] = []
+            createUser(nickname: newNickname, mail: newMail, phone: newPhone, profile: newProfile, friends: newFriends)
         }
-// MARK: - ObservableObject를 업데이트 함으로서 해당 변수를 참조하고 있는 모든 뷰에 새로고침이 가능해짐.
+        
+        // 첫 번째 사용자를 현재 사용자로 설정
+        currentUser = users.first
+    }
+    // MARK: - ObservableObject를 업데이트 함으로서 해당 변수를 참조하고 있는 모든 뷰에 새로고침이 가능해짐.
     func refresh() {
-            do {
-                // Fetch the latest users data from the database
-                let users = realm.objects(User.self)
-                
-                // Update the published properties with the latest data
-                currentUser = users.first
-                
-                // You can also update other properties or perform additional logic here
-                print("currentUser init success: \(currentUser)")
-            } catch {
-                print("Failed to refresh data: \(error)")
-            }
+        do {
+            // Fetch the latest users data from the database
+            let users = realm.objects(User.self)
+            
+            // Update the published properties with the latest data
+            currentUser = users.first
+            
+            // You can also update other properties or perform additional logic here
+            print("currentUser init success: \(currentUser)")
+        } catch {
+            print("Failed to refresh data: \(error)")
         }
-// MARK: - CurrentUser의 친구 목록을 조회하고 이를 반환.
+    }
+    // MARK: - CurrentUser의 친구 목록을 조회하고 이를 반환.
     func getFriendsList() -> [User] {
-            guard let currentUser = currentUser else {
-                return []
-            }
-            return Array(currentUser.friends)
+        guard let currentUser = currentUser else {
+            return []
         }
-// MARK: - CurrentUser의 친구 목록에 새로운 User를 추가.
+        print(currentUser.friends)
+        
+        return Array(currentUser.friends)
+    }
+    // MARK: - CurrentUser의 친구 목록에 새로운 User를 추가.
     func addFriend(friend: User) {
         guard let currentUser = currentUser else {
             return

@@ -8,9 +8,10 @@
 import Foundation
 import SwiftUI
 
-// TODO: 우리 이런 공통되는 스타일 관련한건 저기 Style 폴더에 옮깁시다.
+
 let mainPlanet = ["planet_bp", "planet_by", "planet_py", "planet_yb", "planet_pb", "planet_Empty"]
 let selectPlanet = ["SelectPlanetBp", "SelectPlanetBy", "SelectPlanetPy", "SelectPlanetYb", "SelectPlanetPb"]
+let detailPlanet = ["DetailPlanetBp","DetailPlanetBy","DetailPlanetPy","DetailPlanetYb","DetailPlanetPb"]
 
 func makeMainPlanet(planetNumber: Int) -> Image {
     return Image(mainPlanet[planetNumber])
@@ -20,6 +21,9 @@ func makeSelectPlanet(planetNumber: Int) -> Image {
     return Image(selectPlanet[planetNumber])
 }
 
+func makeDetailPlanet(planetNumber: Int) -> Image {
+    return Image(detailPlanet[planetNumber])
+}
 
 
 
@@ -75,7 +79,7 @@ func makeSelectPlanet(planetNumber: Int) -> Image {
 //                MakePlanet(style: .planetBy)
 //                Text("planetBY")
 //            }
-//            
+//
 //            HStack{
 //                MakePlanet(style: .planetBp)
 //                Text("planetBp")
@@ -95,20 +99,20 @@ func makeSelectPlanet(planetNumber: Int) -> Image {
 //                MakePlanet(style: .planetEmpty)
 //                Text("planetEmpty")
 //            }
-//            
+//
 //        }
 //    }
 //}
 //
 //
 //struct PlanetBy: View{
-//    
+//
 //    var body: some View {
 //        ZStack {
 //                Circle()
 //                    .foregroundColor(.white)
 //                    .cornerRadius(30)
-//                
+//
 //                Circle()
 //                    .foregroundColor(.clear)
 //                    .opacity(0.7)
@@ -124,7 +128,7 @@ func makeSelectPlanet(planetNumber: Int) -> Image {
 //                        .rotationEffect(.degrees(-90))
 //                        .mask(Circle())
 //                    )
-//                
+//
 //                Circle()
 //                    .foregroundColor(.clear)
 //                    .overlay(
@@ -144,12 +148,12 @@ func makeSelectPlanet(planetNumber: Int) -> Image {
 //}
 //
 //struct PlanetBp: View{
-//    
+//
 //    var body: some View {
 //        ZStack {
 //            Circle()
 //                .foregroundColor(.white)
-//            
+//
 //            Circle()
 //                .foregroundColor(.clear)
 //                .opacity(0.7)
@@ -165,14 +169,14 @@ func makeSelectPlanet(planetNumber: Int) -> Image {
 //                    .rotationEffect(.degrees(-90))
 //                    .mask(Circle())
 //                )
-//            
+//
 //            Circle()
 //                .foregroundColor(.clear)
 //                .overlay(
 //                    ZStack {
 //                        Circle()
 //                            .foregroundColor(.clear)
-//                            .shadow(color: Color(red: 0.363, green: 0.605, blue: 1).opacity(0.5), radius: 30) 
+//                            .shadow(color: Color(red: 0.363, green: 0.605, blue: 1).opacity(0.5), radius: 30)
 //                        Circle()
 //                            .foregroundColor(.clear)
 //                            .shadow(color: Color(red: 1, green: 1, blue: 1).opacity(0.6), radius: 10, x: -2, y: 2)

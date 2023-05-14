@@ -88,9 +88,10 @@ struct MessageSettingsView: View {
                     print("나와라 제발")
                     print(videoMessage)
                 }){
+                    
                     NavigationLink(
                         destination: RecordView(videoMessage: videoMessage),
-                        isActive: $navModel.MessageAddProcessIsActive,
+//                        isActive: $navModel.MessageAddProcessIsActive,
                         label: {
                             Text("다음")
                         }
