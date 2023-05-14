@@ -24,7 +24,7 @@ struct MessageSettingsView: View {
     @State private var categorySelectSheetIsPresented = false
     @State private var dDaySelectSheetIsPresented = false
     
-    @State private var unlockedDateisNotDefine = false
+    @State private var unlockedDateisNotDefine = true
     
     @State private var unlokcedDate: Date?
     @State private var title = ""
@@ -55,9 +55,10 @@ struct MessageSettingsView: View {
                                 Text("디데이")
                                 Spacer()
                                 if unlockedDateisNotDefine{
-                                    Text(formatDate(unlokcedDate))
-                                }else{
                                     Text("선택해주세요")
+                                    
+                                }else{
+                                    Text(formatDate(unlokcedDate))
                                 }
                                 Image(systemName: "chevron.forward")
                             }
@@ -68,10 +69,11 @@ struct MessageSettingsView: View {
                     categorySelectView
                 }
                 Spacer()
-                
+                // TODO: videoMessage 객체 완성해서 저장해야함
                 Button(action:{
-                    videoMessage.title = title
                     
+                    videoMessage.title = title
+                    print(videoMessage.title)
                     videoMessage.category = selectedCategory
                     if !unlockedDateisNotDefine {
                         videoMessage.unlockedDate = nil
@@ -88,11 +90,12 @@ struct MessageSettingsView: View {
                 }){
                     NavigationLink(
                         destination: RecordView(videoMessage: videoMessage),
-//                        isActive: $navModel.MessageAddProcessIsActive,
+                        isActive: $navModel.MessageAddProcessIsActive,
                         label: {
                             Text("다음")
                         }
                     )
+                    .isDetailLink(false)
                     
                     
                 }.buttonStyle(ButtonPrimaryStyle(frameWidth: 100, frameHeight: 60))
@@ -202,7 +205,6 @@ struct MessageSettingsView: View {
             } else {
                 makeSelectPlanet(planetNumber: 1)
                     .resizable()
-                    .foregroundColor(Color(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1)))
                     .frame(width: 63, height: 63)
                 Text(friend.nickname)
             }

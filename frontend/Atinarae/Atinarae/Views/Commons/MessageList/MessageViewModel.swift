@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct MessageViewModel: View {
+    // TODO: 메시지 리스트 고치려고 만들었다가 아직 못했어요
     var message: VideoMessage
     
     var body: some View {

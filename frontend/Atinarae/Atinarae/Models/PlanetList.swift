@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-
+// TODO: 우리 이런 공통되는 스타일 관련한건 저기 Style 폴더에 옮깁시다.
 let mainPlanet = ["planet_bp", "planet_by", "planet_py", "planet_yb", "planet_pb", "planet_Empty"]
 let selectPlanet = ["SelectPlanetBp", "SelectPlanetBy", "SelectPlanetPy", "SelectPlanetYb", "SelectPlanetPb"]
 

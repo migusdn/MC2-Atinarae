@@ -46,6 +46,7 @@ struct AtinaraeApp: SwiftUI.App {
     init() {
         UITextField.appearance().clearButtonMode = .whileEditing
         
+        // TODO: 여기도 반드시 한번 보기를 바랍니다.
         // MARK: - Dev Initialize !! Warn
         /*
          * 만약 이상하면
@@ -72,24 +73,6 @@ struct AtinaraeApp: SwiftUI.App {
             print("rm -rf \(Realm.Configuration.defaultConfiguration.fileURL!.deletingLastPathComponent().path)\n\n")
             print("=============================================================================================")
         }
-        
-        
-        //        if let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appData.groupIdentifier) {
-        //                appData.appContainerURL = containerURL
-        //                print("App Group Container URL: \(containerURL)")
-        //                // 이제 containerURL을 사용하여 앱 그룹 컨테이너에서 파일을 읽고 쓸 수 있습니다.
-        //            } else {
-        //                print("Failed to get App Group Container URL")
-        //            }
-        
-        //        let newUserID = ObjectId() // 새로운 사용자의 ID 생성
-        //                    let newNickname = "J2335ohn"
-        //                    let newMail = "john@example.com"
-        //                    let newPhone = "123-456-7890"
-        //                    let newProfile = "profile.jpg"
-        //                    let newFriends: [User] = [] // 새로운 사용자의 친구 목록
-        //        userViewModel.createUser(nickname: newNickname, mail: newMail, phone: newPhone, profile: newProfile, friends: newFriends)
-        
         
     }
 }

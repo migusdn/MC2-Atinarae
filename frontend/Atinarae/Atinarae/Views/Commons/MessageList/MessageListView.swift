@@ -13,7 +13,7 @@
 //    @EnvironmentObject var videoMessageViewModel: VideoMessageViewModel
 //    
 //    
-//    
+// TODO: 뷰가 망가졌는데 구조잡느라 못고쳤음 Message 수신함, 발신함 부분입니다
 //    
 //    
 //    let options = ["Option 1", "Option 2", "Option 3"]

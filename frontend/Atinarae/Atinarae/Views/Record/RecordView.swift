@@ -257,6 +257,7 @@ struct FinalPreview: View {
                     .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                 
                 Spacer()
+                // TODO: 모아나~ 여기 참고해서 NavigationLink 조절하면 됩니다.
                 Button(action: {
                     videoMessage.videoSrc = url.absoluteString
                     videoMessageViewModel.addVideoMessage(videoMessage)
