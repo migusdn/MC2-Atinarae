@@ -7,6 +7,16 @@
 
 import SwiftUI
 import RealmSwift
+// ---------------------------------------------------------------------------------------------
+// 이상하게도 요즘엔 그냥 GPT가 좋아
+// 하긴 그래도 여전히 지오메트리리더는 좋더라
+// 하드코딩 보단 진한 기기대응을 더 좋아해
+// 또 뭐더라 ViewModel있는 MainView, DetailView 좀 짓궂은 Xcode
+// I like it, I`m Developer
+// GPT로 개발하는거 알아
+// Oh I got this, I`m truly fine
+// 이제 코딩 알것 같아 난
+// ---------------------------------------------------------------------------------------------
 
 struct MainViewModelPlanet: View {
     @EnvironmentObject var userViewModel: UserViewModel
@@ -82,11 +92,37 @@ struct MainViewModelPlanet: View {
 //                .font(Font.largeTitle)
 //                .foregroundColor(.red)
             
-            ForEach(0..<4){ planetLotateNumber in
-                self.makePlanet(planetDiameter: planetDiameter[planetLotateNumber], point: planetPoint[planetLotateNumber], planetLotateNumber: planetLotateNumber, planetSize: planetSize)
-//                Text(String(self.users?[0].nickname ?? "11"))
-//                    .foregroundColor(.black)
+//            ForEach(
+//                Array(
+//                    categoryViewModel.getUserCategories(for: userViewModel.currentUser!).enumerated()),
+//                id: \.element._id) { index, category in
+//
+//                    Button(action:{
+//                        selectedCategory = category
+//                        dismissAction()
+//                    }){
+//                        HStack{
+//                            Text(category.name)
+//                            Spacer()
+//                            if selectedCategory == category {
+//                                Image(systemName: "checkmark")
+//                            }
+//                        }
+//                    }
+//                }
+//                .onDelete(perform: delete)
+            // nil 체크 해야함........
+            
+            ForEach(Array(userViewModel.getFriendsList()).indices, id: \.self) { index in
+                if planetDiameter.indices.contains(index), planetPoint.indices.contains(index), index == 0 {
+                    
+                    let planetLotateNumber = index
+                    self.makePlanet(planetDiameter: planetDiameter[planetLotateNumber], point: planetPoint[planetLotateNumber], planetLotateNumber: planetLotateNumber, planetSize: planetSize)
+                }
             }
+
+
+            
             ForEach(0..<5){ planetLotateNumber in
                 NavigationLink(destination: DetailView(planetLotateNumber: planetLotateNumber, users: $users), tag : planetLotateNumber, selection: self.$tag){}
             }
@@ -102,7 +138,7 @@ struct MainViewModelPlanet: View {
 
             }
             .sheet(isPresented: self.$showModal) {
-                PlanetPlusModal(planetLotateNumber: .constant(0), users: $users) // 고쳐야함
+                PlanetPlusModal(planetLotateNumber: .constant(0), users: $users, deletePlanet: Binding.constant(false)) // 고쳐야함
                     }
     }
 
@@ -113,7 +149,7 @@ struct MainViewModelPlanet: View {
         return ZStack {
 //             makePlanet(planetDiameter: diameter[1], point: planetPoint[4], planetLotateNumber: 0, planetSize: planetSize)
             //버튼 만들기
-            let friendsList = userViewModel.getFriendsList()
+           
             
             if(self.users?[planetLotateNumber].nickname == nil){}
             else{ // planet있을때

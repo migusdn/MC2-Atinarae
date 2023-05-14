@@ -29,5 +29,17 @@ class User: Object {
     @Persisted var profile: Int
     @Persisted var friends: List<User>
     @Persisted var createdDate: Date
+    
+    convenience init(nickname: String, mail: String? = nil, phone: String? = nil, profile: Int, friends: List<User> = List<User>()) {
+            self.init()
+            self.nickname = nickname
+            self.mail = mail
+            self.phone = phone
+            self.profile = profile
+            self.friends = friends
+            self.createdDate = Date()
+        }
+    
+   
 }
 

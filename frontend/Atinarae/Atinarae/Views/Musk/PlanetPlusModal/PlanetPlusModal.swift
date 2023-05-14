@@ -25,8 +25,8 @@ struct PlanetPlusModal: View {
     @State var nickName: String = ""
     @State var showingAlert: Bool = false
     @State var showingDeleteAlert = false
-    @State var deletePlanet = false
     @Binding var users: [User]?
+    @Binding var deletePlanet: Bool
     
     var body: some View {
         GeometryReader { geo in
@@ -70,9 +70,8 @@ struct PlanetPlusModal: View {
                             }
                             .alert("행성이 삭제되었어요.", isPresented: $showingDeleteAlert) {
                                 Button("확인", role: .cancel) {
-                                    
                                     dismiss()
-                                    
+//                                    users?[].deleteuser
                                 }
                             }
                         }

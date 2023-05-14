@@ -14,13 +14,6 @@ struct MainViewModelSendVideo: View {
         NavigationLink ("영상 보내기",destination: MessageSettingsView(), isActive: $navModel.MessageAddProcessIsActive)
             .isDetailLink(false)
             .buttonStyle(ButtonPrimaryStyle(frameWidth: 100, frameHeight: 60))
-//        Button{
-//
-//        } label: {
-//            Text("영상 보내기")
-//        }
-//        .buttonStyle(ButtonPrimaryStyle(frameWidth: 100, frameHeight: 60))
-        
             
         
     }

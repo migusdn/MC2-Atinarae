@@ -66,7 +66,6 @@ struct DetailView: View {
                                 
                                 Button{
                                     self.moveModalPlanetLotateNumber = self.planetLotateNumber
-                                    
                                     self.showModal = true
                                 } label: {
                                     Circle()
@@ -80,8 +79,20 @@ struct DetailView: View {
                                         }
                                     
                                 }
+                                .sheet(isPresented: self.$showModal) {
+                                    PlanetPlusModal(planetLotateNumber: $moveModalPlanetLotateNumber, users: $users, deletePlanet: $deletePlanet)
+                                        .onDisappear{
+                                            if deletePlanet {
+                                                dismiss()
+                                                
+                                            }
+                                        }
+                                }
+                                
+                                Spacer()
                             }   // User, Edit Button HStack.
-                            .offset(x:-geo.size.width/8, y:-geo.size.height/6)
+                            .padding()
+                            .offset(y:-geo.size.height/6)
                             
                         }
                         LazyVStack(pinnedViews: .sectionHeaders){

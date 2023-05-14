@@ -161,5 +161,9 @@ class UserViewModel: ObservableObject {
         }
         return false
     }
+    // MARK: -temp function 개발 완료시 삭제 할것 Preview를 위해 만듬
+//    func setUsers(users: [User]){
+//        self.users = users
+//    }
 }
 

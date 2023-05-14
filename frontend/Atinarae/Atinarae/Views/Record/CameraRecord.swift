@@ -13,7 +13,7 @@ struct CameraRecord: View {
     @EnvironmentObject var cameraModel: CameraViewModel
     @State private var showModal = false
     @State private var showalert = false
-    
+
     
     var body: some View {
         
@@ -42,6 +42,7 @@ struct CameraRecord: View {
                 
                 if let _ = cameraModel.previewURL {
                     cameraModel.showPreview.toggle()
+                    
                 }
                 cameraModel.stopRecording()
                 //showModal.toggle()

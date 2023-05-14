@@ -24,19 +24,16 @@ struct MainView: View {
     //    @State var realm = try! Realm() // Realm 인스턴스
     @State var users: [User]?
     
-    
-    func setUp(){
-        print("MainView Log Start")
-        print("init user friends")
+    func setup(){
+        do{
+//            users = userViewModel.readUsers()
+            
+//            userViewModel.addFriend(friend: users![0])
+        }
         self.users = userViewModel.getFriendsList()
-        print("print user friends")
-        print(self.users)
-        
-        
-//        print(users)
-        
-//        self.users = userViewModel.readUsers()
+        print(users)
     }
+    
     var body: some View{
         GeometryReader { geo in
             ZStack{
@@ -56,12 +53,9 @@ struct MainView: View {
             }   // ZStack
         }   // GeometryReader
         .onAppear{
-            setUp()
-            
-            // NavigationBackButton Hide
-            //                .navigationBarBackButtonHidden(true)
-            
+         setup()
         }
+        .navigationBarBackButtonHidden(true)
         
     }    // View.
     
@@ -73,7 +67,7 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-
+        let realm = try! Realm() // Realm 인스턴스 생성
         let userViewModel = UserViewModel() // UserViewModel에 Realm 인스턴스 전달
         let videoMessageViewModel = VideoMessageViewModel() // VideoMessageViewModel에 Realm 인스턴스 전달
         let navigationModel = NavigationModel() // NavigationModel에 Realm 인스턴스 전달
