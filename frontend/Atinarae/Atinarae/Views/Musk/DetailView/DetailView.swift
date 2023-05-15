@@ -31,6 +31,9 @@ struct DetailView: View {
     @Environment(\.dismiss) var dismiss
     // 바인딩 받아오는 유저 정보
     @Binding var users: [User]?
+    @State private var pickSegmetedIsSending = 0
+    
+    
     
     var body: some View {
         
@@ -80,14 +83,16 @@ struct DetailView: View {
                                     
                                 }
                                 .sheet(isPresented: self.$showModal) {
-                                    PlanetPlusModal(planetLotateNumber: $moveModalPlanetLotateNumber, users: $users, deletePlanet: $deletePlanet)
+                                    EditPlanetModal(planetLotateNumber: $moveModalPlanetLotateNumber, users: $users, deletePlanet: $deletePlanet)
                                         .onDisappear{
                                             if deletePlanet {
-                                                dismiss()
-                                                
-                                            }
+                                                if let userToDelete = userViewModel.currentUser?.friends[planetLotateNumber] {
+                                                    userViewModel.deleteUser(user: userToDelete)
+                                                }
+                                                userViewModel.refresh()
                                         }
                                 }
+                            }
                                 
                                 Spacer()
                             }   // User, Edit Button HStack.
@@ -95,17 +100,22 @@ struct DetailView: View {
                             .offset(y:-geo.size.height/6)
                             
                         }
+                       
                         LazyVStack(pinnedViews: .sectionHeaders){
+
+                            Section(header: HeaderView(pickSegmetedIsSending: $pickSegmetedIsSending)){
+                                
+                                
+                                InboxView()
+                                    .frame(height: 900)
+                                    
                             
-                            Section(header: HeaderView(scrollOffsetDetect: $scrollOffsetDetect)){
-                                
-                                ForEach(0..<10){ _ in
-                                    DetailViewModel()
-                                }
-                                
                             }   // Section
-                            //
+//                            .offset(y:planetSize/4)
+                            
                         }
+                        .offset(y:planetSize/4)
+                            // Git 
                        
                     }
                     .toolbar {
@@ -114,6 +124,7 @@ struct DetailView: View {
                                 Spacer()
                                 Text(String(self.users?[planetLotateNumber].nickname ?? ""))
                                     .opacity(scrollOffsetDetect <= 0 ? 0.008 * -scrollOffsetDetect:0)
+//                                    .opacity(scrollOffsetDetect <= 0 ? 0.008 * -scrollOffsetDetect:0)
                                 Spacer()
 
                                 Button{     // 편집
@@ -122,9 +133,8 @@ struct DetailView: View {
                                     Image(systemName: "paperplane")
                                     //                                        .foregroundColor(.white)
                                 }
-
                             }   //HStack
-
+                           
                         }   // ToolbarItemGroup
 
                     }
@@ -139,14 +149,18 @@ struct DetailView: View {
                 .onPreferenceChange(ScrollViewOffsetPreferenceKey.self) { value in
                     scrollOffsetDetect = value
                     // 가운대로 포지션 이동
-//                    .position(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
+                    // .position(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
                 }
             }
         }
         .onAppear{
             self.animationFlag = true
+            
+            
         }
+        
     }
+    
     
     
     // 궤도 만들기
@@ -182,55 +196,59 @@ struct DetailView: View {
 }
 
 
-//struct DetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//
-//
-//        DetailView(planetLotateNumber: 0)
-//            .environmentObject(appData)
-//
-//    }
-//}
-
-
 struct ScrollViewOffsetPreferenceKey: PreferenceKey {
     static var defaultValue: CGFloat = 0.0
-    
+
     static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
         value = nextValue()
     }
 }
 
 struct HeaderView: View {
-    @Binding var scrollOffsetDetect: Double
-    
+    @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var videoMsgViewModel: VideoMessageViewModel
+    @Binding var pickSegmetedIsSending: Int
     var body: some View {
-        Text("ㅗㅁ.. 냐ㅠ미 ㅓㅐㅅ해숨ㄷ")
+        VStack{
+            Picker("What is your favorite color?", selection: $pickSegmetedIsSending) {
+                Text("발송 전").tag(0)
+                Text("발송 완료").tag(1)
+            }
+            .pickerStyle(.segmented)
+            
+
+        }
         
     }
 }
 
-struct DetailViewModel: View {
-//    @State private var selected = "SwiftUI"
-//    @State private var buttonPush = false
-    var body: some View {
-        VStack(alignment: .leading){
-            Text("딸의 독립을 축하하며")
-                .font(.title2)
-            HStack{
-                Text("수능")
-                Text("2020.01.23")
-            }
-            
-           Divider()
-            
-        }
-        
-        
-        
-    }
-        
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//struct DetailInbox: View {
+//    @EnvironmentObject var userViewModel: UserViewModel
+//    @EnvironmentObject var videoMessageViewModel: VideoMessageViewModel
+//    @State private var pickSegmetedIsSending = 0
+//    let planetLotate: Int
+//
+//
+//    let planetSize: CGFloat
+//    var body: some View{
+//
+//    }
+//}
 
 // 내리면 점점 사라짐
 // .opacity(scrollOffsetDetect <= 0 ?  1 - (0.008 * -scrollOffsetDetect) : 1)

@@ -21,7 +21,7 @@ import RealmSwift
     createdDate: Date   -> 현재 날짜로 자동으로 생성됨
 */
 
-class User: Object {
+class User: Object{
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var nickname: String
     @Persisted var mail: String?
@@ -32,13 +32,15 @@ class User: Object {
     
     convenience init(nickname: String, mail: String? = nil, phone: String? = nil, profile: Int, friends: List<User> = List<User>()) {
             self.init()
-            self.nickname = nickname
-            self.mail = mail
-            self.phone = phone
-            self.profile = profile
-            self.friends = friends
-            self.createdDate = Date()
-        }
+                self._id = ObjectId.generate()
+                self.nickname = ""
+                self.mail = nil
+                self.phone = nil
+                self.profile = 0
+                self.friends = List<User>()
+                self.createdDate = Date()
+            }
+        
     
    
 }

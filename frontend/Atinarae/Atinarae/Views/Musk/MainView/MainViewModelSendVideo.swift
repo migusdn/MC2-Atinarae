@@ -19,8 +19,8 @@ struct MainViewModelSendVideo: View {
     }
 }
 
-struct MainViewModelSendVideo_Previews: PreviewProvider {
-    static var previews: some View {
-        MainViewModelSendVideo()
-    }
-}
+//struct MainViewModelSendVideo_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MainViewModelSendVideo()
+//    }
+//}

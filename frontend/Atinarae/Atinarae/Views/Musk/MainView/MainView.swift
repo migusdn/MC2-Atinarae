@@ -31,6 +31,8 @@ struct MainView: View {
 //            userViewModel.addFriend(friend: users![0])
         }
         self.users = userViewModel.getFriendsList()
+//        
+//        userViewModel.addFriend(friend: User(nickname: "Hard", mail: "", phone: "", profile: 1, friends: [])
 //        print(users)
     }
     
@@ -44,19 +46,19 @@ struct MainView: View {
                         MainViewModelTitle()
                             .frame(height: geo.size.height/6)
                         
-                        MainViewModelPlanet(users : $users)
+                        MainViewModelPlanet(userViewModel: userViewModel, users : $users)
                             .frame(height: geo.size.height/2)
                         
-                        NavigationLink ("영상 보내기",destination: MessageSettingsView(), isActive: $navModel.MessageAddProcessIsActive)
-                            .isDetailLink(false)
-                            .buttonStyle(ButtonPrimaryStyle(frameWidth: 100, frameHeight: 60))
+                        MainViewModelSendVideo()
                             .frame(height: geo.size.height/3)
                         
                     }   // VStack
                 }   // ZStack
             }   // GeometryReader
             .onAppear{
+                userViewModel.refresh()
                 setup()
+                
             }
             .navigationBarBackButtonHidden(true)
         }
@@ -70,7 +72,7 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-//        let realm = try! Realm() // Realm 인스턴스 생성
+        let realm = try! Realm() // Realm 인스턴스 생성
         let userViewModel = UserViewModel() // UserViewModel에 Realm 인스턴스 전달
         let videoMessageViewModel = VideoMessageViewModel() // VideoMessageViewModel에 Realm 인스턴스 전달
         let navigationModel = NavigationModel() // NavigationModel에 Realm 인스턴스 전달

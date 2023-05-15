@@ -146,20 +146,17 @@ class UserViewModel: ObservableObject {
     }
     // MARK: - CurrentUser의 친구 목록에 새로운 User를 추가.
     func addFriend(friend: User) {
-        guard let currentUser = currentUser else {
-            return
-        }
-        
-        do {
-            try realm.write {
-                //유저가 없다면 새로운 유저를 생성하고 이를 추가하는 코드 지워도 됨 머식머식
-                createUser(user: friend)
-                currentUser.friends.append(friend)
+            do {
+                self.objectWillChange.send()
+                try realm.write {
+                    currentUser?.friends.append(friend)
+                    realm.add(friend)
+                    self.objectWillChange.send()
+                }
+            } catch {
+                print("Failed to add friend: \(error)")
             }
-        } catch {
-            print("Failed to add friend: \(error)")
         }
-    }
     
     func isExist(_ user: User) -> Bool {
         guard users.filter("nickname == %@", user.nickname).isEmpty else {

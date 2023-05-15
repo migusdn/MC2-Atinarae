@@ -17,14 +17,14 @@
 		5E40AE9D2A1133B100EE5580 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40AE9A2A1133B100EE5580 /* CameraViewModel.swift */; };
 		5E40AE9E2A1133B100EE5580 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40AE9B2A1133B100EE5580 /* RecordView.swift */; };
 		5E40AE9F2A1133B100EE5580 /* CameraRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40AE9C2A1133B100EE5580 /* CameraRecord.swift */; };
-		5E40AEAA2A1133EF00EE5580 /* LaunchPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40AEA02A1133EF00EE5580 /* LaunchPage.swift */; };
-		5E40AEAB2A1133EF00EE5580 /* MainViewModelPlanet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40AEA22A1133EF00EE5580 /* MainViewModelPlanet.swift */; };
-		5E40AEAC2A1133EF00EE5580 /* MainViewModelTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40AEA32A1133EF00EE5580 /* MainViewModelTitle.swift */; };
-		5E40AEAD2A1133EF00EE5580 /* MainViewModelSendVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40AEA42A1133EF00EE5580 /* MainViewModelSendVideo.swift */; };
-		5E40AEAE2A1133EF00EE5580 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40AEA52A1133EF00EE5580 /* MainView.swift */; };
-		5E40AEAF2A1133EF00EE5580 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40AEA72A1133EF00EE5580 /* DetailView.swift */; };
-		5E40AEB02A1133EF00EE5580 /* PlanetPlusModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40AEA92A1133EF00EE5580 /* PlanetPlusModal.swift */; };
 		5E40AEB32A11368A00EE5580 /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40AEB22A11368A00EE5580 /* InboxView.swift */; };
+		5E4D22CD2A12A3FD0097D92D /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D22C42A12A3FD0097D92D /* DetailView.swift */; };
+		5E4D22CE2A12A3FD0097D92D /* PlanetPlusModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D22C62A12A3FD0097D92D /* PlanetPlusModal.swift */; };
+		5E4D22CF2A12A3FD0097D92D /* EditPlanetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D22C72A12A3FD0097D92D /* EditPlanetModel.swift */; };
+		5E4D22D02A12A3FD0097D92D /* MainViewModelPlanet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D22C92A12A3FD0097D92D /* MainViewModelPlanet.swift */; };
+		5E4D22D12A12A3FD0097D92D /* MainViewModelTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D22CA2A12A3FD0097D92D /* MainViewModelTitle.swift */; };
+		5E4D22D22A12A3FD0097D92D /* MainViewModelSendVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D22CB2A12A3FD0097D92D /* MainViewModelSendVideo.swift */; };
+		5E4D22D32A12A3FD0097D92D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D22CC2A12A3FD0097D92D /* MainView.swift */; };
 		5E61F5652A0CC32400AE1198 /* PlanetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F5642A0CC32400AE1198 /* PlanetList.swift */; };
 		5E7DD52A2A0A863800458BE9 /* DateUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DD5292A0A863800458BE9 /* DateUtility.swift */; };
 		5E869F942A08CF9A007CC669 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E869F932A08CF99007CC669 /* ColorExtension.swift */; };
@@ -59,14 +59,14 @@
 		5E40AE9A2A1133B100EE5580 /* CameraViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		5E40AE9B2A1133B100EE5580 /* RecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		5E40AE9C2A1133B100EE5580 /* CameraRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRecord.swift; sourceTree = "<group>"; };
-		5E40AEA02A1133EF00EE5580 /* LaunchPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchPage.swift; sourceTree = "<group>"; };
-		5E40AEA22A1133EF00EE5580 /* MainViewModelPlanet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModelPlanet.swift; sourceTree = "<group>"; };
-		5E40AEA32A1133EF00EE5580 /* MainViewModelTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModelTitle.swift; sourceTree = "<group>"; };
-		5E40AEA42A1133EF00EE5580 /* MainViewModelSendVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModelSendVideo.swift; sourceTree = "<group>"; };
-		5E40AEA52A1133EF00EE5580 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		5E40AEA72A1133EF00EE5580 /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
-		5E40AEA92A1133EF00EE5580 /* PlanetPlusModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanetPlusModal.swift; sourceTree = "<group>"; };
 		5E40AEB22A11368A00EE5580 /* InboxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
+		5E4D22C42A12A3FD0097D92D /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		5E4D22C62A12A3FD0097D92D /* PlanetPlusModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanetPlusModal.swift; sourceTree = "<group>"; };
+		5E4D22C72A12A3FD0097D92D /* EditPlanetModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPlanetModel.swift; sourceTree = "<group>"; };
+		5E4D22C92A12A3FD0097D92D /* MainViewModelPlanet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModelPlanet.swift; sourceTree = "<group>"; };
+		5E4D22CA2A12A3FD0097D92D /* MainViewModelTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModelTitle.swift; sourceTree = "<group>"; };
+		5E4D22CB2A12A3FD0097D92D /* MainViewModelSendVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModelSendVideo.swift; sourceTree = "<group>"; };
+		5E4D22CC2A12A3FD0097D92D /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		5E61F5642A0CC32400AE1198 /* PlanetList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanetList.swift; sourceTree = "<group>"; };
 		5E6887A32A0C7AAC00C8EAAE /* Atinarae.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Atinarae.entitlements; sourceTree = "<group>"; };
 		5E7DD5292A0A863800458BE9 /* DateUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtility.swift; sourceTree = "<group>"; };
@@ -133,50 +133,50 @@
 			path = User;
 			sourceTree = "<group>";
 		};
-		5E40AE882A1117A700EE5580 /* Musk */ = {
-			isa = PBXGroup;
-			children = (
-				5E40AEA62A1133EF00EE5580 /* DetailView */,
-				5E40AEA02A1133EF00EE5580 /* LaunchPage.swift */,
-				5E40AEA12A1133EF00EE5580 /* MainView */,
-				5E40AEA82A1133EF00EE5580 /* PlanetPlusModal */,
-			);
-			path = Musk;
-			sourceTree = "<group>";
-		};
-		5E40AEA12A1133EF00EE5580 /* MainView */ = {
-			isa = PBXGroup;
-			children = (
-				5E40AEA22A1133EF00EE5580 /* MainViewModelPlanet.swift */,
-				5E40AEA32A1133EF00EE5580 /* MainViewModelTitle.swift */,
-				5E40AEA42A1133EF00EE5580 /* MainViewModelSendVideo.swift */,
-				5E40AEA52A1133EF00EE5580 /* MainView.swift */,
-			);
-			path = MainView;
-			sourceTree = "<group>";
-		};
-		5E40AEA62A1133EF00EE5580 /* DetailView */ = {
-			isa = PBXGroup;
-			children = (
-				5E40AEA72A1133EF00EE5580 /* DetailView.swift */,
-			);
-			path = DetailView;
-			sourceTree = "<group>";
-		};
-		5E40AEA82A1133EF00EE5580 /* PlanetPlusModal */ = {
-			isa = PBXGroup;
-			children = (
-				5E40AEA92A1133EF00EE5580 /* PlanetPlusModal.swift */,
-			);
-			path = PlanetPlusModal;
-			sourceTree = "<group>";
-		};
 		5E40AEB12A11368A00EE5580 /* InboxView */ = {
 			isa = PBXGroup;
 			children = (
 				5E40AEB22A11368A00EE5580 /* InboxView.swift */,
 			);
 			path = InboxView;
+			sourceTree = "<group>";
+		};
+		5E4D22C22A12A3FD0097D92D /* Musk */ = {
+			isa = PBXGroup;
+			children = (
+				5E4D22C32A12A3FD0097D92D /* DetailView */,
+				5E4D22C52A12A3FD0097D92D /* PlanetPlusModal */,
+				5E4D22C82A12A3FD0097D92D /* MainView */,
+			);
+			path = Musk;
+			sourceTree = "<group>";
+		};
+		5E4D22C32A12A3FD0097D92D /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				5E4D22C42A12A3FD0097D92D /* DetailView.swift */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
+		5E4D22C52A12A3FD0097D92D /* PlanetPlusModal */ = {
+			isa = PBXGroup;
+			children = (
+				5E4D22C62A12A3FD0097D92D /* PlanetPlusModal.swift */,
+				5E4D22C72A12A3FD0097D92D /* EditPlanetModel.swift */,
+			);
+			path = PlanetPlusModal;
+			sourceTree = "<group>";
+		};
+		5E4D22C82A12A3FD0097D92D /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				5E4D22C92A12A3FD0097D92D /* MainViewModelPlanet.swift */,
+				5E4D22CA2A12A3FD0097D92D /* MainViewModelTitle.swift */,
+				5E4D22CB2A12A3FD0097D92D /* MainViewModelSendVideo.swift */,
+				5E4D22CC2A12A3FD0097D92D /* MainView.swift */,
+			);
+			path = MainView;
 			sourceTree = "<group>";
 		};
 		5E869F922A08CF99007CC669 /* Extension */ = {
@@ -331,8 +331,8 @@
 		5ED79F0E29FD9376009D45AA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5E4D22C22A12A3FD0097D92D /* Musk */,
 				5E40AEB12A11368A00EE5580 /* InboxView */,
-				5E40AE882A1117A700EE5580 /* Musk */,
 				5ECC74612A101D6200FDA239 /* Commons */,
 				5EA2FA082A0FBBAF00551781 /* OnBoard */,
 				5EA2FA292A0FFAEC00551781 /* MessageSetting */,
@@ -433,36 +433,36 @@
 			files = (
 				5EF2F59D2A01025A002D99D0 /* User.swift in Sources */,
 				5E40AEB32A11368A00EE5580 /* InboxView.swift in Sources */,
-				5E40AEAB2A1133EF00EE5580 /* MainViewModelPlanet.swift in Sources */,
 				5EA2FA1A2A0FD8BA00551781 /* NavigationModel.swift in Sources */,
-				5E40AEAC2A1133EF00EE5580 /* MainViewModelTitle.swift in Sources */,
 				5ECC745F2A1011B900FDA239 /* Buttons.swift in Sources */,
 				5EF2F59B2A00FA62002D99D0 /* VideoMessage.swift in Sources */,
 				5E40AE9D2A1133B100EE5580 /* CameraViewModel.swift in Sources */,
+				5E4D22D12A12A3FD0097D92D /* MainViewModelTitle.swift in Sources */,
 				5E40AE9E2A1133B100EE5580 /* RecordView.swift in Sources */,
 				5EA2FA302A0FFAEC00551781 /* CategoryAddView.swift in Sources */,
 				5EA2FA332A0FFAEC00551781 /* MessageSettingsView.swift in Sources */,
 				5EA2FA342A0FFAEC00551781 /* DateSelectView.swift in Sources */,
+				5E4D22D32A12A3FD0097D92D /* MainView.swift in Sources */,
 				5ED79F0129FD935F009D45AA /* ContentView.swift in Sources */,
 				5ECC74662A10330F00FDA239 /* RealmUtility.swift in Sources */,
-				5E40AEAD2A1133EF00EE5580 /* MainViewModelSendVideo.swift in Sources */,
 				5E15F0A32A0FADD60074A715 /* Category.swift in Sources */,
 				5E869F942A08CF9A007CC669 /* ColorExtension.swift in Sources */,
 				5E15F0A52A0FB4630074A715 /* CategoryViewModel.swift in Sources */,
+				5E4D22D02A12A3FD0097D92D /* MainViewModelPlanet.swift in Sources */,
 				5ECC745C2A10074F00FDA239 /* MessageListView.swift in Sources */,
 				5E1487792A03C65A0041593A /* JsonUtility.swift in Sources */,
+				5E4D22CF2A12A3FD0097D92D /* EditPlanetModel.swift in Sources */,
+				5E4D22CD2A12A3FD0097D92D /* DetailView.swift in Sources */,
 				5E15F0512A0F640D0074A715 /* UserViewModel.swift in Sources */,
 				5E40AE9F2A1133B100EE5580 /* CameraRecord.swift in Sources */,
-				5E40AEB02A1133EF00EE5580 /* PlanetPlusModal.swift in Sources */,
 				5E4093EF2A1208E1003F256B /* VideoPreviewView.swift in Sources */,
 				5ED79EFF29FD935F009D45AA /* AtinaraeApp.swift in Sources */,
+				5E4D22D22A12A3FD0097D92D /* MainViewModelSendVideo.swift in Sources */,
 				5E7DD52A2A0A863800458BE9 /* DateUtility.swift in Sources */,
-				5E40AEAA2A1133EF00EE5580 /* LaunchPage.swift in Sources */,
-				5E40AEAF2A1133EF00EE5580 /* DetailView.swift in Sources */,
 				5EA2FA142A0FCC8A00551781 /* VideoMessageViewModel.swift in Sources */,
 				5EA2FA322A0FFAEC00551781 /* CategorySelectModalView.swift in Sources */,
+				5E4D22CE2A12A3FD0097D92D /* PlanetPlusModal.swift in Sources */,
 				5EA2FA182A0FD47800551781 /* OnBoard.swift in Sources */,
-				5E40AEAE2A1133EF00EE5580 /* MainView.swift in Sources */,
 				5E61F5652A0CC32400AE1198 /* PlanetList.swift in Sources */,
 				5EA2FA312A0FFAEC00551781 /* VideoPlayerViewModel.swift in Sources */,
 			);

@@ -18,8 +18,10 @@ import RealmSwift
 // 이제 코딩 알것 같아 난
 // ---------------------------------------------------------------------------------------------
 
+
+//userViewModel.currentUser?.friends[0].nickname ?? ""
 struct MainViewModelPlanet: View {
-    @EnvironmentObject var userViewModel: UserViewModel
+    @ObservedObject var userViewModel: UserViewModel
     // 별들이 도는 애니메이션 bool
     @State private var animationFlag = false
     // 행성을 생성하는 모달뷰
@@ -30,6 +32,13 @@ struct MainViewModelPlanet: View {
     @Binding var users: [User]?
     // 뷰 이동을 위한 태그
     @State var tag:Int? = nil
+    // 하 이거 어케함? -> 해결 완 ㅎ
+    @State var willMadePlanet: Int = 0
+    //Dismiss
+    @Environment(\.dismiss) var dismiss
+    
+    
+    
 
     var body: some View {
         GeometryReader{ geo in
@@ -71,8 +80,22 @@ struct MainViewModelPlanet: View {
         }   // GeometryReader
         .onAppear{
             self.animationFlag.toggle()
+           
+           
+//            print(self.detectFriends)
+            if deletePlanet {
+                userViewModel.deleteUser(user: (userViewModel.currentUser?.friends[0])!)
+                deletePlanet = false
+            }
             
+            
+            if userViewModel.getFriendsList().count != 0 {
+                willMadePlanet = userViewModel.currentUser?.friends.count ?? 0
+            } else {
+                willMadePlanet = 0
+            }
         }
+       
         
     }    // Body
 
@@ -82,43 +105,16 @@ struct MainViewModelPlanet: View {
         let planetPoint = [4.4, 5.6, 3.5, 6.7, 2.5]
         // 행성의 궤도 라인 정하기
         let planetDiameter = [diameter[2], diameter[1], diameter[1], diameter[1], diameter[1]]
-
+        
 
         // 행성의 위치 계산.
-        let angle = 2 * 3.14 + 1.57
+        let angle = 7.85
         return ZStack {
 
-//            Text("\(self.users?.count ?? 0)")
-//                .font(Font.largeTitle)
-//                .foregroundColor(.red)
-            
-//            ForEach(
-//                Array(
-//                    categoryViewModel.getUserCategories(for: userViewModel.currentUser!).enumerated()),
-//                id: \.element._id) { index, category in
-//
-//                    Button(action:{
-//                        selectedCategory = category
-//                        dismissAction()
-//                    }){
-//                        HStack{
-//                            Text(category.name)
-//                            Spacer()
-//                            if selectedCategory == category {
-//                                Image(systemName: "checkmark")
-//                            }
-//                        }
-//                    }
-//                }
-//                .onDelete(perform: delete)
-            // nil 체크 해야함........
-            
-            ForEach(Array(userViewModel.getFriendsList()).indices, id: \.self) { index in
-                if planetDiameter.indices.contains(index), planetPoint.indices.contains(index), index == 0 {
-                    
+            // nil 체크 해야함........ - > 해결 완
+            ForEach(0..<(userViewModel.currentUser?.friends.count ?? 0)) { index in
                     let planetLotateNumber = index
                     self.makePlanet(planetDiameter: planetDiameter[planetLotateNumber], point: planetPoint[planetLotateNumber], planetLotateNumber: planetLotateNumber, planetSize: planetSize)
-                }
             }
 
 
@@ -128,7 +124,9 @@ struct MainViewModelPlanet: View {
             }
             //버튼 만들기
             Button{
-                self.showModal = true
+                if willMadePlanet != 5{
+                    self.showModal = true
+                }
             } label: {
                makeMainPlanet(planetNumber: 5)
                     .resizable()
@@ -138,7 +136,7 @@ struct MainViewModelPlanet: View {
 
             }
             .sheet(isPresented: self.$showModal) {
-                PlanetPlusModal(planetLotateNumber: .constant(0), users: $users, deletePlanet: Binding.constant(false)) // 고쳐야함
+                    PlanetPlusModal(planetLotateNumber: $willMadePlanet, users: $users) // 고쳐야함
                     }
     }
 
@@ -147,29 +145,22 @@ struct MainViewModelPlanet: View {
         let angle = 2 * 3.14 + CGFloat(point)
 
         return ZStack {
-//             makePlanet(planetDiameter: diameter[1], point: planetPoint[4], planetLotateNumber: 0, planetSize: planetSize)
-            //버튼 만들기
-           
-            
-            if(self.users?[planetLotateNumber].nickname == nil){}
-            else{ // planet있을때
                 Button{
                     // 디테일뷰
                     self.tag = planetLotateNumber
                 } label: {
-
-                    makeMainPlanet(planetNumber: self.users?[planetLotateNumber].profile ?? 0)
+                    makeMainPlanet(planetNumber: userViewModel.currentUser?.friends[planetLotateNumber].profile ?? 0)
                         .resizable()
                         .frame(width: planetSize, height: planetSize)
                 }   // Button Label.
                 .overlay{
-                    Text(self.users?[planetLotateNumber].nickname ?? "")
+                    Text(userViewModel.currentUser?.friends[planetLotateNumber].nickname ?? "")
                         .foregroundColor(.white)
                         .offset(y:planetSize/3)
                 }
                 .offset(x: cos(angle) * planetDiameter/2, y: sin(angle) * planetDiameter/2)
 
-            }
+//            }
         }   // else 끝
         
     }
@@ -227,18 +218,9 @@ struct StarEffect: GeometryEffect {
 }   //StarEffect
 
 
-
-
-//struct MainViewModelPlanet_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let appData = AppData()
-//        GeometryReader{ geo in
-//            NavigationView{
-//                MainViewModelPlanet()
-//                    .frame(height: geo.size.height/2)
-//                    .environmentObject(appData)
-//            }
-//        }
+//struct MainPlanet: View{
+//    var planetNumer: Int
+//    var body: some View{
 //
 //    }
 //}

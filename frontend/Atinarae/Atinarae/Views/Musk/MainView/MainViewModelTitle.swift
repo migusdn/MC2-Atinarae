@@ -25,11 +25,15 @@ struct MainViewModelTitle: View {
                     .frame(width : 150, height: 25)
                 
                 Spacer()
-                Image(systemName: "bell")
-                    .resizable()
-                    .foregroundColor(.white)
-                    .frame(width: 25, height: 25)
-                    .padding(.trailing)
+                Button{
+                    
+                }  label: {
+                    Image(systemName: "bell")
+                        .resizable()
+                        .foregroundColor(.white)
+                        .frame(width: 25, height: 25)
+                        .padding(.trailing)
+                }
                 Button{
                     
                 }  label: {
@@ -50,10 +54,10 @@ struct MainViewModelTitle: View {
 
 
 
-struct MainViewModel_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView{
-            MainViewModelTitle()
-        }
-    }
-}
+//struct MainViewModel_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationView{
+//            MainViewModelTitle()
+//        }
+//    }
+//}
