@@ -112,7 +112,7 @@ struct DetailView: View {
                             
                         }
                         .offset(y:planetSize/4)
-                            
+                            // Git 
                        
                     }
                     .toolbar {
