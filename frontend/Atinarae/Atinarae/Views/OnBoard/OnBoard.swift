@@ -1,5 +1,5 @@
 //
-//  OnBoard.swift
+//  OnBoardView.swift
 //  Atinarae
 //
 //  Created by Kimdohyun on 2023/05/10.
@@ -8,51 +8,362 @@
 import Foundation
 import SwiftUI
 
-struct onBoard: View{
-    @EnvironmentObject var navModel: NavigationModel
-    var body: some View {
+
+struct OnBoardView: View
+
+{
+//    // MARK: - Define App Variable
+//    private var userViewModel = UserViewModel()
+//    private var videoMessageViewModel = VideoMessageViewModel()
+//    private var navigationModel = NavigationModel()
+    @State var pageNum = 0
+    @State var isPresent: Bool = false
+    
+    var lastFlag: Bool
+    {
+        pageNum == 2
+    }
+    
+    var body: some View
+    {
         NavigationView{
-            VStack{
-                
-                // TODO: 머식! 여기를 기점으로 시작해서 시작점을 다시 Main으로 돌려주길 바래요.
-                NavigationLink ("살려줍메",destination: MessageSettingsView(), isActive: $navModel.MessageAddProcessIsActive)
-                    .isDetailLink(false)
-                    .buttonStyle(ButtonPrimaryStyle(frameWidth: 100, frameHeight: 60))
-                NavigationLink ("살려줍메",destination: MessageSettingsView(), isActive: $navModel.MessageAddProcessIsActive)
-                    .isDetailLink(false)
-                    .buttonStyle(ButtonPrimaryStyle(frameWidth: 100, frameHeight: 60))
-                
-                // TODO: 그 외로 전달사항은 다는 안적은거같지만 TODO 로 검색하면 지금 생각나는 해야 할 일, MARK는 어떤 함수나 진입점의 시작을 의미합니다
-                // TODO: 기본적으로 realm은 객체형 DB임을 생각하고 데이터를 다루시면 수월하실 것 같습니다
-                // TODO: ORM 에서 Object를 생성해서 CRUD는 가능하지만 저장하지 않은 값은 모두 날아갑니다.
-                // TODO: 아직 정확히 realm에 대해서 파악하지는 못했지만 원하는 쿼리 등을 (Entity)ViewModel.swift 에 func로 정의하여 사용하시면 됩니다
-                // TODO: 그 부분은 GPT 추천 GPT가 쓴 코드를 이해하면서 수정하는게 빠릅니다.
-                // TODO: 그 외로 새로 생긴 파일이나 이름이 바뀐 것 들에 대한 이야기는 여기 아래에 하겠습니다
-                // TODO: VideoSettingView -> MessageSettingView
-                // TODO: FIX button (완료)
-                // TODO: 저기 있는 Utility폴더는 잡다한 func 모아놓은 곳 입니다
-                // TODO: 저는 곧 잠들기 직전이라 이제 슬슬 가겠습니다
-                // TODO: realm 오류 제어한다고 했는데 안정적으로 잘 될지는 모르겠네요
-                // TODO: 모바일 기기의 Appdata는 cmd + shift + 2를 누르고
-                // TODO: 모바일 기기 선택이 완료되면 좌측하단 동그라미에 점 세개 있는거 클릭하면 Download Containe, Replace Container 등등 있으니 잘 활용하시기 바랍니다
-                // TODO: 추출된 appdata는 일반적인 방법으로 더블클릭해서 여는 파일이 아니므로 "com.atinarae.tvvinkle 2023-05-14 09/48.16.918" 등의 파일을 우클릭하면 패키지 내용 보기 클릭하면 보실 수 있습니다.
-                // TODO: 중요! 좌상단의 검색창에서 (MARK, TODO)를 검색해주세요.
-                // TODO: 아마 빠진부분 많을거고 다 파악하진 못했습니다.
-                
-                // TODO: 너무 졸려
-                
-                // TODO: +++ 폴더 구조에 대한 의견
-                // TODO: 폴더이름에 XXXView 이런식으로 하지말고
-                // TODO: App - Views - XXX - XXXView.swift
-                // TODO:             |     - XXXViewModel.swift
-                // TODO:             |     - XXXViewModel.swift
-                // TODO:        CommonView
-                
-            
-                
-                
+            VStack
+            {
+                TabView(selection: $pageNum)
+                {
+                    OnBfirst()
+                        .tag(0)
+                    
+                    OnBSecond()
+                        .tag(1)
+                    
+                    OnBLast(lastFlag: lastFlag)
+                        .tag(2)
                 }
+                //            .onChange(of: pageNum, perform: { newValue in
+                //                print(newValue)
+                //            })
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .frame(width: 400, height: 600)
+                
+                
+                HStack
+                {
+                    ForEach(0..<3)
+                    {
+                        idx in
+                        
+                        if idx == self.pageNum
+                        {
+                            Circle().foregroundColor(.white)
+                        }
+                        else
+                        {
+                            Circle().foregroundColor(.gray)
+                        }
+                    }
+                    .frame(width: 10, height: 6)
+                    .padding(.bottom, 20)
+                }
+                
+                if isPresent
+                {
+                    Button(action:{})
+                    {
+                        NavigationLink(destination: MainView())
+                        {
+                            Text("시작하기")
+                        }
+                    }
+                    .buttonStyle(ButtonPrimaryStyle(frameWidth: 200, frameHeight: 60))
+                }
+                else
+                {
+                    Button(action:{})
+                    {
+                        NavigationLink(
+                            destination: MainView()
+                            //                            .environmentObject(userViewModel)
+                            //                            .environmentObject(videoMessageViewModel)
+                            //                            .environmentObject(navigationModel)
+                        )
+                        {
+                            Text("시작하기")
+                        }
+                    }
+                    .buttonStyle(ButtonPrimaryStyle(frameWidth: 200, frameHeight: 60))
+                    .opacity(0)
+                }
+            }
+            .onChange(of: pageNum)
+            {
+                newPageIdx in
+                
+                if newPageIdx == 2
+                {
+                    isPresent = true
+                }
+                else
+                {
+                    isPresent = false
+                }
+            }
+            .background(
+                Group
+                {
+                    if pageNum == 1
+                    {
+                        Image("OnB2B")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .edgesIgnoringSafeArea(.all)
+                    }
+                    else if pageNum == 2
+                    {
+                        Image("OnB3B")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .edgesIgnoringSafeArea(.all)
+                    }
+                    else
+                    {
+                        Image("OnB1BC")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .edgesIgnoringSafeArea(.all)
+                    }
+                }
+            )
+            .navigationBarBackButtonHidden(true)
+        }
+    }
+}
+
+struct OnBfirst: View
+{
+    let minStars = 20
+    let maxStars = 50
+    
+    var body: some View
+    {
+        VStack
+        {
+            ZStack
+            {
+                Text("작은 마음이 모여")
+                    .font(.system(size: 30).bold())
+                    .offset(x: -60, y: -220)
+                Text("Tvvinkle의 영상메세지 기능을\n통해 전하고 싶은 마음을 기록하세요")
+                    .offset(x: -35, y: -160)
+                ForEach(0..<Int.random(in:minStars...maxStars), id: \.self)
+                {
+                    _ in
+                    
+                    Star(LRChoice: LRValue())
+                        .frame(width: 400, height: 350)
+                        .offset(y: 80)
+                }
+                OnBFPlanet()
+                    .offset(y: 80)
             }
         }
     }
+}
 
+struct OnBSecond: View
+{
+    @State private var offsetX: CGFloat = -250
+    
+    var body: some View
+    {
+        ZStack
+        {
+            Text("어두운 우주를 건너")
+                .font(.system(size: 30).bold())
+                .offset(x: -55, y: -220)
+            Text("특별한 날 깜짝 선물이 되도록 \nD-day를 정해 메세지를 보내 보세요")
+                .offset(x: -45, y: -160)
+            Image("meteor1")
+                .blendMode(.colorDodge)
+                .offset(x: offsetX, y: 0)
+                .animation(Animation.linear(duration: 6.5).repeatCount(1))
+                .onAppear
+            {
+                startMove()
+            }
+        }
+    }
+    
+    
+    private func startMove()
+    {
+        withAnimation
+        {
+            offsetX += 350
+        }
+    }
+}
+
+struct OnBLast: View
+{
+    var lastFlag: Bool
+    var body: some View
+    {
+        
+        ZStack
+        {
+            Text("하늘에 빛을 비추어요")
+                .font(.system(size: 30).bold())
+                .offset(x: -40, y: -220)
+            
+            Text("오랜시간 당신을 위해 날아온 메세지가\n소중한 마음을 전달해 드려요")
+                .offset(x: -35, y: -160)
+            
+            StarLight(lastFlag: lastFlag, imgName: "star33", delay: 0.5)
+                .frame(width: 150)
+                .offset(x: 140, y: 115)
+            StarLight(lastFlag: lastFlag, imgName: "star33", delay: 1.7)
+                .frame(width: 100)
+                .blur(radius: 1.5)
+                .offset(x: -100, y: -30)
+            StarLight(lastFlag: lastFlag,imgName: "star33", delay: 2.3)
+                .frame(width: 80)
+                .blur(radius: 3.5)
+                .offset(x: 140, y: -125)
+            StarLight(lastFlag: lastFlag, imgName: "OnB3Phalo", delay: 0.5)
+                .offset(y: 442.5)
+            Image("OnB3Planet")
+                .offset(x: -2.5, y: 468)
+        }
+        
+    }
+    
+}
+
+
+struct Star: View
+{
+    @State private var angle = CGFloat.random(in: -100...100)
+    @State private var radius = CGFloat.random(in: 50...250)
+    
+    var size = CGFloat.random(in: 10...30)
+    var LRChoice: CGFloat = LRValue()
+
+    var body: some View
+    {
+        Image("star")
+            .resizable()
+            .frame(width: size, height: size)
+            .offset(x: radius * CGFloat(cos(angle)), y: radius * CGFloat(sin(angle * LRChoice)))
+            .onAppear
+            {
+                Timer.scheduledTimer(withTimeInterval: 0.015, repeats: true)
+                {
+                    timer in
+                    withAnimation(Animation.linear(duration: 8.0))
+                    {
+                        self.angle += 0.1
+                        self.radius -= 0.5
+                        if radius <= 0
+                        {
+                            timer.invalidate()
+                        }
+                    }
+                }
+            }
+    }
+}
+
+
+struct StarLight: View
+{
+    var lastFlag: Bool
+    
+    let imgName: String
+    let delay: Double
+    
+    @State private var isShowing = false
+    
+    var body: some View
+    {
+        Group
+        {
+            if lastFlag
+            {
+                Image(imgName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .opacity(1.0)
+                    .onAppear
+                    {
+                        print("Planet")
+                        DispatchQueue.main.asyncAfter(deadline: .now() + delay)
+                        {
+                            withAnimation(.easeIn(duration: 1.5))
+                            {
+                                print("Now\(delay)")
+                                self.isShowing = true
+                            }
+                        }
+                    }
+                    .opacity(isShowing ? 1.0 : 0.0)
+            }
+        }
+    }
+}
+
+
+struct OnBFPlanet: View
+{
+    @State private var scale: CGFloat = 0.0
+//    @State private var rotationAngle: Double = 0
+    
+    var body: some View
+    {
+        ZStack
+        {
+            Image("OnB1Planet")
+                .scaledToFit()
+                .scaleEffect(scale)
+                .onAppear
+            {
+                withAnimation( .linear(duration: 6.0))
+                {
+                    scale = 0.65
+                }
+            }
+            
+        }
+    }
+}
+
+
+
+func LRValue() -> CGFloat
+{
+    var LRChoice: CGFloat
+
+    let LValue: CGFloat  = -1
+    let RValue: CGFloat  = 1
+    
+    let boolCheck: Bool = Bool.random()
+    
+    if boolCheck
+    {
+        LRChoice = LValue
+    }
+    else
+    {
+        LRChoice = RValue
+    }
+    
+    return LRChoice
+}
+ 
+struct OnBoard_Previews: PreviewProvider
+{
+    static var previews: some View
+    {
+        OnBoardView()
+    }
+}

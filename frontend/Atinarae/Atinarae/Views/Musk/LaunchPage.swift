@@ -30,7 +30,7 @@ struct LaunchPage: View {
                     }
                         
                 }
-                NavigationLink(destination: MainView(), tag : 1, selection: self.$tag){}
+                NavigationLink(destination: MainView()){}
             }
         }
         .navigationBarHidden(true)

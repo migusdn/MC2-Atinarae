@@ -9,8 +9,8 @@ import RealmSwift
 
 class VideoMessage: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
-    @Persisted var sender: User?
-    @Persisted var receiver: User?
+    @Persisted var senderId: ObjectId?
+    @Persisted var receiverId: ObjectId?
     @Persisted var createdDate: Date
     @Persisted var unlockedDate: Date?
     @Persisted var editingCount: Int

@@ -26,7 +26,7 @@ struct MessageSettingsView: View {
     
     @State private var unlockedDateisNotDefine = true
     
-    @State private var unlokcedDate: Date?
+    @State private var unlokcedDate: Date = Date()
     @State private var title = ""
     
     private var videoMessage: VideoMessage = VideoMessage()
@@ -70,56 +70,33 @@ struct MessageSettingsView: View {
                 }
                 Spacer()
                 // TODO: videoMessage 객체 완성해서 저장해야함
-                Button(action:{
-                    
+                NavigationLink(destination: RecordView(videoMessage: videoMessage)) {
+                    Text("다음")
+                }.simultaneousGesture(TapGesture().onEnded{
                     videoMessage.title = title
                     print(videoMessage.title)
                     videoMessage.category = selectedCategory
                     if !unlockedDateisNotDefine {
                         videoMessage.unlockedDate = nil
+                    }else{
+                        videoMessage.unlockedDate = unlokcedDate
                     }
                     //                    date
                     if let friend = selectedFriend {
-                        videoMessage.receiver = friend
+//                        videoMessage.receiverId = friend._id
+                        videoMessage.receiverId = userViewModel.currentUser?._id
                     }
-                    videoMessage.sender = userViewModel.currentUser
+                    videoMessage.senderId = userViewModel.currentUser?._id
                 
                     print("다음 버튼 클릭")
                     print("나와라 제발")
                     print(videoMessage)
-                }){
-                    
-                    NavigationLink(
-                        destination: RecordView(videoMessage: videoMessage),
-//                        isActive: $navModel.MessageAddProcessIsActive,
-                        label: {
-                            Text("다음")
-                        }
-                    )
-                    .isDetailLink(false)
-                    
-                    
-                }.buttonStyle(ButtonPrimaryStyle(frameWidth: 100, frameHeight: 60))
-                
+                })
+                .buttonStyle(ButtonPrimaryStyle(frameWidth: 100, frameHeight: 60))
+//
                 
                 
             }
-            .onAppear(){
-                //                setUpData()
-            }
-            
-            .navigationBarTitle(
-                Text("영상 보내기")
-                , displayMode: .inline)
-            .navigationBarItems(
-                leading:
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image(systemName: "chevron.left")
-                    }
-            )
-            .accentColor(.white)
             
             .sheet(isPresented: $categorySelectSheetIsPresented){
                 CategorySelectModalView(
@@ -131,10 +108,7 @@ struct MessageSettingsView: View {
             }
             .sheet(isPresented: $dDaySelectSheetIsPresented) {
                 DateSelectView(
-                    date: Binding<Date>(
-                        get: { unlokcedDate ?? Date() },
-                        set: { unlokcedDate = $0 }
-                    ),
+                    date: $unlokcedDate,
                     isOn: $unlockedDateisNotDefine,
                     dismissAction: {
                         dDaySelectSheetIsPresented = false
@@ -143,7 +117,16 @@ struct MessageSettingsView: View {
             }
             
         
-        .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItemGroup(placement: .principal) {
+                    HStack{
+                        
+                        Text("영상 보내기")
+
+
+                    }
+                }
+            }
     }
     var categorySelectView: some View{
         Section{

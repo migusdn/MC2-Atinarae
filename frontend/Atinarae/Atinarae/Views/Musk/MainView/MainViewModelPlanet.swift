@@ -44,11 +44,11 @@ struct MainViewModelPlanet: View {
                     Image("MY Eclipse")
                         .resizable()
                         .frame(width: planetSize*2, height: planetSize*2, alignment: .center)
-//                    NavigationLink(destination: InboxView(), label: {
+                    NavigationLink(destination: InboxView(), label: {
                         Image("MY")
                             .resizable()
                             .frame(width: planetSize*1.3, height: planetSize*1.3, alignment: .center)
-//                    })
+                    })
                 }   // ZStack MY
 
                 // 궤도 생성

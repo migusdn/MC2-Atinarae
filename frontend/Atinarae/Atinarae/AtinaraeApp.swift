@@ -36,11 +36,15 @@ struct AtinaraeApp: SwiftUI.App {
     var body: some Scene {
         
         WindowGroup {
-            LaunchPage()
-//            onBoard()
-                .environmentObject(userViewModel)
-                .environmentObject(videoMessageViewModel)
-                .environmentObject(navigationModel)
+            
+                MainView()
+            
+//                OnBoardView()
+                //                            OnBoard()
+                    .environmentObject(userViewModel)
+                    .environmentObject(videoMessageViewModel)
+                    .environmentObject(navigationModel)
+            
         }
     }
     
@@ -58,7 +62,7 @@ struct AtinaraeApp: SwiftUI.App {
          */
         
         RealmUtility.createNewRealm()
-        let isDev = true
+        let isDev = !true
         if isDev {
             
             RealmUtility.initTestData()

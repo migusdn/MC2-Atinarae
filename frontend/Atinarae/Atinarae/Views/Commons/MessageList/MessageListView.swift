@@ -14,6 +14,9 @@ struct MessageListView: View {
     let options = ["Option 1", "Option 2", "Option 3"]
     @State private var selectedPerson: User?
     
+    @State private var isPresented = false
+    @EnvironmentObject var userViewModel: UserViewModel
+    
     func textTag(text: String, color: Color) -> some View {
         Text(text)
             .padding(5)
@@ -21,24 +24,25 @@ struct MessageListView: View {
                 RoundedRectangle(cornerRadius: 6)
                     .fill(color)
             )
-            .frame(width: 40, height: 35)
+//            .frame(width: 40, height: 35)
             .padding(.leading, 0)
             .padding(.trailing, 0)
     }
     
     var messages: [VideoMessage]
-    var isSenderView: Bool
+    var isInbox: Bool
     let targetDate = Calendar.current.date(from: DateComponents(year: 2023, month: 6, day: 1))!
     
     var filteredData: [VideoMessage] {
         if let selectedPerson = selectedPerson {
-            return isSenderView ? messages.filter { $0.sender?._id == selectedPerson._id } : messages.filter { $0.receiver?._id == selectedPerson._id }
+            return isInbox ? messages.filter { $0.senderId == selectedPerson._id } : messages.filter { $0.receiverId == selectedPerson._id }
         } else {
             return messages
         }
     }
     
     var body: some View {
+        var selectedMessage: VideoMessage?
         ZStack {
             List {
                 ForEach(filteredData, id: \.self) { message in
@@ -47,25 +51,40 @@ struct MessageListView: View {
                             Text(message.title)
                                 .font(.headline)
                             
-                            HStack {
-                                if isSenderView {
-                                    textTag(text: message.category?.name ?? "", color: .tagColor)
+                            
+                                if isInbox {
+                                    Button(action: {
+                                        print("test")
+                                        print(message)
+                                        selectedMessage = message
+                                        isPresented=true
+                                    }){
+                                        HStack {
+                                            Text(userViewModel.getUserNicknameByUserId(userId:  message.senderId!))
+                                                .font(.subheadline)
+                                                .fontWeight(.bold)
+                                                .padding(.leading, 0)
+                                                .padding(.trailing, 0)
+                                            
+                                            Text(formatDate(message.unlockedDate))
+                                                .font(.subheadline)
+                                        }
+                                    }
                                 } else {
-                                    Text(message.sender?.nickname ?? "")
-                                        .font(.subheadline)
-                                        .fontWeight(.bold)
-                                        .padding(.leading, 0)
-                                        .padding(.trailing, 0)
+                                    HStack {
+                                        textTag(text: message.category?.name ?? "", color: .tagColor)
+                                        
+                                        Text(formatDate(message.unlockedDate))
+                                            .font(.subheadline)
+                                    }
                                 }
                                 
-                                Text(formatDate(message.unlockedDate))
-                                    .font(.subheadline)
-                            }
+                            
                         }
                         
                         Spacer()
                         
-                        if isSenderView {
+                        if !isInbox {
                             Text("D-\(calculateDDay(targetDate: targetDate) ?? 0)")
                         }
                     }
@@ -84,6 +103,12 @@ struct MessageListView: View {
             .padding(.vertical, 0)
             .padding(.horizontal)
         }
+        .sheet(isPresented: $isPresented) {
+                    if let selectedMessage = selectedMessage {
+                        VideoPreviewView(videoMessage: selectedMessage)
+                    }
+                }
+        
     }
     
     var filterByPersonMenu: some View {
@@ -98,7 +123,7 @@ struct MessageListView: View {
                     Text("전체보기")
                 }
                 
-                ForEach(getPeopleFromVideos(videos: messages, isSender: isSenderView), id: \.self) { option in
+                ForEach(getPeopleFromVideos(videos: messages, isInbox: isInbox), id: \.self) { option in
                     Button(action: {
                         selectedPerson = option
                     }) {
@@ -125,16 +150,16 @@ struct MessageListView: View {
             .menuStyle(BorderlessButtonMenuStyle())
         }
     }
-    private func getPeopleFromVideos(videos: [VideoMessage], isSender: Bool) -> [User] {
+    private func getPeopleFromVideos(videos: [VideoMessage], isInbox: Bool) -> [User] {
             var people: [User] = []
             for video in videos {
-                if isSender {
-                    if let receiver = video.receiver {
-                        people.append(receiver)
+                if isInbox {
+                    if let sender = userViewModel.getUserByID(userID: video.senderId!) {
+                        people.append(sender)
                     }
                 } else {
-                    if let sender = video.sender {
-                        people.append(sender)
+                    if let receiver = userViewModel.getUserByID(userID: video.receiverId!) {
+                        people.append(receiver)
                     }
                 }
             }
@@ -164,30 +189,30 @@ struct MessageListView_Previews: PreviewProvider {
         
         let message1 = VideoMessage()
         message1.title = "Message 1"
-        message1.sender = user1
-        message1.receiver = user2
+        message1.senderId = user1._id
+        message1.receiverId = user2._id
         message1.unlockedDate = Date()
         message1.category = category1
         
         let message2 = VideoMessage()
         message2.title = "Message 2"
-        message2.sender = user2
-        message2.receiver = user1
+        message2.senderId = user2._id
+        message2.receiverId = user1._id
         message2.unlockedDate = Date()
         message2.category = category2
         
         let message3 = VideoMessage()
         message3.title = "Message 3"
-        message3.sender = user3
-        message3.receiver = user1
+        message3.senderId = user3._id
+        message3.receiverId = user1._id
         message3.unlockedDate = Date()
         message3.category = category3
         
         let messages = [message1, message2, message3]
         
         return VStack {
-            MessageListView(messages: messages, isSenderView: false)
-            MessageListView(messages: messages, isSenderView: true)
+            MessageListView(messages: messages, isInbox: true)
+            MessageListView(messages: messages, isInbox: false)
         }
     }
 }

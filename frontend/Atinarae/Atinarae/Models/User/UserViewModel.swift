@@ -133,9 +133,16 @@ class UserViewModel: ObservableObject {
         guard let currentUser = currentUser else {
             return []
         }
-        print(currentUser.friends)
+//        print(currentUser.friends)
         
         return Array(currentUser.friends)
+    }
+    // MARK: - UserId로 UserName 조회
+    func getUserNicknameByUserId(userId: ObjectId) -> String{
+        guard let user = users.first(where: { $0._id == userId }) else {
+                    return ""
+                }
+                return user.nickname
     }
     // MARK: - CurrentUser의 친구 목록에 새로운 User를 추가.
     func addFriend(friend: User) {
@@ -161,6 +168,9 @@ class UserViewModel: ObservableObject {
         }
         return false
     }
+    func getUserByID(userID: ObjectId) -> User? {
+           return users.first(where: { $0._id == userID })
+       }
     // MARK: -temp function 개발 완료시 삭제 할것 Preview를 위해 만듬
 //    func setUsers(users: [User]){
 //        self.users = users

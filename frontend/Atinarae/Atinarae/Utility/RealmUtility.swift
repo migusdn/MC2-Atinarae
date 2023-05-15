@@ -79,83 +79,114 @@ class RealmUtility {
             }
             // 메시지 생성
             var messages: [VideoMessage] = []
-            
-            // 각 사용자마다 25개의 메시지 생성
-            for _ in 1...25 {
-                let message1 = VideoMessage()
-                message1.sender = user1
-                message1.receiver = user2
-                message1.createdDate = Date()
-                message1.unlockedDate = nil
-                message1.editingCount = 0
-                message1.title = "메시지 1"
-                message1.videoSrc = "video1.mp4"
-                message1.isCompleted = false
-                message1.hideAtSender = false
-                message1.hideAtReceiver = false
-                messages.append(message1)
-                
-                let message2 = VideoMessage()
-                message2.sender = user1
-                message2.receiver = user3
-                message2.createdDate = Date()
-                message2.unlockedDate = nil
-                message2.editingCount = 0
-                message2.title = "메시지 2"
-                message2.videoSrc = "video2.mp4"
-                message2.isCompleted = false
-                message2.hideAtSender = false
-                message2.hideAtReceiver = false
-                messages.append(message2)
-                
-                // 나머지 사용자와 메시지 생성
-                for _ in 1...25 {
-                    let message3 = VideoMessage()
-                    message3.sender = user1
-                    message3.receiver = user4
-                    message3.createdDate = Date()
-                    message3.unlockedDate = nil
-                    message3.editingCount = 0
-                    message3.title = "메시지 3"
-                    message3.videoSrc = "video3.mp4"
-                    message3.isCompleted = false
-                    message3.hideAtSender = false
-                    message3.hideAtReceiver = false
-                    messages.append(message3)
-                    
-                    let message4 = VideoMessage()
-                    message4.sender = user1
-                    message4.receiver = user5
-                    message4.createdDate = Date()
-                    message4.unlockedDate = nil
-                    message4.editingCount = 0
-                    message4.title = "메시지 4"
-                    message4.videoSrc = "video4.mp4"
-                    message4.isCompleted = false
-                    message4.hideAtSender = false
-                    message4.hideAtReceiver = false
-                    messages.append(message4)
-                    
-                    let message5 = VideoMessage()
-                    message5.sender = user1
-                    message5.receiver = user6
-                    message5.createdDate = Date()
-                    message5.unlockedDate = nil
-                    message5.editingCount = 0
-                    message5.title = "메시지 5"
-                    message5.videoSrc = "video5.mp4"
-                    message5.isCompleted = false
-                    message5.hideAtSender = false
-                    message5.hideAtReceiver = false
-                    messages.append(message5)
+            let senderUsers: [User] = [user2, user3, user4, user5, user6]
+            for senderUser in senderUsers {
+                var senderUserId = senderUser._id
+                for _ in 1...2 {
+                    let receiverMessage = VideoMessage()
+                    receiverMessage._id = ObjectId.generate()
+                    receiverMessage.senderId = senderUserId
+                    receiverMessage.receiverId = user1._id
+                    receiverMessage.createdDate = Date()
+                    receiverMessage.unlockedDate = nil
+                    receiverMessage.editingCount = 0
+                    receiverMessage.title = "Receiver Message"
+                    receiverMessage.videoSrc = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+                    receiverMessage.isCompleted = false
+                    receiverMessage.hideAtSender = false
+                    receiverMessage.hideAtReceiver = false
+                    messages.append(receiverMessage)
+                    let senderMessage = VideoMessage()
+                    senderMessage._id = ObjectId.generate()
+                    senderMessage.senderId = user1._id
+                    senderMessage.receiverId = senderUserId
+                    senderMessage.createdDate = Date()
+                    senderMessage.unlockedDate = nil
+                    senderMessage.editingCount = 0
+                    senderMessage.title = "Sender Message"
+                    senderMessage.videoSrc = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+                    senderMessage.isCompleted = false
+                    senderMessage.hideAtSender = false
+                    senderMessage.hideAtReceiver = false
+                    messages.append(senderMessage)
                 }
-//                guard user1.friends.filter("nickname == %@", user2.nickname).isEmpty else {
-//                    print("Nickname already exists")
-//                    return
-//                }
-                
-                
             }
+            // 각 사용자마다 25개의 메시지 생성
+//            for _ in 1...25 {
+//                let message1 = VideoMessage()
+//                message1.sender = user1
+//                message1.receiver = user2
+//                message1.createdDate = Date()
+//                message1.unlockedDate = nil
+//                message1.editingCount = 0
+//                message1.title = "메시지 1"
+//                message1.videoSrc = "video1.mp4"
+//                message1.isCompleted = false
+//                message1.hideAtSender = false
+//                message1.hideAtReceiver = false
+//                messages.append(message1)
+//
+//                let message2 = VideoMessage()
+//                message2.sender = user1
+//                message2.receiver = user3
+//                message2.createdDate = Date()
+//                message2.unlockedDate = nil
+//                message2.editingCount = 0
+//                message2.title = "메시지 2"
+//                message2.videoSrc = "video2.mp4"
+//                message2.isCompleted = false
+//                message2.hideAtSender = false
+//                message2.hideAtReceiver = false
+//                messages.append(message2)
+//
+//                // 나머지 사용자와 메시지 생성
+//                for _ in 1...25 {
+//                    let message3 = VideoMessage()
+//                    message3.sender = user1
+//                    message3.receiver = user4
+//                    message3.createdDate = Date()
+//                    message3.unlockedDate = nil
+//                    message3.editingCount = 0
+//                    message3.title = "메시지 3"
+//                    message3.videoSrc = "video3.mp4"
+//                    message3.isCompleted = false
+//                    message3.hideAtSender = false
+//                    message3.hideAtReceiver = false
+//                    messages.append(message3)
+//
+//                    let message4 = VideoMessage()
+//                    message4.sender = user1
+//                    message4.receiver = user5
+//                    message4.createdDate = Date()
+//                    message4.unlockedDate = nil
+//                    message4.editingCount = 0
+//                    message4.title = "메시지 4"
+//                    message4.videoSrc = "video4.mp4"
+//                    message4.isCompleted = false
+//                    message4.hideAtSender = false
+//                    message4.hideAtReceiver = false
+//                    messages.append(message4)
+//
+//                    let message5 = VideoMessage()
+//                    message5.sender = user1
+//                    message5.receiver = user6
+//                    message5.createdDate = Date()
+//                    message5.unlockedDate = nil
+//                    message5.editingCount = 0
+//                    message5.title = "메시지 5"
+//                    message5.videoSrc = "video5.mp4"
+//                    message5.isCompleted = false
+//                    message5.hideAtSender = false
+//                    message5.hideAtReceiver = false
+//                    messages.append(message5)
+//                }
+////                guard user1.friends.filter("nickname == %@", user2.nickname).isEmpty else {
+////                    print("Nickname already exists")
+////                    return
+////                }
+//
+//
+//            }
             try realm.write {
                 
                 user1.friends.append(user2)

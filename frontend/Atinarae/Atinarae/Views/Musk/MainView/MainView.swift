@@ -31,32 +31,35 @@ struct MainView: View {
 //            userViewModel.addFriend(friend: users![0])
         }
         self.users = userViewModel.getFriendsList()
-        print(users)
+//        print(users)
     }
     
     var body: some View{
-        GeometryReader { geo in
-            ZStack{
-                Color.backGroundColor.ignoresSafeArea()     // BackGround
-                
-                VStack{
-                    MainViewModelTitle()
-                        .frame(height: geo.size.height/6)
+        NavigationView{
+            GeometryReader { geo in
+                ZStack{
+                    Color.backGroundColor.ignoresSafeArea()     // BackGround
                     
-                    MainViewModelPlanet(users : $users)
-                        .frame(height: geo.size.height/2)
-                    
-                    MainViewModelSendVideo()
-                        .frame(height: geo.size.height/3)
-                    
-                }   // VStack
-            }   // ZStack
-        }   // GeometryReader
-        .onAppear{
-         setup()
+                    VStack{
+                        MainViewModelTitle()
+                            .frame(height: geo.size.height/6)
+                        
+                        MainViewModelPlanet(users : $users)
+                            .frame(height: geo.size.height/2)
+                        
+                        NavigationLink ("영상 보내기",destination: MessageSettingsView(), isActive: $navModel.MessageAddProcessIsActive)
+                            .isDetailLink(false)
+                            .buttonStyle(ButtonPrimaryStyle(frameWidth: 100, frameHeight: 60))
+                            .frame(height: geo.size.height/3)
+                        
+                    }   // VStack
+                }   // ZStack
+            }   // GeometryReader
+            .onAppear{
+                setup()
+            }
+            .navigationBarBackButtonHidden(true)
         }
-        .navigationBarBackButtonHidden(true)
-        
     }    // View.
     
 }
@@ -67,7 +70,7 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        let realm = try! Realm() // Realm 인스턴스 생성
+//        let realm = try! Realm() // Realm 인스턴스 생성
         let userViewModel = UserViewModel() // UserViewModel에 Realm 인스턴스 전달
         let videoMessageViewModel = VideoMessageViewModel() // VideoMessageViewModel에 Realm 인스턴스 전달
         let navigationModel = NavigationModel() // NavigationModel에 Realm 인스턴스 전달

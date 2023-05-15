@@ -37,6 +37,7 @@ struct PlanetPlusModal: View {
                     
                     ModalViewIndicator(indicator: geo.size.width/6)
                     Spacer()
+                    
                     if self.users?[planetLotateNumber].profile == nil {
                         Text("행성 추가하기")
                             .font(.title2).bold()

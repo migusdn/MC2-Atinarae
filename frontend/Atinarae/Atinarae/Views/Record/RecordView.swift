@@ -13,8 +13,10 @@ import UIKit
 
 struct RecordView: View {
     @Environment(\.presentationMode) var presentationMode
-    
+    @EnvironmentObject var userViewModel: UserViewModel
     @StateObject var cameraModel = CameraViewModel()
+    
+    
     var videoMessage: VideoMessage
     @State private var progress: CGFloat = 0.0
     @State private var selectedSegment = 0
@@ -81,8 +83,6 @@ struct RecordView: View {
                                 
                                 
                                 Button(action:{
-                                    
-                                    
                                     if cameraModel.isRecording { //녹화중단!
                                         if cameraModel.recordedDuraion <= cameraModel.minDuration { //15초 미만일 때 다시 녹화되도록 만들기
                                             let alert = UIAlertController(title: "알림", message: "15초 이상 녹화해주세요.", preferredStyle: .alert)
@@ -191,11 +191,17 @@ struct RecordView: View {
                                 }
                                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 100))
                                 .sheet(isPresented: $showModal){
-                                    FinalPreview(url: cameraModel.recordedURL!, videoMessage: videoMessage, onClose: { showModal.toggle() })
+                                    FinalPreview(
+                                        isPresented: $showModal, url: cameraModel.recordedURL!,
+                                        videoMessage: videoMessage
+                                    )
                                         .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                                         .padding(.top,60)
                                         .padding(.bottom,10)
                                 }
+                                .onDisappear {
+                                                    presentationMode.wrappedValue.dismiss()
+                                                }
                                 
                             }
                             .offset(x: 50, y: 0)
@@ -229,17 +235,15 @@ struct RecordView: View {
 }
 
 struct FinalPreview: View {
-   // @Environment(\.presentationMode) var presentationMode
-    
-//    @EnvironmentObject var navModel: NavigationModel
-//    @EnvironmentObject var navigationModel: NavigationModel
-//    @EnvironmentObject var videoMessageViewModel: VideoMessageViewModel
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var navModel: NavigationModel
+    @EnvironmentObject var videoMessageViewModel: VideoMessageViewModel
+    @Binding var isPresented: Bool
     
     var url: URL
     var videoMessage: VideoMessage
     @State private var isNext = false
     
-    let onClose: () -> Void
     
     var body: some View {
         NavigationView{
@@ -260,39 +264,23 @@ struct FinalPreview: View {
                     
                     Spacer()
                     
+                    
                     Button(action:{
                         videoMessage.videoSrc = url.absoluteString
-                        self.isNext.toggle()
-                        onClose()
-
+                        videoMessageViewModel.addVideoMessage(videoMessage)
+                        print("Video Data Log")
+                        
+                        self.presentationMode.wrappedValue.dismiss()
+                        navModel.MessageAddProcessExit()
+                        
                         print("다음 버튼 클릭")
                     }){
-                        Text("다음 - recordView")
+                       Text("종료")
                         
                     }
                     .buttonStyle(ButtonPrimaryStyle(frameWidth: 100, frameHeight: 60))
-                    .background(NavigationLink(destination: SendVideo(videoMessage: videoMessage), isActive: $isNext){
-                        Text("dfdf")
-                    })
+                    
                     .padding(EdgeInsets(top: -50, leading: 0, bottom: 30, trailing: 0))
-                    
-                    
-                    // TODO: 모아나~ 여기 참고해서 NavigationLink 조절하면 됩니다.
-                    
-                    //                Button(action: {
-                    //                    videoMessage.videoSrc = url.absoluteString
-                    //                    videoMessageViewModel.addVideoMessage(videoMessage)
-                    //                    print("Video Data Log")
-                    //                    print(videoMessage)
-                    //                    presentationMode.wrappedValue.dismiss()
-                    //                    navigationModel.MessageAddProcessExit()
-                    //
-                    //                    //                    navigationModel.finishVideoAddProcess()
-                    //                }){
-                    //                    Text("종료 - recordView")
-                    //
-                    //                }.buttonStyle(ButtonSecondaryStyle(frameWidth: 100, frameHeight: 60))
-                    
                     
                 }
             }

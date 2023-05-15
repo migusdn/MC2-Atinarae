@@ -55,6 +55,26 @@ class VideoMessageViewModel: ObservableObject {
             print("Failed to delete video message: \(error)")
         }
     }
+    func getVideoMessages(forUser user: User, isInbox: Bool) -> [VideoMessage] {
+        // Fetch the video messages based on the user and whether they are the sender or receiver
+        // For example, using Realm:
+        print("뭐가 문제야")
+//        print(user)
+        do {
+            let realm = try Realm()
+            let filteredMessages = realm.objects(VideoMessage.self)
+//                .filter("sender = %@", user)
+//                .filter("sender = %@", user)
+                .filter(isInbox ? "receiverId = %@" : "senderId = %@", user._id)
+            print(filteredMessages)
+            return Array(filteredMessages)
+            
+        } catch {
+            print("Failed to fetch video messages: \(error)")
+            return []
+        }
+    }
+    
     func refresh() {
             // Refresh the video messages by fetching the latest data from the data source
             fetchVideoMessages()
