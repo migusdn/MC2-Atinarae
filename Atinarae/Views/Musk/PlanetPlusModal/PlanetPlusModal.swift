@@ -24,9 +24,7 @@ struct PlanetPlusModal: View {
     @State var eMail: String = ""
     @State var nickName: String = ""
     @State var showingAlert: Bool = false
-    @State var showingDeleteAlert = false
     @Binding var users: [User]?
-    @Binding var deletePlanet: Bool
     
     var body: some View {
         GeometryReader { geo in
@@ -40,12 +38,17 @@ struct PlanetPlusModal: View {
                         Spacer()
                         
                         Button{     // 저장
+                            print(userViewModel.getFriendsList().count)
                             let newFriend = User()
                             newFriend.nickname = nickName
-                            newFriend.profile = selectedPlanet
                             newFriend.mail = eMail
                             newFriend.phone = phoneNumber
+                            newFriend.profile = selectedPlanet
                             userViewModel.addFriend(friend: newFriend)
+                            userViewModel.refresh()
+//                            userViewModel.updateUser(user: (users?[planetLotateNumber])!, nickname: nickName, mail: eMail, phone: phoneNumber, profile: selectedPlanet, friends: [])
+                            
+//                            userViewModel.refresh()
                             dismiss()
                         } label: {
                             Text("저장")
@@ -54,7 +57,7 @@ struct PlanetPlusModal: View {
                         .padding()
                     }
                     Spacer()
-                    
+                    Text(String(planetLotateNumber))
                     Text("행성 추가하기")
                         .font(.title2).bold()
                         .padding(.bottom)

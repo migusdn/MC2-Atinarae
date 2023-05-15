@@ -21,7 +21,7 @@ import RealmSwift
 
 //userViewModel.currentUser?.friends[0].nickname ?? ""
 struct MainViewModelPlanet: View {
-    @EnvironmentObject var userViewModel: UserViewModel
+    @ObservedObject var userViewModel: UserViewModel
     // 별들이 도는 애니메이션 bool
     @State private var animationFlag = false
     // 행성을 생성하는 모달뷰
@@ -36,6 +36,9 @@ struct MainViewModelPlanet: View {
     @State var willMadePlanet: Int = 0
     //Dismiss
     @Environment(\.dismiss) var dismiss
+    
+    
+    
 
     var body: some View {
         GeometryReader{ geo in
@@ -77,12 +80,22 @@ struct MainViewModelPlanet: View {
         }   // GeometryReader
         .onAppear{
             self.animationFlag.toggle()
+           
+           
+//            print(self.detectFriends)
+            if deletePlanet {
+                userViewModel.deleteUser(user: (userViewModel.currentUser?.friends[0])!)
+                deletePlanet = false
+            }
+            
+            
             if userViewModel.getFriendsList().count != 0 {
                 willMadePlanet = userViewModel.currentUser?.friends.count ?? 0
             } else {
                 willMadePlanet = 0
             }
         }
+       
         
     }    // Body
 
@@ -92,7 +105,7 @@ struct MainViewModelPlanet: View {
         let planetPoint = [4.4, 5.6, 3.5, 6.7, 2.5]
         // 행성의 궤도 라인 정하기
         let planetDiameter = [diameter[2], diameter[1], diameter[1], diameter[1], diameter[1]]
-
+        
 
         // 행성의 위치 계산.
         let angle = 7.85
@@ -100,11 +113,10 @@ struct MainViewModelPlanet: View {
 
             // nil 체크 해야함........ - > 해결 완
             ForEach(0..<(userViewModel.currentUser?.friends.count ?? 0)) { index in
-//                if planetDiameter.indices.contains(index), planetPoint.indices.contains(index){
                     
                     let planetLotateNumber = index
                     self.makePlanet(planetDiameter: planetDiameter[planetLotateNumber], point: planetPoint[planetLotateNumber], planetLotateNumber: planetLotateNumber, planetSize: planetSize)
-//                }
+
             }
 
 
@@ -114,7 +126,9 @@ struct MainViewModelPlanet: View {
             }
             //버튼 만들기
             Button{
-                self.showModal = true
+                if willMadePlanet != 5{
+                    self.showModal = true
+                }
             } label: {
                makeMainPlanet(planetNumber: 5)
                     .resizable()
@@ -124,7 +138,7 @@ struct MainViewModelPlanet: View {
 
             }
             .sheet(isPresented: self.$showModal) {
-                PlanetPlusModal(planetLotateNumber: $willMadePlanet, users: $users, deletePlanet: Binding.constant(false)) // 고쳐야함
+                    PlanetPlusModal(planetLotateNumber: $willMadePlanet, users: $users) // 고쳐야함
                     }
     }
 

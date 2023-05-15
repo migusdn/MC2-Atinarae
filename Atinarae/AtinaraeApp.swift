@@ -31,16 +31,18 @@ struct AtinaraeApp: SwiftUI.App {
     
     // MARK: - Define App Variable
     @StateObject private var userViewModel = UserViewModel()
-    @StateObject private var videoMessageViewModel = VideoMessageViewModel()
-    @StateObject private var navigationModel = NavigationModel()
-    var body: some Scene {
-        
-        WindowGroup {
-            LaunchPage()
-//            onBoard()
-                .environmentObject(userViewModel)
-                .environmentObject(videoMessageViewModel)
-                .environmentObject(navigationModel)
+        @StateObject private var videoMessageViewModel = VideoMessageViewModel()
+        @StateObject private var navigationModel = NavigationModel()
+        var body: some Scene {
+            
+            WindowGroup {
+              
+                    MainView()
+                    //            onBoard()
+                        .environmentObject(userViewModel)
+                        .environmentObject(videoMessageViewModel)
+                        .environmentObject(navigationModel)
+                
         }
     }
     

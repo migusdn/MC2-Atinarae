@@ -37,28 +37,31 @@ struct MainView: View {
     }
     
     var body: some View{
-        GeometryReader { geo in
-            ZStack{
-                Color.backGroundColor.ignoresSafeArea()     // BackGround
+        NavigationView{
+            GeometryReader { geo in
+                ZStack{
+                    Color.backGroundColor.ignoresSafeArea()     // BackGround
+                    
+                    VStack{
+                        MainViewModelTitle()
+                            .frame(height: geo.size.height/6)
+                        
+                        MainViewModelPlanet(userViewModel: userViewModel, users : $users)
+                            .frame(height: geo.size.height/2)
+                        
+                        MainViewModelSendVideo()
+                            .frame(height: geo.size.height/3)
+                        
+                    }   // VStack
+                }   // ZStack
+            }   // GeometryReader
+            .onAppear{
+                userViewModel.refresh()
+                setup()
                 
-                VStack{
-                    MainViewModelTitle()
-                        .frame(height: geo.size.height/6)
-                    
-                    MainViewModelPlanet(users : $users)
-                        .frame(height: geo.size.height/2)
-                    
-                    MainViewModelSendVideo()
-                        .frame(height: geo.size.height/3)
-                    
-                }   // VStack
-            }   // ZStack
-        }   // GeometryReader
-        .onAppear{
-         setup()
+            }
+            .navigationBarBackButtonHidden(true)
         }
-        .navigationBarBackButtonHidden(true)
-        
     }    // View.
     
 }

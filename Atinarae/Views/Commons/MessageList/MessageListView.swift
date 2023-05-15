@@ -79,7 +79,7 @@ struct MessageListView: View {
             if isInbox{
                 VStack {
                     filterByPersonMenu
-                        .background(Color.black)
+                        
                     
                     Spacer()
                 }
@@ -114,6 +114,7 @@ struct MessageListView: View {
                         }
                     }
                 }
+                
             } label: {
                 Image(systemName: "chevron.down")
                 if selectedPerson == nil {
@@ -124,9 +125,11 @@ struct MessageListView: View {
                 Spacer()
                 Text("디데이순")
             }
-            .foregroundColor(Color.primary)
+           
             .menuStyle(BorderlessButtonMenuStyle())
+            
         }
+      
     }
     private func getPeopleFromVideos(videos: [VideoMessage], isInbox: Bool) -> [User] {
             var people: [User] = []

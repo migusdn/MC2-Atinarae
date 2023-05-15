@@ -86,7 +86,10 @@ struct DetailView: View {
                                     EditPlanetModal(planetLotateNumber: $moveModalPlanetLotateNumber, users: $users, deletePlanet: $deletePlanet)
                                         .onDisappear{
                                             if deletePlanet {
-                                                dismiss()
+                                                if let userToDelete = userViewModel.currentUser?.friends[planetLotateNumber] {
+                                                    userViewModel.deleteUser(user: userToDelete)
+                                                }
+                                                userViewModel.refresh()
                                         }
                                 }
                             }
@@ -146,19 +149,16 @@ struct DetailView: View {
                 .onPreferenceChange(ScrollViewOffsetPreferenceKey.self) { value in
                     scrollOffsetDetect = value
                     // 가운대로 포지션 이동
-//                    .position(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
+                    // .position(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
                 }
             }
         }
         .onAppear{
             self.animationFlag = true
+            
+            
         }
-        .onDisappear{
-            dismiss()
-            if deletePlanet {
-                userViewModel.deleteUser(user: (userViewModel.currentUser?.friends[planetLotateNumber])!)
-            }
-        }
+        
     }
     
     
@@ -198,7 +198,7 @@ struct DetailView: View {
 
 struct ScrollViewOffsetPreferenceKey: PreferenceKey {
     static var defaultValue: CGFloat = 0.0
-    
+
     static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
         value = nextValue()
     }

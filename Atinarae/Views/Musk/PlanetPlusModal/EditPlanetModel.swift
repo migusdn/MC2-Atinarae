@@ -6,6 +6,7 @@
 //
 import SwiftUI
 import RealmSwift
+// 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓 럽미라잇디스 럽미라잇댓
 
 struct EditPlanetModal: View {
     @Binding var planetLotateNumber: Int
@@ -64,6 +65,7 @@ struct EditPlanetModal: View {
                                 Button("삭제", role: .destructive) {
                                     showingDeleteAlert = true
                                     deletePlanet = true
+                                    
                                 }
                             } message: {
                                 Text("삭제 후 30일 간 환경설정에서 복원이 가능해요.")
@@ -71,7 +73,6 @@ struct EditPlanetModal: View {
                             .alert("행성이 삭제되었어요.", isPresented: $showingDeleteAlert) {
                                 Button("확인", role: .cancel) {
                                     dismiss()
-                                   
                                 }
                             
                         }

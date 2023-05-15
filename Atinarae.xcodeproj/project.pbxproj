@@ -10,7 +10,6 @@
 		0B0DB94A2A120A7700FDCB72 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0DB9402A120A7700FDCB72 /* DetailView.swift */; };
 		0B0DB94B2A120A7700FDCB72 /* PlanetPlusModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0DB9422A120A7700FDCB72 /* PlanetPlusModal.swift */; };
 		0B0DB94C2A120A7700FDCB72 /* EditPlanetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0DB9432A120A7700FDCB72 /* EditPlanetModel.swift */; };
-		0B0DB94D2A120A7700FDCB72 /* LaunchPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0DB9442A120A7700FDCB72 /* LaunchPage.swift */; };
 		0B0DB94E2A120A7700FDCB72 /* MainViewModelPlanet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0DB9462A120A7700FDCB72 /* MainViewModelPlanet.swift */; };
 		0B0DB94F2A120A7700FDCB72 /* MainViewModelTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0DB9472A120A7700FDCB72 /* MainViewModelTitle.swift */; };
 		0B0DB9502A120A7700FDCB72 /* MainViewModelSendVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0DB9482A120A7700FDCB72 /* MainViewModelSendVideo.swift */; };
@@ -52,7 +51,6 @@
 		0B0DB9402A120A7700FDCB72 /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		0B0DB9422A120A7700FDCB72 /* PlanetPlusModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanetPlusModal.swift; sourceTree = "<group>"; };
 		0B0DB9432A120A7700FDCB72 /* EditPlanetModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPlanetModel.swift; sourceTree = "<group>"; };
-		0B0DB9442A120A7700FDCB72 /* LaunchPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchPage.swift; sourceTree = "<group>"; };
 		0B0DB9462A120A7700FDCB72 /* MainViewModelPlanet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModelPlanet.swift; sourceTree = "<group>"; };
 		0B0DB9472A120A7700FDCB72 /* MainViewModelTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModelTitle.swift; sourceTree = "<group>"; };
 		0B0DB9482A120A7700FDCB72 /* MainViewModelSendVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModelSendVideo.swift; sourceTree = "<group>"; };
@@ -110,7 +108,6 @@
 			children = (
 				0B0DB93F2A120A7700FDCB72 /* DetailView */,
 				0B0DB9412A120A7700FDCB72 /* PlanetPlusModal */,
-				0B0DB9442A120A7700FDCB72 /* LaunchPage.swift */,
 				0B0DB9452A120A7700FDCB72 /* MainView */,
 			);
 			path = Musk;
@@ -455,7 +452,6 @@
 				5E15F0512A0F640D0074A715 /* UserViewModel.swift in Sources */,
 				0B0DB94C2A120A7700FDCB72 /* EditPlanetModel.swift in Sources */,
 				5E40AE9F2A1133B100EE5580 /* CameraRecord.swift in Sources */,
-				0B0DB94D2A120A7700FDCB72 /* LaunchPage.swift in Sources */,
 				0B0DB94A2A120A7700FDCB72 /* DetailView.swift in Sources */,
 				0B0DB9502A120A7700FDCB72 /* MainViewModelSendVideo.swift in Sources */,
 				5ED79EFF29FD935F009D45AA /* AtinaraeApp.swift in Sources */,

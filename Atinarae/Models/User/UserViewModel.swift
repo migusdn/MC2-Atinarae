@@ -65,6 +65,7 @@ class UserViewModel: ObservableObject {
             try realm.write {
                 realm.add(user)
             }
+            
         } catch {
             print("Failed to create user: \(error)")
         }
@@ -90,14 +91,16 @@ class UserViewModel: ObservableObject {
     }
     // MARK: - 특정 유저 삭제
     func deleteUser(user: User) {
-        do {
-            try realm.write {
-                realm.delete(user)
+            do {
+                try realm.write {
+                    realm.delete(user)
+                }
+                
+                currentUser = nil
+            } catch {
+                print("Failed to delete user: \(error)")
             }
-        } catch {
-            print("Failed to delete user: \(error)")
         }
-    }
     // MARK: - APP INIT시 사용하는 부분으로 건들지 말것
     func setCurrentUser() {
         if users.isEmpty {
@@ -117,6 +120,7 @@ class UserViewModel: ObservableObject {
     func refresh() {
         do {
             // Fetch the latest users data from the database
+            self.objectWillChange.send()
             let users = realm.objects(User.self)
             
             // Update the published properties with the latest data
@@ -146,21 +150,17 @@ class UserViewModel: ObservableObject {
     }
     // MARK: - CurrentUser의 친구 목록에 새로운 User를 추가.
     func addFriend(friend: User) {
-        guard let currentUser = currentUser else {
-            return
-        }
-        
-        do {
-            try realm.write {
-                //유저가 없다면 새로운 유저를 생성하고 이를 추가하는 코드 지워도 됨 머식머식
-                createUser(user: friend)
-                currentUser.friends.append(friend)
+            do {
+                self.objectWillChange.send()
+                try realm.write {
+                    currentUser?.friends.append(friend)
+                    realm.add(friend)
+                    self.objectWillChange.send()
+                }
+            } catch {
+                print("Failed to add friend: \(error)")
             }
-        } catch {
-            print("Failed to add friend: \(error)")
         }
-    }
-    
     func isExist(_ user: User) -> Bool {
         guard users.filter("nickname == %@", user.nickname).isEmpty else {
             print("Nickname already exists")
