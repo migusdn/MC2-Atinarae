@@ -57,7 +57,6 @@ struct PlanetPlusModal: View {
                         .padding()
                     }
                     Spacer()
-                    Text(String(planetLotateNumber))
                     Text("행성 추가하기")
                         .font(.title2).bold()
                         .padding(.bottom)

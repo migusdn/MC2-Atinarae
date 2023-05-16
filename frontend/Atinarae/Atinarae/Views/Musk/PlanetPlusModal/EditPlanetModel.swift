@@ -18,8 +18,14 @@ struct EditPlanetModal: View {
     @State var nickName: String = ""
     @State var showingAlert: Bool = false
     @State var showingDeleteAlert = false
-    @Binding var users: [User]?
+    @State var users: [User]?
     @Binding var deletePlanet: Bool
+    
+    func setup(){
+
+        self.users = userViewModel.getFriendsList()
+
+    }
     
     var body: some View {
         GeometryReader { geo in
@@ -137,10 +143,12 @@ struct EditPlanetModal: View {
             
         }
         .onAppear{
+            setup()
             selectedPlanet = self.users?[planetLotateNumber].profile ?? 0
             phoneNumber = self.users?[planetLotateNumber].phone ?? ""
             eMail = users?[planetLotateNumber].mail ?? ""
             nickName = users?[planetLotateNumber].nickname ?? ""
+        
         }
     }
 }

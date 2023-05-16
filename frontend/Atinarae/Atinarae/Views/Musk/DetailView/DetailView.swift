@@ -30,11 +30,13 @@ struct DetailView: View {
     //Dismiss
     @Environment(\.dismiss) var dismiss
     // 바인딩 받아오는 유저 정보
-    @Binding var users: [User]?
+    @State var users: [User]?
     @State private var pickSegmetedIsSending = 0
     
     
-    
+    func setup(){
+        self.users = userViewModel.getFriendsList()
+    }
     var body: some View {
         
         GeometryReader { geo in
@@ -44,7 +46,7 @@ struct DetailView: View {
                     
                     VStack{
                         ZStack{
-                            makeDetailPlanet(planetNumber:self.users?[planetLotateNumber].profile ?? 0)
+                            makeDetailPlanet(planetNumber: userViewModel.currentUser?.friends[planetLotateNumber].profile ?? 0)
                                 .resizable()
                                 .frame(width: planetSize, height: planetSize)
                                 .blendMode(.colorDodge)
@@ -64,7 +66,7 @@ struct DetailView: View {
                             
                             // User Nickname, Edit Button.
                             HStack{
-                                Text(self.users?[planetLotateNumber].nickname ?? "")
+                                Text(userViewModel.currentUser?.friends[planetLotateNumber].nickname ?? "")
                                     .font(.largeTitle).bold()
                                 
                                 Button{
@@ -83,13 +85,11 @@ struct DetailView: View {
                                     
                                 }
                                 .sheet(isPresented: self.$showModal) {
-                                    EditPlanetModal(planetLotateNumber: $moveModalPlanetLotateNumber, users: $users, deletePlanet: $deletePlanet)
+                                    EditPlanetModal(planetLotateNumber: $moveModalPlanetLotateNumber,deletePlanet: $deletePlanet)
                                         .onDisappear{
                                             if deletePlanet {
-                                                if let userToDelete = userViewModel.currentUser?.friends[planetLotateNumber] {
-                                                    userViewModel.deleteUser(user: userToDelete)
-                                                }
-                                                userViewModel.refresh()
+                                               
+                                                dismiss()
                                         }
                                 }
                             }
@@ -122,7 +122,7 @@ struct DetailView: View {
                         ToolbarItemGroup(placement: .principal) {
                             HStack{
                                 Spacer()
-                                Text(String(self.users?[planetLotateNumber].nickname ?? ""))
+                                Text(String(userViewModel.currentUser?.friends[planetLotateNumber].nickname ?? ""))
                                     .opacity(scrollOffsetDetect <= 0 ? 0.008 * -scrollOffsetDetect:0)
 //                                    .opacity(scrollOffsetDetect <= 0 ? 0.008 * -scrollOffsetDetect:0)
                                 Spacer()
@@ -155,7 +155,7 @@ struct DetailView: View {
         }
         .onAppear{
             self.animationFlag = true
-            
+            setup()
             
         }
         

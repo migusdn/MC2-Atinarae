@@ -34,6 +34,7 @@ struct MainViewModelPlanet: View {
     @State var tag:Int? = nil
     // 하 이거 어케함? -> 해결 완 ㅎ
     @State var willMadePlanet: Int = 0
+    //
     //Dismiss
     @Environment(\.dismiss) var dismiss
     
@@ -79,14 +80,10 @@ struct MainViewModelPlanet: View {
             .position(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
         }   // GeometryReader
         .onAppear{
+            
+            
             self.animationFlag.toggle()
-           
-           
-//            print(self.detectFriends)
-            if deletePlanet {
-                userViewModel.deleteUser(user: (userViewModel.currentUser?.friends[0])!)
-                deletePlanet = false
-            }
+            userViewModel.refresh()
             
             
             if userViewModel.getFriendsList().count != 0 {
@@ -94,7 +91,10 @@ struct MainViewModelPlanet: View {
             } else {
                 willMadePlanet = 0
             }
+            // 여기서 삭제 , 검사를 해서 어케 어케 함
+            
         }
+       
        
         
     }    // Body
@@ -110,18 +110,17 @@ struct MainViewModelPlanet: View {
         // 행성의 위치 계산.
         let angle = 7.85
         return ZStack {
-
-//            ForEach(userViewModel.getFriendsList())
-            // nil 체크 해야함........ - > 해결 완
-            ForEach(0..<(userViewModel.currentUser?.friends.count ?? 0)) { index in
-                    let planetLotateNumber = index
-                    self.makePlanet(planetDiameter: planetDiameter[planetLotateNumber], point: planetPoint[planetLotateNumber], planetLotateNumber: planetLotateNumber, planetSize: planetSize)
+            ForEach(Array(userViewModel.getFriendsList().enumerated()), id: \.1) { index, friend in
+                let planetLotateNumber = index
+                self.makePlanet(planetDiameter: planetDiameter[planetLotateNumber], point: planetPoint[planetLotateNumber], planetLotateNumber: planetLotateNumber, planetSize: planetSize)
             }
+            // nil 체크 해야함........ - > 해결 완
 
 
             
-            ForEach(0..<5){ planetLotateNumber in
-                NavigationLink(destination: DetailView(planetLotateNumber: planetLotateNumber, users: $users), tag : planetLotateNumber, selection: self.$tag){}
+            ForEach(0..<5) { index in
+                let planetLotateNumber = index
+                NavigationLink(destination: DetailView(planetLotateNumber: planetLotateNumber), tag : planetLotateNumber, selection: self.$tag){}
             }
             //버튼 만들기
             Button{

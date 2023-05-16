@@ -22,6 +22,7 @@ class UserViewModel: ObservableObject {
      하면 됨
      */
     @Published var currentUser: User?
+    @Published var friends: [User]?
     
     init() {
         do {
@@ -92,7 +93,10 @@ class UserViewModel: ObservableObject {
     func deleteUser(user: User) {
         do {
             try realm.write {
-                realm.delete(user)
+//                currentUser?.friends.remove(at: user)
+                realm.delete(users)
+                refresh()
+                setCurrentUser()
             }
         } catch {
             print("Failed to delete user: \(error)")
@@ -112,6 +116,7 @@ class UserViewModel: ObservableObject {
         
         // 첫 번째 사용자를 현재 사용자로 설정
         currentUser = users.first
+        friends = getFriendsList()
     }
     // MARK: - ObservableObject를 업데이트 함으로서 해당 변수를 참조하고 있는 모든 뷰에 새로고침이 가능해짐.
     func refresh() {
@@ -121,6 +126,7 @@ class UserViewModel: ObservableObject {
             
             // Update the published properties with the latest data
             currentUser = users.first
+            friends = getFriendsList()
             
             // You can also update other properties or perform additional logic here
             print("currentUser init success: \(currentUser)")
