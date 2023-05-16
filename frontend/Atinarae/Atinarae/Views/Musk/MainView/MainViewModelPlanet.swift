@@ -111,6 +111,7 @@ struct MainViewModelPlanet: View {
         let angle = 7.85
         return ZStack {
 
+//            ForEach(userViewModel.getFriendsList())
             // nil 체크 해야함........ - > 해결 완
             ForEach(0..<(userViewModel.currentUser?.friends.count ?? 0)) { index in
                     let planetLotateNumber = index

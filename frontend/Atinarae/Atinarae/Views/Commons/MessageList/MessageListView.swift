@@ -92,11 +92,11 @@ struct MessageListView: View {
                     .listRowInsets(EdgeInsets())
                 }
             }
+            .scrollContentBackground(.hidden)
             .padding(.top, 0)
             
             VStack {
                 filterByPersonMenu
-                    .background(Color.black)
                 
                 Spacer()
             }

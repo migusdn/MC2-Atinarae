@@ -62,7 +62,7 @@ struct AtinaraeApp: SwiftUI.App {
          */
         
         RealmUtility.createNewRealm()
-        let isDev = !true
+        let isDev = true
         if isDev {
             
             RealmUtility.initTestData()

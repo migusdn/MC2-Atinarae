@@ -83,8 +83,8 @@ struct MessageSettingsView: View {
                     }
                     //                    date
                     if let friend = selectedFriend {
-//                        videoMessage.receiverId = friend._id
-                        videoMessage.receiverId = userViewModel.currentUser?._id
+                        videoMessage.receiverId = friend._id
+//                        videoMessage.receiverId = userViewModel.currentUser?._id
                     }
                     videoMessage.senderId = userViewModel.currentUser?._id
                 
