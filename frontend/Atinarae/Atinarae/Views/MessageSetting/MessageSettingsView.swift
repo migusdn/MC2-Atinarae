@@ -187,7 +187,7 @@ struct MessageSettingsView: View {
                 }
                 Text(friend.nickname)
             } else {
-                makeSelectPlanet(planetNumber: 1)
+                makeSelectPlanet(planetNumber: friend.profile)
                     .resizable()
                     .frame(width: 63, height: 63)
                 Text(friend.nickname)

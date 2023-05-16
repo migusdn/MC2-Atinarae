@@ -94,9 +94,11 @@ struct MessageListView: View {
             }
             .scrollContentBackground(.hidden)
             .padding(.top, 0)
+            .scrollContentBackground(.hidden)
             
             VStack {
                 filterByPersonMenu
+//                    .background(Color.black)
                 
                 Spacer()
             }
