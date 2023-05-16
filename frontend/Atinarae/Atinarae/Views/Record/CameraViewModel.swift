@@ -28,8 +28,8 @@ class CameraViewModel: NSObject, ObservableObject, AVCaptureFileOutputRecordingD
     
     //top바 -> 시간 타이머
     @Published var recordedDuraion: CGFloat = 0
-    @Published var maxDuration: CGFloat = 5
-    @Published var minDuration: CGFloat = 0
+    @Published var maxDuration: CGFloat = 45
+    @Published var minDuration: CGFloat = 15
     
     
     

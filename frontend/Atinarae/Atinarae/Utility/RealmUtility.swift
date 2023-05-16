@@ -39,34 +39,39 @@ class RealmUtility {
             let user1 = User()
             user1.nickname = "우디"
             
+            
             let user2 = User()
             user2.nickname = "모아나"
-            
+            user2.profile = 1
             let user3 = User()
             user3.nickname = "돈"
-            
+            user3.profile = 2
             let user4 = User()
             user4.nickname = "잼"
-            
+            user4.profile = 3
             let user5 = User()
             user5.nickname = "제이미"
             
             let user6 = User()
             user6.nickname = "머식이"
             
+//            let categoryNames = [
+//                "수능", "결혼", "졸업", "여행", "생일", "휴가", "운동", "영화", "책", "음식",
+//                "댄스", "음악", "미술", "사진", "공연", "축구", "농구", "야구", "배구", "수영",
+//                "요가", "등산", "서핑", "자전거", "쇼핑", "요리", "독서", "게임", "피아노"
+//            ]
             let categoryNames = [
-                "수능", "결혼", "졸업", "여행", "생일", "휴가", "운동", "영화", "책", "음식",
-                "댄스", "음악", "미술", "사진", "공연", "축구", "농구", "야구", "배구", "수영",
-                "요가", "등산", "서핑", "자전거", "쇼핑", "요리", "독서", "게임", "피아노"
+                "축하", "기념", "감사", "응원", "위로", "조언"
             ]
             
             var categories: [Category] = []
             
             // 각 유저마다 5개의 카테고리 생성
             for user in [user1, user2, user3, user4, user5, user6] {
-                for _ in 0..<5 {
+                for a in 0..<5 {
                     let category = Category()
-                    category.name = generateRandomCategoryName()
+                    category.name = categoryNames[a]
+//                    category.name = generateRandomCategoryName()
                     category.user = user
                     categories.append(category)
                 }
