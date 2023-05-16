@@ -79,5 +79,22 @@ class VideoMessageViewModel: ObservableObject {
             // Refresh the video messages by fetching the latest data from the data source
             fetchVideoMessages()
         }
+    
+    // Detail의 User와, 쿼리를 때릴 User를 받아와서 해야함.
+    // DetailUser가 reciver 고정으로 되어야 하고, 쿼리를 때릴 User는 sender여야함.
+    func getDetailVideoMessages(forUser Detailuser: User) -> [VideoMessage] {
+        do {
+            let realm = try Realm()
+            let filteredMessages = realm.objects(VideoMessage.self)
+                .filter("receiverId = %@", Detailuser._id)
+            print(filteredMessages)
+            return Array(filteredMessages)
+            
+        } catch {
+            print("Failed to fetch video messages: \(error)")
+            return []
+        }
+    }
 
 }
+

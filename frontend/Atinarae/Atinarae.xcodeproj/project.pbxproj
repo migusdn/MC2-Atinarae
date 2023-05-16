@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B0DB9532A12B17000FDCB72 /* DetailBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0DB9522A12B17000FDCB72 /* DetailBoxView.swift */; };
 		5E1487792A03C65A0041593A /* JsonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1487782A03C65A0041593A /* JsonUtility.swift */; };
 		5E15F0512A0F640D0074A715 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E15F0502A0F640D0074A715 /* UserViewModel.swift */; };
 		5E15F0A32A0FADD60074A715 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E15F0A22A0FADD60074A715 /* Category.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B0DB9522A12B17000FDCB72 /* DetailBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBoxView.swift; sourceTree = "<group>"; };
 		5E1487782A03C65A0041593A /* JsonUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonUtility.swift; sourceTree = "<group>"; };
 		5E14877C2A03C8430041593A /* userList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userList.json; sourceTree = "<group>"; };
 		5E14877E2A03C86E0041593A /* sampleVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sampleVideo.mp4; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				5E40AEB22A11368A00EE5580 /* InboxView.swift */,
+				0B0DB9522A12B17000FDCB72 /* DetailBoxView.swift */,
 			);
 			path = InboxView;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				5ECC74662A10330F00FDA239 /* RealmUtility.swift in Sources */,
 				5E15F0A32A0FADD60074A715 /* Category.swift in Sources */,
 				5E869F942A08CF9A007CC669 /* ColorExtension.swift in Sources */,
+				0B0DB9532A12B17000FDCB72 /* DetailBoxView.swift in Sources */,
 				5E15F0A52A0FB4630074A715 /* CategoryViewModel.swift in Sources */,
 				5E4D22D02A12A3FD0097D92D /* MainViewModelPlanet.swift in Sources */,
 				5ECC745C2A10074F00FDA239 /* MessageListView.swift in Sources */,

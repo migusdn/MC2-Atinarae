@@ -105,13 +105,13 @@ struct DetailView: View {
 
                             Section(header: HeaderView(pickSegmetedIsSending: $pickSegmetedIsSending)){
                                 
-                                
-                                InboxView()
+                                // 여기만 고치면 됨 ㅋㅋ -> 해결완
+                                DetailBoxView(planetLotateNumber: planetLotateNumber)
                                     .frame(height: 900)
                                     
                             
                             }   // Section
-//                            .offset(y:planetSize/4)
+//
                             
                         }
                         .offset(y:planetSize/4)
