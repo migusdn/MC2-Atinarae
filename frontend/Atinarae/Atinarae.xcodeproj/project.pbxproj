@@ -47,6 +47,7 @@
 		B5C077722A0BD41C0008351E /* plzModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C077712A0BD41C0008351E /* plzModal.swift */; };
 		F6958D282A0BA5A700EB7B41 /* OnBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6958D272A0BA5A700EB7B41 /* OnBoardView.swift */; };
 		F6958D2A2A0BA69900EB7B41 /* OnBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6958D292A0BA69900EB7B41 /* OnBoard.swift */; };
+		F6FB44142A0F5F51002A18AA /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FB44132A0F5F51002A18AA /* AlarmView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		B5C077712A0BD41C0008351E /* plzModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = plzModal.swift; sourceTree = "<group>"; };
 		F6958D272A0BA5A700EB7B41 /* OnBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardView.swift; sourceTree = "<group>"; };
 		F6958D292A0BA69900EB7B41 /* OnBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoard.swift; sourceTree = "<group>"; };
+		F6FB44132A0F5F51002A18AA /* AlarmView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,6 +319,7 @@
 		5ED79F0E29FD9376009D45AA /* views */ = {
 			isa = PBXGroup;
 			children = (
+				F6FB44102A0F5A31002A18AA /* Alarm */,
 				F6958D242A0BA52E00EB7B41 /* OnBoard */,
 				5E68879E2A0BA91E00C8EAAE /* SharedView */,
 				5E7DD52B2A0A8E5500458BE9 /* ReusableComponent */,
@@ -363,6 +366,14 @@
 				F6958D272A0BA5A700EB7B41 /* OnBoardView.swift */,
 			);
 			path = OnBoard;
+			sourceTree = "<group>";
+		};
+		F6FB44102A0F5A31002A18AA /* Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				F6FB44132A0F5F51002A18AA /* AlarmView.swift */,
+			);
+			path = Alarm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -472,6 +483,7 @@
 				F6958D282A0BA5A700EB7B41 /* OnBoardView.swift in Sources */,
 				5EF510972A06940800113935 /* AppData.swift in Sources */,
 				B5C077702A0BA6380008351E /* finalModalView.swift in Sources */,
+				F6FB44142A0F5F51002A18AA /* AlarmView.swift in Sources */,
 				5E869F8C2A08CF72007CC669 /* DetailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
