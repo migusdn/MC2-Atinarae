@@ -25,11 +25,9 @@ Tvvinkle 은 물리적 형태인 영상으로
 
 
 ## :pushpin: Features
-- 프로젝트 일정 관리
-- 팀원 과의 소통
-    - 개인 별 피드백
-    - 프로필 구성을 통한 개인 연락처 제공
-    - 팀원 모두가 볼 수 있는 자유 게시판
+- 동영상 녹화 및 저장
+- 동영상 예약 발송
+- 등등
 ## :people_hugging: Authors
 
 - [@Don](https://github.com/?) | [@Jamie](https://github.com/) | [@Moana](https://github.com/) | [@Musk](https://github.com/migusdn) | [@Woody](https://github.com/) | [@Zam](https://github.com/)
